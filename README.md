@@ -3,8 +3,6 @@
 > **Jav** (shengh for *Matatu*) is a deep learning project exploring how AI can make Nairobi’s informal public transit system more **efficient**, **predictable**, and **equitable**.  
 > It focuses on **ETA prediction**, **congestion mapping**, and **route performance ranking** using open transport data.
 
----
-
 ## Overview
 
 Every day, over **1.5 million Nairobians** rely on matatus, flexible but chaotic minibuses, to move across the city.  
@@ -17,16 +15,12 @@ Unpredictable traffic and unequal route coverage create delays, uncertainty, and
 * **Stack**: PyTorch/TensorFlow (DL), FastAPI (API), GeoPandas (geospatial data), and OSMnx (routing), Supabase/Postgres (DB).
 * **Goal**: Reduce commuter uncertainty, time savings and identify underserved routes for more equitable urban mobility.
 
----
-
 ## Problem Statement
 
 Nairobi’s 135+ matatu routes lack standardized schedules or predictive travel time data.  
 A 10 km trip can take over **78 minutes**, especially during peak congestion in low-income areas like **Kibera** or **Pipeline**.  
 
 While commercial transit apps exist, none integrate **machine learning-based ETA forecasts** using live data (traffic, weather, route topology) or **equity metrics** for underserved regions.
-
----
 
 ## Objectives
 
@@ -36,8 +30,6 @@ While commercial transit apps exist, none integrate **machine learning-based ETA
 * Establish **equity-aware metrics** (e.g., low-coverage route weighting). 
 * Benchmark performance against baselines (ARIMA, Prophet). 
 * Prototype a **FastAPI backend** for predictions and route ranking (future integration).
-
----
 
 ## File Structure
 
@@ -71,8 +63,6 @@ While commercial transit apps exist, none integrate **machine learning-based ETA
 └── .gitignore
 ```
 
----
-
 ## Data Sources
 
 | Source | Description | Format |
@@ -81,8 +71,6 @@ While commercial transit apps exist, none integrate **machine learning-based ETA
 | [Zindi Uber Movement](https://zindi.africa/competitions/traffic-jam-predicting-peoples-movement-into-nairobi) | Historical traffic speeds | CSV |
 | [OpenWeatherMap API](https://openweathermap.org/history) | Weather features | JSON |
 | [OpenStreetMap (Geofabrik Kenya)](https://download.geofabrik.de/africa/kenya.html) | Road network topology | PBF |
-
----
 
 ## Methodology
 
@@ -107,8 +95,6 @@ While commercial transit apps exist, none integrate **machine learning-based ETA
    * Compute route service coverage ratios (population / vehicle frequency).
    * Adjust route scores to reduce bias toward high-income areas.
 
----
-
 ### Setup
 
 ```bash
@@ -118,16 +104,12 @@ pip install -r requirements.txt
 jupyter notebook
 ```
 
----
-
 ## License
 
 MIT License – see [LICENSE](LICENSE).
 
----
-
 ## Acknowledgments
 
-* Digital Matatus & University of Nairobi GTFS Project, Zindi for traffic datasets, OpenWeatherMap & OSM for open APIs.
-
-*October 2025.*
+* Digital Matatus & University of Nairobi GTFS Project
+* Zindi for traffic datasets
+* OpenWeatherMap & OSM for open APIs
