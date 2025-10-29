@@ -65,8 +65,8 @@ While commercial transit apps exist, none integrate **machine learning-based ETA
 
 | Source | Description | Format |
 |--------|--------------|---------|
-| [Digital Matatus GTFS](https://digitalmatatus.com/data) | Route, stop, and shape data | GTFS (CSV) |
-| [Zindi Uber Movement](https://zindi.africa/competitions/traffic-jam-predicting-peoples-movement-into-nairobi) | Historical traffic speeds | CSV |
+| [Digital Matatus GTFS](https://digitalmatatus.com/data) | Route, stop, and shape data | GTFS (TXT) |
+| [WorldMove website](https://fi.ee.tsinghua.edu.cn/worldmove/data) | large-scale synthetic mobility dataset | ASSORTED |
 | [OpenWeatherMap API](https://openweathermap.org/history) | Weather features | JSON |
 | [OpenStreetMap (Geofabrik Kenya)](https://download.geofabrik.de/africa/kenya.html) | Road network topology | PBF |
 
@@ -109,5 +109,5 @@ MIT License – see [LICENSE](LICENSE).
 ## Acknowledgments
 
 * Digital Matatus & University of Nairobi GTFS Project
-* Zindi for traffic datasets
+* WorldMove datasets
 * OpenWeatherMap & OSM for open APIs

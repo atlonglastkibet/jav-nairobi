@@ -158,7 +158,7 @@ If using WorldMove data in research, please cite:
 
 ## Data Access
 
-1. Visit the [WorldMove website](https://www.fiblab.net/worldmove/)
+1. Visit the [WorldMove website](https://fi.ee.tsinghua.edu.cn/worldmove/data)
 2. Navigate to the data download section
 3. Select city: Nairobi, Kenya (Country Code: KE, City ID: 1098)
 4. Download required components:
