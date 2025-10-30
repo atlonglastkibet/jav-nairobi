@@ -7,6 +7,9 @@
 
 In Nairobi, matatus serve as the dominant form of public transport, used by approximately 48–58% of daily commuters, or an estimated 1.5–3.5 million people. Despite their central role in city mobility, the system remains largely informal and uncoordinated, leading to frequent congestion, unreliable travel times, and inequitable service distribution across neighborhoods.
 
+Equity is the core differentiator between Jav and every other ETA or transit app.
+Where others optimize purely for efficiency (fastest routes, least congestion), Jav optimizes for fairness; ensuring that matatu routes serving low-income or under-served neighborhoods are not algorithmically penalized or overlooked.
+
 **Jav** seeks to leverage **deep learning + geospatial analytics** to predict travel times (ETAs) and highlight underserved routes, improving both commuter experience and policy planning.
 
 * **Focus**: ETA forecasting (target MAE <5 mins), congestion mapping, and route performance ranking.
