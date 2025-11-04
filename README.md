@@ -25,11 +25,11 @@ While commercial transit apps exist, none integrate **machine learning-based ETA
 
 ## Objectives
 
-| **Objective**                                                                                                          | **Key Activities**                                                                                                                                                                                                                                                                                | **Dependencies / Inputs**                                                                     | **Deliverables & Metrics**                                                                                     |
-| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| **1. Equity-Aware Transit Evaluation**<br>*(Foundation: Fair service assessment)*                                      | - Define and implement fairness metrics (e.g., underserved route weighting by population density and access gaps).<br>- Fuse GTFS coverage data with socio-economic and accessibility layers (wards, census) to quantify transit equity.                                                          | - GTFS data (routes, stops).<br>- Socio-economic & spatial datasets (Kenya wards shapefiles). | - **Equity Scorecard** (Gini-like index ≥ 0.7).<br>- **Interactive dashboard** highlighting underserved zones. |
-| **2. Predictive Modeling for ETA, Congestion & Route Ranking**<br>*(Core: Context-aware forecasting & prioritization)* | - Train **LSTM-based ETA models**, combining GTFS schedules with real-time traffic and weather features.<br>- Predict congestion likelihood and route reliability using historical delays and equity weights.<br>- Compute a **composite route score** (ETA variance + equity-adjusted coverage). | - Obj. 1 equity metrics.<br>- APIs: Traffic (Google Maps), Weather (OpenWeather).             | - **Trained LSTM model** (MAPE < 15 %).<br>- **Congestion heatmaps** & ranked route list.                      |
-| **3. Benchmarking & Integration**<br>*(Validation & Deployment)*                                                       | - Compare model performance against **ARIMA** and **Prophet** baselines.<br>- Develop **FastAPI backend** exposing ETA predictions, congestion forecasts, and equity-adjusted rankings.                                                                                                           | - Obj. 2 model outputs.<br>- Historical GTFS logs for testing.                                | - **Benchmark report** (LSTM ≥ 20 % more reliable).<br>- **Deployable API** (Dockerized with Swagger docs).    |
+1. **Evaluate transit equity across Nairobi** by integrating GTFS coverage data with socio-economic and spatial datasets to identify underserved regions and generate an equity scorecard.
+
+2. **Develop and train predictive models (LSTM-based)** to forecast ETA, congestion, and route reliability using GTFS schedules, traffic, and weather data, and compute a composite route ranking.
+
+3. **Benchmark and deploy the system** by comparing LSTM performance against ARIMA and Prophet baselines, and build a FastAPI backend exposing predictions and rankings through a documented, Dockerized API.
 
 * Prototype a **FastAPI backend** for predictions and route ranking (future integration).
 
@@ -76,17 +76,57 @@ While commercial transit apps exist, none integrate **machine learning-based ETA
 
 
 ## Methodology
+| **Objective**                                                                                                          | **Key Activities**                                                                                                                                                                                                                                                                                | **Dependencies / Inputs**                                                                     | **Deliverables & Metrics**                                                                                     |
+| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **1. Equity-Aware Transit Evaluation**<br>*(Foundation: Fair service assessment)*                                      | - Define and implement fairness metrics (e.g., underserved route weighting by population density and access gaps).<br>- Fuse GTFS coverage data with socio-economic and accessibility layers (wards, census) to quantify transit equity.                                                          | - GTFS data (routes, stops).<br>- Socio-economic & spatial datasets (Kenya wards shapefiles). | - **Equity Scorecard** (Gini-like index ≥ 0.7).<br>- **Interactive dashboard** highlighting underserved zones. |
+| **2. Predictive Modeling for ETA, Congestion & Route Ranking**<br>*(Core: Context-aware forecasting & prioritization)* | - Train **LSTM-based ETA models**, combining GTFS schedules with real-time traffic and weather features.<br>- Predict congestion likelihood and route reliability using historical delays and equity weights.<br>- Compute a **composite route score** (ETA variance + equity-adjusted coverage). | - Obj. 1 equity metrics.<br>- APIs: Traffic (Google Maps), Weather (OpenWeather).             | - **Trained LSTM model** (MAPE < 15 %).<br>- **Congestion heatmaps** & ranked route list.                      |
+| **3. Benchmarking & Integration**<br>*(Validation & Deployment)*                                                       | - Compare model performance against **ARIMA** and **Prophet** baselines.<br>- Develop **FastAPI backend** exposing ETA predictions, congestion forecasts, and equity-adjusted rankings.                                                                                                           | - Obj. 2 model outputs.<br>- Historical GTFS logs for testing.                                | - **Benchmark report** (LSTM ≥ 20 % more reliable).<br>- **Deployable API** (Dockerized with Swagger docs).    |
+
 
 ### **Objective 1 — Equity-Aware Transit Evaluation**
 
-**Foundation:** Ensure fair and inclusive transit service assessment.
+**Foundation:** Ensure fair and inclusive transit service assessment. This will be broke down into two: `Spatial equity` and `Temporal equity`
 
-* Compute **ward-level equity indices** using population density, route coverage, and accessibility metrics.
-* Assign **route-level equity weights** by intersecting GTFS routes with ward boundaries, prioritizing underserved zones.
-* Integrate these weights into route scoring to encourage service expansion where it’s most needed.
+#### a. Spatial Equity 
 
-**Deliverables:**
-Equity scorecards and interactive dashboards highlighting coverage gaps and underserved communities.
+Measure _geographic access_ by computing the proportion of each ward’s area (and prorated population) within 500 m of matatu stops.  
+GTFS stops are buffered, unioned into a coverage polygon, then intersected with ward shapefiles (e.g., Kenya census boundaries).
+
+**Sequential Methodology**
+
+| Step                   | Description                                    | Formula                                   | GeoPandas Implementation                                        |
+| ---------------------- | ---------------------------------------------- | ----------------------------------------- | --------------------------------------------------------------- |
+| 1 Stops → Points       | Convert GTFS stops to points (EPSG 4326).      | `Point(stop_lon, stop_lat)`               | `gpd.points_from_xy(stops.stop_lon, stops.stop_lat)`            |
+| 2 Buffer Service Areas | Project to UTM 37S (EPSG 32737); buffer 500 m. | `Buffer(point_i, 500)`                    | `stops_proj.buffer(500)`                                        |
+| 3 Union Coverage       | Dissolve buffers into single polygon.          | `coverage_union = ⋃ buffer_i`             | `all_service_areas_gdf.dissolve()`                              |
+| 4 Intersect with Wards | Compute overlap areas (m²).                    | `A_intersect,j = Area(ward_j ∩ union)`    | `wards_proj.intersection(coverage_union_proj.union_all()).area` |
+| 5 Coverage Ratio       | Fraction of ward area covered.                 | `r_coverage,j = A_intersect,j / A_ward,j` | `.fillna(0).clip(0,1)`                                          |
+| 6 Population Served    | Prorate by population density.                 | `P_served,j = P_j × r_coverage,j`         | `population * coverage_ratio`                                   |
+| 7 Equity Index         | Ward-level Gini of % access.                   | `Gini = Σ                                 | %_access,j − %_access,k                                         |
+
+**Inputs:** Digital Matatus GTFS stops + Kenya ward shapefiles  
+**Outputs:** Ward-level scorecard (target Gini ≥ 0.7) and Folium choropleth (% access)  
+**Equity Weight:**  
+`w_equity,route = 1 − Σ r_coverage,j / (stops in route)` → higher for underserved routes
+
+#### b. Temporal Equity — Dynamic Service Availability
+
+Extend spatial coverage into _time-varying access_ using GTFS hourly frequencies from `stop_times.txt` to compute per-capita service levels by ward/hour—revealing peak/off-peak inequities.
+
+**Sequential Methodology**
+
+|Step|Description|Formula|Implementation|
+|---|---|---|---|
+|1 Spatial Join|Assign stops to wards (point-in-polygon).|`ward_i = within(stop_i, ward_j)`|`gpd.sjoin(stops_gdf, wards_gdf, predicate='within')`|
+|2 Merge with Frequencies|Link stops to hourly trips.|`trips_i,h = Σ trips_per_hour_trip,h`|`merge(on='stop_id')`|
+|3 Aggregate per Ward/Hour|Sum trips and population.|`total_trips_j,h = Σ trips_i,h`|`groupby(['ward','hour']).agg(...)`|
+|4 Per-Capita Service|Trips per person per hour.|`s_j,h = total_trips_j,h / P_j`|`trips_per_hour / population`|
+|5 Temporal Equity Index|Gini or CV of service over time.|`Temporal_Gini_j = Gini({ s_j,h|h=0…23 })`|
+
+**Inputs:** GTFS `stop_times.txt` + frequency tables  
+**Outputs:** Hourly service heatmaps and temporal scorecards (target avg `s_j,h ≥ 2 trips/person/hour`)  
+**Equity Weight Extension:**  
+`w_equity,route,t = 1 − min_h (s_j,h)` → penalize routes with temporal gaps
 
 ### **Objective 2 — Predictive Modeling for ETA, Congestion & Route Ranking**
 
