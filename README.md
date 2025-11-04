@@ -75,7 +75,7 @@ While commercial transit apps exist, none integrate **machine learning-based ETA
 
 ## Methodology
 
-### **Objective 1 — Equity-Aware Transit Evaluation**
+### **Objective 1: Equity-Aware Transit Evaluation**
 
 **Foundation:** Ensure fair and inclusive transit service assessment. This will be broke down into two: `Spatial equity` and `Temporal equity`
 
@@ -86,7 +86,7 @@ GTFS stops are buffered, unioned into a coverage polygon, then intersected with 
 
 | Step                   | Description                                    | Formula                                   | GeoPandas Implementation                                        |
 | ---------------------- | ---------------------------------------------- | ----------------------------------------- | --------------------------------------------------------------- |
-| 1 Stops → Points       | Convert GTFS stops to points (EPSG 4326).      | `Point(stop_lon, stop_lat)`               | `gpd.points_from_xy(stops.stop_lon, stops.stop_lat)`            |
+| 1 Stops - Points       | Convert GTFS stops to points (EPSG 4326).      | `Point(stop_lon, stop_lat)`               | `gpd.points_from_xy(stops.stop_lon, stops.stop_lat)`            |
 | 2 Buffer Service Areas | Project to UTM 37S (EPSG 32737); buffer 500 m. | `Buffer(point_i, 500)`                    | `stops_proj.buffer(500)`                                        |
 | 3 Union Coverage       | Dissolve buffers into single polygon.          | `coverage_union = ⋃ buffer_i`             | `all_service_areas_gdf.dissolve()`                              |
 | 4 Intersect with Wards | Compute overlap areas (m²).                    | `A_intersect,j = Area(ward_j ∩ union)`    | `wards_proj.intersection(coverage_union_proj.union_all()).area` |
@@ -116,59 +116,79 @@ Extends spatial coverage into _time-varying access_ using GTFS hourly frequencie
 **Equity Weight Extension:**  
 `w_equity,route,t = 1 − min_h (s_j,h)` → penalize routes with temporal gaps
 
+Here’s a clean, **Markdown-readable** and properly formatted version of your objective — equations included, fully GitHub-safe and visually neat for README use:
+
+---
+
 ### **Objective 2 — Predictive Modeling for ETA, Congestion & Route Ranking**
 
 **Core Engine:** Context-aware forecasting and prioritization.
 
-After equity analysis, the outputs from **Objective 1** (e.g., spatial and temporal equity weights) are propagated downstream to shape the predictive modeling pipeline. The LSTM thus becomes **equity-aware**, meaning it doesn’t just predict travel times but learns how reliability interacts with service fairness.
+After equity analysis, the outputs from **Objective 1** (e.g., spatial and temporal equity weights) flow downstream to shape the predictive modeling pipeline. The LSTM becomes **equity-aware**, meaning it doesn’t just predict travel times — it learns how reliability interacts with service fairness.
 
 #### **Data Flow & Integration Pipeline**
 
-1. **Input Fusion:**
+1. **Input Fusion**
 
-   * **GTFS stop sequences** (route_id, stop_id, stop_sequence, arrival_time, departure_time).
-   * Join with **WorldMove mobility data** (trajectory intensity per hour) to provide dynamic flow features.
+   * **GTFS stop sequences:** `route_id`, `stop_id`, `stop_sequence`, `arrival_time`, `departure_time`
+   * Join with **WorldMove mobility data** (trajectory intensity per hour) to capture dynamic movement.
    * Merge **traffic density** (Google Maps API) and **weather data** (OpenWeather) by timestamp and location.
-   * Integrate **spatial equity weights** (from Objective 1) per route or stop; derived from coverage indices and underserved scores.
-   * Add **temporal equity weights** 
+   * Integrate **spatial equity weights** from *Objective 1* (coverage indices and underserved scores).
+   * Add **temporal equity weights** *(placeholder — service frequency gaps by time-of-day or weekday/weekend)*.
 
-2. **Feature Engineering:**
+2. **Feature Engineering**
+   Encode **time-series sequences** per route-day as tensors:
 
-   * Encode **time-series sequences** per route-day as tensors:
-     [
-     X_{t} = [\text{GTFS}*{t}, \text{mobility}*{t}, \text{traffic}*{t}, \text{weather}*{t}, \text{equity}_{t}]
-     ]
-   * Normalize and window these into lookback sequences (e.g., 30–60 min windows) for the **LSTM**.
-   * Target variable ( y_t ) = actual vs scheduled **ETA deviation** or **congestion class**.
+   ```math
+   X_t = [GTFS_t, Mobility_t, Traffic_t, Weather_t, Equity_t]
+   ```
 
-3. **Model Training & Inference:**
+   * Normalize and window these into look-back sequences (e.g., 30–60 min windows) for the **LSTM**.
+   * Define the target variable:
 
-   * Train **LSTM models** to forecast **ETA** and **congestion risk** for each route segment.
-   * During inference, the model outputs predicted delays and reliability scores, adjusted by learned **equity context**.
+     ```math
+     y_t = \text{Actual ETA} - \text{Scheduled ETA}
+     ```
 
-4. **Composite Route Scoring:**
-   Combine three weighted components into a final route score:
-   [
-   \text{Route Score} = w_1 (\text{Reliability}) + w_2 (\text{Congestion Risk}) + w_3 (\text{Equity Weight})
-   ]
-   where (w_3) ensures that improving service in historically underserved zones positively affects ranking.
+     or classify by congestion level *(low / medium / high)*.
 
-5. **Visualization & Outputs:**
+3. **Model Training & Inference**
 
-   * Generate **heatmaps** showing predicted congestion under varying conditions.
-   * Produce a **ranked list of routes** balancing performance and fairness, ready for benchmarking and integration in **Objective 3**.
-
-**Deliverables:**
-Trained LSTM models, equity-aware congestion forecasts, and ranked route lists visualized in interactive dashboards.
+   * Train **LSTM models** to forecast **ETA** and **congestion risk** per route segment.
+   * During inference, output predicted delays and reliability scores adjusted by the learned **equity context**.
 
 
-### **Objective 3 — Benchmarking & Integration**
+4. **Composite Route Scoring**
+   Combine three weighted components into a single route score:
+
+   ```math
+   \text{Route Score} = w_1(\text{Reliability}) + w_2(\text{Congestion Risk}) + w_3(\text{Equity Weight})
+   ```
+
+   where `w₃` ensures that improving service in historically underserved zones positively influences ranking.
+
+5. **Visualization & Outputs**
+
+   * Generate **heatmaps** showing predicted congestion under different conditions.
+   * Produce a **ranked list of routes** balancing performance and fairness, ready for integration in **Objective 3**.
+
+**Deliverables**
+
+* Trained LSTM models for ETA and congestion prediction
+* Equity-aware congestion forecasts
+* Ranked route lists visualized in interactive dashboards
+
+---
+
+### **Objective 3: Benchmarking & Integration**
 
 **Validation & Scale:** Transition from prototype to production.
 
 * Benchmark LSTM model performance against **ARIMA** and **Prophet** baselines for accuracy and temporal stability.
 * Develop a **FastAPI backend** to serve predictions, congestion forecasts, and equity-adjusted route rankings in real time.
 * Integrate outputs into a **demo dashboard** for visualization and policy insight.
+
+---
 
 ```mermaid
 flowchart TD
