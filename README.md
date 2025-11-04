@@ -84,16 +84,87 @@ While commercial transit apps exist, none integrate **machine learning-based ETA
 Measures _geographic access_ by computing the proportion of each ward’s area (and prorated population) within 500 m of matatu stops.  
 GTFS stops are buffered, unioned into a coverage polygon, then intersected with ward shapefiles (e.g., Kenya census boundaries).
 
-| Step                   | Description                                    | Formula                                   | GeoPandas Implementation                                        |
-| ---------------------- | ---------------------------------------------- | ----------------------------------------- | --------------------------------------------------------------- |
-| 1 Stops - Points       | Convert GTFS stops to points (EPSG 4326).      | `Point(stop_lon, stop_lat)`               | `gpd.points_from_xy(stops.stop_lon, stops.stop_lat)`            |
-| 2 Buffer Service Areas | Project to UTM 37S (EPSG 32737); buffer 500 m. | `Buffer(point_i, 500)`                    | `stops_proj.buffer(500)`                                        |
-| 3 Union Coverage       | Dissolve buffers into single polygon.          | `coverage_union = ⋃ buffer_i`             | `all_service_areas_gdf.dissolve()`                              |
-| 4 Intersect with Wards | Compute overlap areas (m²).                    | `A_intersect,j = Area(ward_j ∩ union)`    | `wards_proj.intersection(coverage_union_proj.union_all()).area` |
-| 5 Coverage Ratio       | Fraction of ward area covered.                 | `r_coverage,j = A_intersect,j / A_ward,j` | `.fillna(0).clip(0,1)`                                          |
-| 6 Population Served    | Prorate by population density.                 | `P_served,j = P_j × r_coverage,j`         | `population * coverage_ratio`                                   |
-| 7 Equity Index         | Ward-level Gini of % access.                   | `Gini = Σ                                 | %_access,j − %_access,k                                         |
+**Step 1 — Stops to Points**  
+Convert GTFS stops into geospatial point features in WGS 84 (EPSG:4326).
 
+```python
+stops_gdf = gpd.points_from_xy(stops.stop_lon, stops.stop_lat, crs="EPSG:4326")
+```
+[  
+\text{Point}_i = (\text{stop_lon}_i, \text{stop_lat}_i)  
+]
+
+**Step 2 — Buffer Service Areas**  
+Reproject to UTM 37S (EPSG:32737) and generate 500 m buffers around each stop to represent walkable access zones.
+
+```python
+stops_proj = stops_gdf.to_crs(32737)
+buffers = stops_proj.buffer(500)
+```
+
+[  
+B_i = \text{Buffer}(\text{Point}_i, 500)  
+]
+
+**Step 3 — Union Coverage Area**  
+Merge all buffers into a single polygon representing total service coverage.
+
+```python
+coverage_union = buffers.unary_union
+```
+
+[  
+A_{\text{coverage}} = \bigcup_i B_i  
+]
+
+**Step 4 — Intersect with Wards**  
+Overlay the union coverage on ward boundaries to compute the overlap area per ward.
+
+```python
+wards_proj = wards.to_crs(32737)
+wards_proj["A_intersect"] = wards_proj.geometry.intersection(coverage_union).area
+```
+
+[  
+A_{\text{intersect}, j} = \text{Area}(\text{Ward}_j \cap A_{\text{coverage}})  
+]
+
+**Step 5 — Coverage Ratio**  
+Calculate the fraction of each ward’s area that lies within the 500 m coverage buffer.
+
+```python
+wards_proj["r_coverage"] = (wards_proj["A_intersect"] / wards_proj["A_ward"]).fillna(0).clip(0,1)
+```
+
+[  
+r_{\text{coverage}, j} = \frac{A_{\text{intersect}, j}}{A_{\text{ward}, j}}  
+]
+
+**Step 6 — Population Served**  
+Estimate the number of residents within coverage using proportional allocation (assuming uniform density).
+
+```python
+wards_proj["P_served"] = wards_proj["population"] * wards_proj["r_coverage"]
+```
+
+[  
+P_{\text{served}, j} = P_j \times r_{\text{coverage}, j}  
+]
+
+**Step 7 — Equity Index (Gini Coefficient)**  
+Quantify the overall fairness of transit access using a Gini-like index of coverage percentages.
+
+```python
+def gini(x):
+    diff_sum = np.abs(np.subtract.outer(x, x)).sum()
+    return diff_sum / (2 * len(x)**2 * np.mean(x))
+```
+
+[  
+G = \frac{\sum_{j,k} |,r_{\text{coverage}, j} - r_{\text{coverage}, k},|}{2 M^2 \bar{r}_{\text{coverage}}}  
+]
+
+Higher ( G ) → more equitable distribution of access across wards.
 **Inputs:** Digital Matatus GTFS stops + Kenya ward shapefiles  
 **Outputs:** Ward-level scorecard (target Gini ≥ 0.7) and Folium choropleth (% access)  
 **Equity Weight:**  
