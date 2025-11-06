@@ -197,3 +197,45 @@ Please refer to the WorldMove website and GitHub repository for licensing inform
 **Last Updated**: October 28, 2025  
 **Dataset Version**: Check WorldMove website for latest version  
 **Document Version**: 1.0
+
+@article{10.1093/pnasnexus/pgaf081,
+    author = {Yuan, Yuan and Ding, Jingtao and Jin, Depeng and Li, Yong},
+    title = {Learning the complexity of urban mobility with deep generative network},
+    journal = {PNAS Nexus},
+    volume = {4},
+    number = {5},
+    pages = {pgaf081},
+    year = {2025},
+    month = {05},
+    issn = {2752-6542},
+    doi = {10.1093/pnasnexus/pgaf081},
+    url = {https://doi.org/10.1093/pnasnexus/pgaf081},
+    eprint = {https://academic.oup.com/pnasnexus/article-pdf/4/5/pgaf081/63066168/pgaf081.pdf},
+}
+
+@inproceedings{10.1145/3696410.3714516,
+    author = {Zhang, Yuheng and Yuan, Yuan and Ding, Jingtao and Yuan, Jian and Li, Yong},
+    title = {Noise Matters: Diffusion Model-based Urban Mobility Generation with Collaborative Noise Priors},
+    year = {2025},
+    isbn = {9798400712746},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3696410.3714516},
+    doi = {10.1145/3696410.3714516},
+    booktitle = {Proceedings of the ACM on Web Conference 2025},
+    pages = {5352–5363},
+    numpages = {12},
+    keywords = {diffusion models, sustainable cities, urban mobility},
+    location = {Sydney NSW, Australia},
+    series = {WWW '25}
+}
+
+@misc{yuan2025worldmoveglobalopendata,
+    title={WorldMove, a global open data for human mobility}, 
+    author={Yuan Yuan and Yuheng Zhang and Jingtao Ding and Yong Li},
+    year={2025},
+    eprint={2504.10506},
+    archivePrefix={arXiv},
+    primaryClass={cs.SI},
+    url={https://arxiv.org/abs/2504.10506}, 
+}
