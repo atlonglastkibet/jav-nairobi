@@ -1,0 +1,4285 @@
+stop_id,ward
+0001RLW,Nairobi Central Ward
+0002KOJ,Nairobi Central Ward
+0003NGR,Ngara Ward Ward
+0004ODN,Nairobi Central Ward
+0005AMB,Nairobi Central Ward
+0006BSS,Nairobi Central Ward
+0007COM,Nairobi Central Ward
+0008MUT,Nairobi Central Ward
+0010OTC,Nairobi Central Ward
+0011TUS,Nairobi Central Ward
+0013ALS,Babandogo
+0014KRA,Kariobangi North Ward
+010044G,Kahawa
+0100AAA,Karura Ward
+0100AAE,Parklands/highridge Ward
+0100ACP,Kahawa West
+0100AEI,Karura Ward
+0100AEL,Kahawa West
+0100AKA,Karura Ward
+0100AL2,Karura Ward
+0100AMY,Karura Ward
+0100ANJ,Kahawa West
+0100A.P,Kahawa West
+0100APC,Karura Ward
+0100ARG,Parklands/highridge Ward
+0100ARI,Karura Ward
+0100ASD,Karura Ward
+0100ASW,Karura Ward
+0100AWA,Kahawa West
+0100BKH,Karura Ward
+0100BKK,Kitisuru Ward
+0100BLD,Karura Ward
+0100CAR,Kitisuru Ward
+0100CBR,Karura Ward
+0100CCD,Parklands/highridge Ward
+0100CHE,Karura Ward
+0100CHL,Karura Ward
+0100CTC,Karura Ward
+0100CTR,Parklands/highridge Ward
+0100DPA,Karura Ward
+0100EIE,Karura Ward
+0100EIL,Karura Ward
+0100EIO,Kitisuru Ward
+0100ESN,Karura Ward
+0100GAO,Karura Ward
+0100GUG,Karura Ward
+0100GVS,Kitisuru Ward
+0100HYD,Karura Ward
+0100IKW,Karura Ward
+0100ILL,Karura Ward
+0100INT,Parklands/highridge Ward
+0100ITS,Karura Ward
+0100JAK,Karura Ward
+0100JO.,Kahawa West
+0100JOA,Karura Ward
+0100JYL,Karura Ward
+0100KCK,Karura Ward
+0100KHR,Kahawa
+0100KMU,Karura Ward
+0100KNA,Karura Ward
+0100KNE,Karura Ward
+0100KSS,Karura Ward
+0100KTC,Karura Ward
+0100KWH,Karura Ward
+0100LDL,Kitisuru Ward
+0100LHH,Ngara Ward Ward
+0100LIK,Karura Ward
+0100LMC,Kitisuru Ward
+0100LPS,Kitisuru Ward
+0100LSM,Karura Ward
+0100..M,Kahawa West
+0100MCO,Ngara Ward Ward
+0100MCY,Karura Ward
+0100MFB,Karura Ward
+0100MIS,Karura Ward
+0100MOM,Karura Ward
+0100MOU,Karura Ward
+0100MRB,Karura Ward
+0100MRC,Karura Ward
+0100NAM,Karura Ward
+0100NCE,Karura Ward
+0100NDT,Karura Ward
+0100NJT,Karura Ward
+0100NKD,Karura Ward
+0100NMT,Karura Ward
+0100NRP,Kahawa West
+0100NSO,Karura Ward
+0100ONO,Zimmerman Ward
+0100OOA,Kahawa West
+0100OTN,Kahawa West
+0100OTS,Kitisuru Ward
+0100PEF,Karura Ward
+0100PNA,Parklands/highridge Ward
+0100POA,Karura Ward
+0100POW,Karura Ward
+0100PSA,Kahawa
+0100RBJ,Karura Ward
+0100RCN,Karura Ward
+0100REE,Karura Ward
+0100RES,Karura Ward
+0100RGH,Ngara Ward Ward
+0100RJI,Kahawa West
+0100RKH,Karura Ward
+0100RRD,Karura Ward
+0100RRJ,Karura Ward
+0100RRP,Karura Ward
+0100RUD,Karura Ward
+0100RUI,Roysambu Ward
+0100RYA,Karura Ward
+0100SAR,Karura Ward
+0100SHT,Karura Ward
+0100SKU,Karura Ward
+0100SLG,Karura Ward
+0100SNW,Karura Ward
+0100S/R,Karura Ward
+0100STI,Karura Ward
+0100T1I,Karura Ward
+0100TCP,Karura Ward
+0100TIG,Kitisuru Ward
+0100TOR,Roysambu Ward
+0100TPS,Kahawa West
+0100TTM,Karura Ward
+0100UBP,Karura Ward
+0100UEA,Karura Ward
+0100UMA,Karura Ward
+0100UMT,Karura Ward
+0100VDA,Karura Ward
+0100VEV,Karura Ward
+0100VIN,Karura Ward
+0100VLU,Parklands/highridge Ward
+0100WSI,Karura Ward
+0100XAM,Karura Ward
+0101AGA,Parklands/highridge Ward
+0101AKE,Parklands/highridge Ward
+0101AKH,Parklands/highridge Ward
+0101AKN,Karura Ward
+0101ALM,Parklands/highridge Ward
+0101AME,Karura Ward
+0101ARA,Karura Ward
+0101ARC,Karura Ward
+0101ARR,Parklands/highridge Ward
+0101ARY,Parklands/highridge Ward
+0101BKH,Roysambu Ward
+0101BLU,Kitisuru Ward
+0101CAV,Karura Ward
+0101CEF,Karura Ward
+0101CHC,Karura Ward
+0101CHF,Karura Ward
+0101CPK,Parklands/highridge Ward
+0101DGG,Roysambu Ward
+0101DPB,Karura Ward
+0101ETA,Kitisuru Ward
+0101FRK,Karura Ward
+0101GOG,Karura Ward
+0101GRJ,Karura Ward
+0101GVS,Kitisuru Ward
+0101HMO,Karura Ward
+0101HUS,Karura Ward
+0101HWO,Karura Ward
+0101IAI,Karura Ward
+0101IGA,Karura Ward
+0101ION,Kitisuru Ward
+0101IRR,Karura Ward
+0101JAK,Karura Ward
+0101JHS,Ngara Ward Ward
+0101JLI,Roysambu Ward
+0101KAT,Karura Ward
+0101KCK,Karura Ward
+0101KHR,Kahawa West
+0101KKB,Karura Ward
+0101KME,Karura Ward
+0101KOB,Karura Ward
+0101KTO,Karura Ward
+0101LIK,Karura Ward
+0101LMA,Karura Ward
+0101LMC,Kitisuru Ward
+0101LSC,Karura Ward
+0101MCC,Karura Ward
+0101MCY,Karura Ward
+0101MDS,Karura Ward
+0101MIC,Karura Ward
+0101MIM,Karura Ward
+0101M.K,Kahawa West
+0101MKB,Karura Ward
+0101MOM,Karura Ward
+0101MRB,Karura Ward
+0101MTH,Karura Ward
+0101MUC,Karura Ward
+0101NDJ,Karura Ward
+0101N'G,Karura Ward
+0101NGG,Karura Ward
+0101NJK,Karura Ward
+0101NRE,Parklands/highridge Ward
+0101NRP,Kahawa West
+0101NTO,Karura Ward
+0101NYG,Karura Ward
+0101NYP,Karura Ward
+0101NYR,Karura Ward
+0101OOO,Karura Ward
+0101OTA,Karura Ward
+0101PMR,Karura Ward
+0101PMV,Karura Ward
+0101POW,Karura Ward
+0101RCC,Karura Ward
+0101RCK,Karura Ward
+0101RDC,Karura Ward
+0101RED,Kitisuru Ward
+0101REE,Karura Ward
+0101REN,Karura Ward
+0101RIE,Kitisuru Ward
+0101RIH,Karura Ward
+0101RJI,Kahawa West
+0101RKJ,Karura Ward
+0101RMY,Karura Ward
+0101ROK,Karura Ward
+0101ROR,Karura Ward
+0101RSH,Karura Ward
+0101RUA,Roysambu Ward
+0101RUD,Karura Ward
+0101SDA,Karura Ward
+0101SHR,Karura Ward
+0101SHT,Karura Ward
+0101SLT,Karura Ward
+0101STP,Ngara Ward Ward
+0101TIG,Kitisuru Ward
+0101VRY,Karura Ward
+0101WBR,Parklands/highridge Ward
+0101WIA,Karura Ward
+0101WID,Roysambu Ward
+0101YSA,Karura Ward
+0101ZAK,Karura Ward
+0102KHJ,Nairobi Central Ward
+0103MSQ,Parklands/highridge Ward
+0110AAN,Karura Ward
+0110ACG,Karura Ward
+0110AEA,Karura Ward
+0110AGK,Parklands/highridge Ward
+0110AIG,Karura Ward
+0110AOA,Karura Ward
+0110AOH,Kahawa West
+0110APS,Parklands/highridge Ward
+0110APT,Parklands/highridge Ward
+0110ASP,Ngara Ward Ward
+0110AST,Karura Ward
+0110AUK,Karura Ward
+0110BAA,Karura Ward
+0110BDO,Karura Ward
+0110BLV,Parklands/highridge Ward
+0110BNI,Karura Ward
+0110BUK,Kitisuru Ward
+0110CEJ,Karura Ward
+0110COH,Karura Ward
+0110CUT,Karura Ward
+0110DAS,Roysambu Ward
+0110FRM,Karura Ward
+0110FSA,Karura Ward
+0110GAC,Karura Ward
+0110GTH,Karura Ward
+0110HHH,Ngara Ward Ward
+0110HUN,Parklands/highridge Ward
+0110IDR,Karura Ward
+0110ILU,Kitisuru Ward
+0110IRT,Ngara Ward Ward
+0110ISR,Kahawa West
+0110KAU,Karura Ward
+0110KGQ,Parklands/highridge Ward
+0110KKB,Karura Ward
+0110KRS,Karura Ward
+0110KSL,Parklands/highridge Ward
+0110LAR,Karura Ward
+0110LCM,Karura Ward
+0110LHL,Kahawa West
+0110LIG,Karura Ward
+0110LJA,Karura Ward
+0110MKT,Karura Ward
+0110MTS,Karura Ward
+0110MYA,Karura Ward
+0110NGP,Karura Ward
+0110NKT,Parklands/highridge Ward
+0110NSG,Karura Ward
+0110OLB,Kitisuru Ward
+0110OVL,Karura Ward
+0110PBS,Karura Ward
+0110PMA,Ngara Ward Ward
+0110PMT,Karura Ward
+0110/PU,Karura Ward
+0110R/B,Karura Ward
+0110REU,Karura Ward
+0110REV,Karura Ward
+0110RID,Roysambu Ward
+0110RIS,Karura Ward
+0110RNO,Karura Ward
+0110ROA,Parklands/highridge Ward
+0110ROS,Karura Ward
+0110RRS,Karura Ward
+0110RTC,Karura Ward
+0110RTU,Parklands/highridge Ward
+0110SAI,Ngara Ward Ward
+0110SIH,Karura Ward
+0110SOI,Karura Ward
+0110SPU,Kitisuru Ward
+0110SRT,Roysambu Ward
+0110SSA,Karura Ward
+0110TAA,Ngara Ward Ward
+0110TOH,Karura Ward
+0110TPA,Karura Ward
+0110TUQ,Karura Ward
+0110TVM,Karura Ward
+0110UMI,Karura Ward
+0110UMK,Karura Ward
+0110UNA,Karura Ward
+0110VKS,Karura Ward
+0110VMT,Karura Ward
+0110WAM,Karura Ward
+0110WOJ,Kahawa
+0110WRS,Karura Ward
+0110YIL,Karura Ward
+0110YSP,Karura Ward
+01114IA,Kahawa
+0111A26,Karura Ward
+0111AAR,Karura Ward
+0111ACP,Parklands/highridge Ward
+0111AES,Karura Ward
+0111AIT,Karura Ward
+0111AKA,Kitisuru Ward
+0111AKS,Parklands/highridge Ward
+0111ALA,Karura Ward
+0111AMB,Karura Ward
+0111AMK,Kitisuru Ward
+0111ARD,Karura Ward
+0111ATA,Karura Ward
+0111AWM,Kahawa
+0111AXM,Karura Ward
+0111AYS,Kahawa West
+0111BAA,Karura Ward
+0111BAG,Karura Ward
+0111BEK,Karura Ward
+0111BPY,Karura Ward
+0111BUK,Kitisuru Ward
+0111CEP,Karura Ward
+0111CNT,Zimmerman Ward
+0111CRA,Karura Ward
+0111EDH,Kitisuru Ward
+0111EED,Karura Ward
+0111ENP,Karura Ward
+0111EYE,Kahawa West
+0111FRM,Karura Ward
+0111GIE,Kitisuru Ward
+0111GIM,Karura Ward
+0111HDE,Karura Ward
+0111HRT,Kitisuru Ward
+0111IAC,Kitisuru Ward
+0111ICT,Karura Ward
+0111IGA,Karura Ward
+0111IGK,Karura Ward
+0111IME,Karura Ward
+0111ISE,Karura Ward
+0111JEK,Karura Ward
+0111JM,Kahawa
+0111KAN,Parklands/highridge Ward
+0111KAU,Karura Ward
+0111KEA,Karura Ward
+0111KIV,Karura Ward
+0111KNA,Karura Ward
+0111KNE,Karura Ward
+0111KOG,Karura Ward
+0111KRU,Karura Ward
+0111LIS,Karura Ward
+0111LON,Karura Ward
+0111LSO,Karura Ward
+0111MAO,Parklands/highridge Ward
+0111MCM,Karura Ward
+0111MIF,Karura Ward
+0111MKT,Karura Ward
+0111MME,Karura Ward
+0111MRE,Karura Ward
+0111NDS,Karura Ward
+0111NKM,Parklands/highridge Ward
+0111NMO,Zimmerman Ward
+0111NOI,Karura Ward
+0111NTA,Karura Ward
+0111.OJ,Kahawa West
+0111OJC,Karura Ward
+0111OLB,Karura Ward
+0111OLS,Karura Ward
+0111RAU,Roysambu Ward
+0111RHK,Karura Ward
+0111RHR,Karura Ward
+0111RNE,Karura Ward
+0111RNI,Karura Ward
+0111ROT,Karura Ward
+0111RPS,Kahawa West
+0111RRY,Kitisuru Ward
+0111RST,Karura Ward
+0111SAR,Karura Ward
+0111SNH,Karura Ward
+0111SPS,Ngara Ward Ward
+0111SPU,Kitisuru Ward
+0111TNN,Parklands/highridge Ward
+0111TOE,Karura Ward
+0111TRI,Karura Ward
+0111TRV,Karura Ward
+0111TUN,Karura Ward
+0111TVI,Karura Ward
+0111.UK,Kahawa West
+0111UKG,Karura Ward
+0111USA,Karura Ward
+0111VMA,Karura Ward
+0111VWS,Karura Ward
+0111WNA,Kahawa West
+0111WRB,Kitisuru Ward
+0111YSB,Karura Ward
+0112LKT,Nairobi Central Ward
+0112POL,Karura Ward
+0113BAA,Karura Ward
+0113GCH,Karura Ward
+0113KAR,Karura Ward
+0113LMD,Kitisuru Ward
+0113RST,Karura Ward
+02002IE,Mathare North Ward
+0200AAK,Clay City
+0200ACM,Kahawa West
+0200AKN,Ngara Ward Ward
+0200AKO,Parklands/highridge Ward
+0200APZ,Ngara Ward Ward
+0200AVS,Utalii Ward
+0200BBC,Babandogo
+0200BDJ,Utalii Ward
+0200BER,Karura Ward
+0200BLN,Roysambu Ward
+0200BUL,Kasarani Ward
+0200BWD,Roysambu Ward
+0200CRN,Clay City
+0200DAU,Karura Ward
+0200DBR,Karura Ward
+0200DEC,Lucky Summer Ward
+0200DMD,Roysambu Ward
+0200DRU,Ngara Ward Ward
+0200EAC,Dandora Area Ii Ward
+0200EBR,Kahawa West
+0200EEE,Karura Ward
+0200EIE,Roysambu Ward
+0200EII,Kasarani Ward
+0200ELH,Karura Ward
+0200EMF,Lucky Summer Ward
+0200EUT,Kiamaiko Ward
+0200FHA,Kiamaiko Ward
+0200FRS,Clay City
+0200GEG,Babandogo
+0200GIT,Githurai Ward
+0200GNA,Karura Ward
+0200GNK,Ngara Ward Ward
+0200GPS,Karura Ward
+0200GRG,Clay City
+0200GTO,Roysambu Ward
+0200HHR,Ngara Ward Ward
+0200HML,Kasarani Ward
+0200HTN,Kariobangi North Ward
+0200HUN,Clay City
+0200IMI,Clay City
+0200IRR,Utalii Ward
+0200JIN,Karura Ward
+0200KAI,Kahawa West
+0200KAW,Kahawa West
+0200KBM,Kariobangi North Ward
+0200KCI,Kariobangi North Ward
+0200KEI,Ngara Ward Ward
+0200KEN,Babandogo
+0200KEP,Lucky Summer Ward
+0200KJN,Zimmerman Ward
+0200KS2,Zimmerman Ward
+0200KTJ,Kahawa West
+0200KUF,Kahawa West
+0200KWH,Roysambu Ward
+0200LOK,Parklands/highridge Ward
+0200LPO,Babandogo
+0200MAT,Clay City
+0200MBA,Pangani Ward
+0200MBC,Kahawa West
+0200MGN,Roysambu Ward
+0200MNO,Karura Ward
+0200MOS,Lucky Summer Ward
+0200MRR,Roysambu Ward
+0200MSH,Roysambu Ward
+0200MTE,Roysambu Ward
+0200NEH,Roysambu Ward
+0200NES,Kasarani Ward
+0200NFR,Clay City
+0200NGN,Karura Ward
+0200NHL,Karura Ward
+0200NYT,Roysambu Ward
+0200OIC,Babandogo
+0200OTO,Roysambu Ward
+0200RAW,Kahawa West
+0200RDS,Karura Ward
+0200RER,Babandogo
+0200RGC,Kasarani Ward
+0200RIE,Babandogo
+0200RIL,Githurai Ward
+0200RKN,Roysambu Ward
+0200RND,Roysambu Ward
+0200ROC,Roysambu Ward
+0200RST,Roysambu Ward
+0200RTI,Zimmerman Ward
+0200RUK,Roysambu Ward
+0200SAK,Babandogo
+0200SAN,Karura Ward
+0200SHK,Roysambu Ward
+0200SHL,Kasarani Ward
+0200SHP,Kiamaiko Ward
+0200SKU,Ruai Ward
+0200SPH,Kahawa West
+0200SRA,Utalii Ward
+0200STD,Kasarani Ward
+0200STM,Roysambu Ward
+0200STR,Zimmerman Ward
+0200TDS,Kasarani Ward
+0200TFC,Lucky Summer Ward
+0200TKL,Karura Ward
+0200TND,Roysambu Ward
+0200TSB,Karura Ward
+0200TSO,Ngara Ward Ward
+0200TSS,Ngara Ward Ward
+0200UET,Kasarani Ward
+0200URA,Githurai Ward
+0200URD,Parklands/highridge Ward
+0200WAN,Babandogo
+0200WJY,Roysambu Ward
+0200WKU,Clay City
+02016EA,Dandora Area I Ward
+0201AGH,Parklands/highridge Ward
+0201AIK,Kariobangi North Ward
+0201AIP,Karura Ward
+0201AIS,Lucky Summer Ward
+0201ALP,Babandogo
+0201ALS,Roysambu Ward
+0201AMC,Dandora Area Iii Ward
+0201ARI,Kahawa West
+0201ARS,Roysambu Ward
+0201ASP,Babandogo
+0201ATB,Kariobangi North Ward
+0201BHC,Karura Ward
+0201BPC,Lucky Summer Ward
+0201BRA,Zimmerman Ward
+0201CAL,Ngara Ward Ward
+0201CIA,Dandora Area Ii Ward
+0201CIT,Babandogo
+0201CJU,Kahawa West
+0201CNA,Imara Daima Ward
+0201CON,Babandogo
+0201DAW,Babandogo
+0201DBR,Karura Ward
+0201DIA,Ngara Ward Ward
+0201DNK,Kasarani Ward
+0201DNO,Kiamaiko Ward
+0201DUA,Kahawa West
+0201DWE,Kahawa West
+0201ECH,Babandogo
+0201ENL,Kariobangi North Ward
+0201EQT,Kasarani Ward
+0201EVR,Roysambu Ward
+0201FM,Pangani Ward
+0201GIT,Githurai Ward
+0201GRD,Kasarani Ward
+0201GRG,Clay City
+0201GTC,Babandogo
+0201GTJ,Karura Ward
+0201GTO,Roysambu Ward
+0201HML,Roysambu Ward
+0201HSM,Lucky Summer Ward
+0201IAH,Hospital Ward
+0201IES,Ngara Ward Ward
+0201IIR,Utalii Ward
+0201IKN,Karura Ward
+0201I/T,Kariobangi North Ward
+0201JAM,Karura Ward
+0201JNT,Ruai Ward
+0201KAI,Kahawa West
+0201KAM,Kariobangi North Ward
+0201KBM,Kariobangi North Ward
+0201KBO,Kahawa West
+0201KCB,Karura Ward
+0201KCL,Parklands/highridge Ward
+0201KEE,Lucky Summer Ward
+0201KEP,Lucky Summer Ward
+0201KFS,Roysambu Ward
+0201KGM,Karura Ward
+0201KIH,Kahawa West
+0201KJN,Zimmerman Ward
+0201KMT,Clay City
+0201KRK,Ngara Ward Ward
+0201KS2,Zimmerman Ward
+0201KSR,Roysambu Ward
+0201KSS,Roysambu Ward
+0201KSU,Karura Ward
+0201KWH,Roysambu Ward
+0201MET,Kasarani Ward
+0201MGN,Roysambu Ward
+0201MJM,Clay City
+0201MLM,Mwiki Ward
+0201MML,Ngara Ward Ward
+0201MNO,Karura Ward
+0201MOS,Lucky Summer Ward
+0201MRT,Clay City
+0201MSH,Roysambu Ward
+0201MSQ,Utalii Ward
+0201MTR,Kasarani Ward
+0201NAS,Kasarani Ward
+0201NBN,Utalii Ward
+0201NEH,Roysambu Ward
+0201NIO,Kiamaiko Ward
+0201NTR,Roysambu Ward
+0201NVS,Utalii Ward
+0201NYT,Roysambu Ward
+0201OER,Ngara Ward Ward
+0201PME,Eastleigh North Ward
+0201PNG,Karura Ward
+0201POS,Karura Ward
+0201PPS,Kasarani Ward
+0201RAK,Parklands/highridge Ward
+0201RDS,Karura Ward
+0201RET,Githurai Ward
+0201REV,Utalii Ward
+0201RGC,Kasarani Ward
+0201RIL,Githurai Ward
+0201RKN,Roysambu Ward
+0201RND,Roysambu Ward
+0201RNK,Kiamaiko Ward
+0201ROC,Roysambu Ward
+0201RRP,Roysambu Ward
+0201RSB,Zimmerman Ward
+0201RST,Roysambu Ward
+0201RUK,Roysambu Ward
+0201RYB,Parklands/highridge Ward
+0201RZA,Ziwani/kariokor
+0201SDP,Ngara Ward Ward
+0201SHL,Kasarani Ward
+0201SHP,Kariobangi North Ward
+0201SPH,Kahawa West
+0201SSN,Clay City
+0201STM,Roysambu Ward
+0201SUN,Clay City
+0201TEH,Roysambu Ward
+0201TIN,Clay City
+0201TIU,Ngara Ward Ward
+0201TJA,Lucky Summer Ward
+0201TKS,Ruai Ward
+0201UCP,Babandogo
+0201UGC,Roysambu Ward
+0201UOA,Nairobi Central Ward
+0201URI,Kariobangi North Ward
+0201VRS,Babandogo
+0201WAA,Babandogo
+0201WJY,Roysambu Ward
+0201WOA,Clay City
+0201YTU,Kiamaiko Ward
+0201YUE,Utalii Ward
+0202LUT,Nairobi Central Ward
+0202RSB,Kasarani Ward
+0203SND,Clay City
+02107SA,Embakasi Ward
+0210ABI,Lucky Summer Ward
+0210ACO,Karura Ward
+0210AEC,Kiamaiko Ward
+0210AFY,Mihango Ward
+0210AIC,Embakasi Ward
+0210AIE,Utalii Ward
+0210AIK,Roysambu Ward
+0210AIT,Mihango Ward
+0210AKC,Utalii Ward
+0210AKE,Mihango Ward
+0210ALS,Utalii Ward
+0210AMC,Kahawa West
+0210AMJ,Kahawa West
+0210ANI,Utalii Ward
+0210ANR,Karura Ward
+0210ANT,Embakasi Ward
+0210APB,Kahawa West
+0210ARA,Embakasi Ward
+0210ARG,Babandogo
+0210ARH,Clay City
+0210ARI,Karura Ward
+0210ARM,Pipeline Ward
+0210AS3,Dandora Area I Ward
+0210ASR,Kasarani Ward
+0210ASV,Utalii Ward
+0210AUI,Utalii Ward
+0210AWR,Kahawa West
+0210AYA,Ruai Ward
+0210BBD,Lucky Summer Ward
+0210CAH,Pangani Ward
+0210CAK,Utalii Ward
+0210CID,Karura Ward
+0210CIJ,Utalii Ward
+0210CKA,Utalii Ward
+0210CLM,Kahawa West
+0210CLY,Kahawa West
+0210CRH,Clay City
+0210CRI,Karura Ward
+0210DBR,Karura Ward
+0210DGU,Ruai Ward
+0210DIE,Kahawa West
+0210DLO,Kasarani Ward
+0210DOE,Kahawa West
+0210DRV,Utalii Ward
+0210EC/,Mihango Ward
+0210EIW,Mihango Ward
+0210EKE,Embakasi Ward
+0210EKT,Kariobangi North Ward
+0210ENE,Nairobi Central Ward
+0210EOS,Clay City
+0210EOV,Karura Ward
+0210ERI,Githurai Ward
+0210ERV,Roysambu Ward
+0210EXL,Utalii Ward
+0210FAR,Kasarani Ward
+0210FBO,Roysambu Ward
+0210FIG,Ngara Ward Ward
+0210FLY,Kahawa West
+0210FNO,Clay City
+0210GAO,Pangani Ward
+0210GEN,Mwiki Ward
+0210GIT,Githurai Ward
+0210GNN,Pangani Ward
+0210GPN,Pangani Ward
+0210GRG,Eastleigh North Ward
+0210HAS,Clay City
+0210HAU,Kahawa West
+0210HAW,Clay City
+0210HER,Karura Ward
+0210HFI,Zimmerman Ward
+0210HHE,Karura Ward
+0210HIP,Ruai Ward
+0210HLE,Mihango Ward
+0210HUN,Clay City
+0210HUT,Githurai Ward
+0210HWA,Kahawa West
+0210HWD,Kahawa West
+0210HWK,Kahawa West
+0210IEL,Kasarani Ward
+0210IES,Ngara Ward Ward
+0210IHW,Karura Ward
+0210IIA,Utalii Ward
+0210IJI,Karura Ward
+0210IKS,Parklands/highridge Ward
+0210ILA,Roysambu Ward
+0210IMT,Mwiki Ward
+0210INA,Ngara Ward Ward
+0210IRI,Clay City
+0210ISD,Ngara Ward Ward
+0210ITI,Utalii Ward
+0210IVN,Utalii Ward
+0210IYU,Kahawa West
+0210JKT,Kahawa West
+0210JTS,Mwiki Ward
+0210KAD,Karura Ward
+0210KAF,Mihango Ward
+0210KAH,Kahawa West
+0210KBM,Kariobangi North Ward
+0210KBO,Kahawa West
+0210KCA,Utalii Ward
+0210KDO,Zimmerman Ward
+0210KEB,Mwiki Ward
+0210KJA,Ngara Ward Ward
+0210KLI,Karura Ward
+0210KPO,Karura Ward
+0210KRB,Eastleigh North Ward
+0210KU.,Kahawa West
+0210KWD,Kahawa West
+0210KYR,Kahawa West
+0210KYS,Embakasi Ward
+0210LGC,Parklands/highridge Ward
+0210LH',Karura Ward
+0210LOA,Utalii Ward
+0210LSL,Utalii Ward
+0210LUI,Ngara Ward Ward
+0210MBL,Kahawa West
+0210MET,Kasarani Ward
+0210MF,Pangani Ward
+0210MGC,Karura Ward
+0210MIN,Mihango Ward
+0210MNG,Ruai Ward
+0210MQT,Roysambu Ward
+0210MSL,Roysambu Ward
+0210MTG,Hospital Ward
+0210NAK,Ruai Ward
+0210NAM,Pipeline Ward
+0210NAS,Kasarani Ward
+0210NCY,Mwiki Ward
+0210NGE,Roysambu Ward
+0210NGR,Ngara Ward Ward
+0210NID,Utalii Ward
+0210NIG,Karura Ward
+0210NIM,Karura Ward
+0210NIR,Roysambu Ward
+0210NRS,Kariobangi North Ward
+0210NTR,Roysambu Ward
+0210NUR,Ngara Ward Ward
+0210NWK,Kahawa West
+0210OIK,Mihango Ward
+0210OLT,Kahawa West
+0210ONR,Mwiki Ward
+0210OOI,Karura Ward
+0210OON,Ruai Ward
+0210OUN,Lucky Summer Ward
+0210OUS,Karura Ward
+0210OUU,Kahawa West
+0210-P0,Ruai Ward
+0210PA.,Mihango Ward
+0210PAS,Kasarani Ward
+0210PMH,Ziwani/kariokor
+0210PMS,Pumwani Ward
+0210PNG,Pangani Ward
+0210PPS,Kasarani Ward
+0210PRS,Kahawa West
+0210PSK,Roysambu Ward
+0210PYS,Ruai Ward
+0210RAO,Mihango Ward
+0210RAT,Kasarani Ward
+0210RBA,Zimmerman Ward
+0210RBU,Roysambu Ward
+0210RIH,Babandogo
+0210RMT,Kasarani Ward
+0210RNA,Roysambu Ward
+0210RND,Kiamaiko Ward
+0210RSB,Kasarani Ward
+0210RSC,Roysambu Ward
+0210RSI,Roysambu Ward
+0210RV2,Utalii Ward
+0210RYS,Kasarani Ward
+0210SAE,Kasarani Ward
+0210SAI,Kahawa West
+0210SAO,Kasarani Ward
+0210SAP,Utalii Ward
+0210SAR,Kasarani Ward
+0210SBA,Embakasi Ward
+0210SEW,Kahawa West
+0210SHA,Kahawa West
+0210SKA,Babandogo
+0210SMB,Ngara Ward Ward
+0210SMW,Mwiki Ward
+0210SRA,Kasarani Ward
+0210S/T,Nairobi Central Ward
+0210STD,Kasarani Ward
+0210SUN,Clay City
+0210SUR,Utalii Ward
+0210TAE,Kasarani Ward
+0210TDL,Parklands/highridge Ward
+0210TEE,Eastleigh North Ward
+0210TER,Eastleigh North Ward
+0210TGA,Karura Ward
+0210TIB,Karura Ward
+0210TIG,Zimmerman Ward
+0210TMR,Kasarani Ward
+0210TRT,Kahawa West
+0210TUH,Roysambu Ward
+0210TYE,Kasarani Ward
+0210UIK,Karura Ward
+0210UKO,Kahawa West
+0210/US,Kasarani Ward
+0210USG,Mihango Ward
+0210UWT,Nairobi Central Ward
+0210UYU,Eastleigh North Ward
+0210VIS,Utalii Ward
+0210VNA,Kasarani Ward
+0210WDH,Kahawa West
+0210WOK,Clay City
+0210WPE,Babandogo
+0210WTH,Ruai Ward
+0210YPS,Kahawa West
+0210ZMM,Clay City
+0211AAA,Kahawa West
+0211AAJ,Kahawa West
+0211AAW,Kahawa West
+0211ACB,Embakasi Ward
+0211ACD,Babandogo
+0211ADI,Kahawa West
+0211AEC,Karura Ward
+0211AEP,Karura Ward
+0211AFY,Ruai Ward
+0211AGA,Ngara Ward Ward
+0211AGC,Utalii Ward
+0211AHN,Embakasi Ward
+0211AIC,Roysambu Ward
+0211AIK,Kahawa West
+0211AKW,Zimmerman Ward
+0211ALN,Karura Ward
+0211ALS,Roysambu Ward
+0211AMN,Mihango Ward
+0211'AN,Karura Ward
+0211ANN,Karura Ward
+0211ANP,Karura Ward
+0211ANS,Clay City
+0211.AP,Mihango Ward
+0211ARS,Roysambu Ward
+0211ASP,Roysambu Ward
+0211AUR,Ngara Ward Ward
+0211AVA,Babandogo
+0211AWA,Kahawa West
+0211BHC,Babandogo
+0211BLA,Karura Ward
+0211BLR,Roysambu Ward
+0211B/O,Parklands/highridge Ward
+0211B/W,Karura Ward
+0211BYP,Kahawa West
+0211CID,Karura Ward
+0211CKS,Kahawa West
+0211CLA,Mihango Ward
+0211CTT,Parklands/highridge Ward
+0211CYE,Roysambu Ward
+0211DBR,Karura Ward
+0211DEV,Kariobangi North Ward
+0211DRN,Utalii Ward
+0211DRV,Roysambu Ward
+0211EAR,Roysambu Ward
+0211EIN,Roysambu Ward
+0211EKO,Embakasi Ward
+0211END,Mwiki Ward
+0211ERC,Mwiki Ward
+0211EVE,Roysambu Ward
+0211FLY,Kahawa West
+0211FNT,Pipeline Ward
+0211G'F,Karura Ward
+0211GIT,Githurai Ward
+0211GNK,Ngara Ward Ward
+0211GRF,Parklands/highridge Ward
+0211HIA,Mihango Ward
+0211HIP,Ruai Ward
+0211HNE,Karura Ward
+0211HNT,Clay City
+0211HNU,Mihango Ward
+0211HWS,Zimmerman Ward
+0211IAU,Karura Ward
+0211IBR,Karura Ward
+0211IEV,Roysambu Ward
+0211IGB,Pangani Ward
+0211IGH,Githurai Ward
+0211IHH,Ngara Ward Ward
+0211IIU,Zimmerman Ward
+0211INS,Karura Ward
+0211INT,Babandogo
+0211IRA,Karura Ward
+0211IUS,Ruai Ward
+0211IVE,Roysambu Ward
+0211IVO,Dandora Area Iii Ward
+0211I/Y,Roysambu Ward
+0211JKT,Kahawa West
+0211JUJ,Kahawa West
+0211KAH,Kahawa West
+0211KAZ,Mihango Ward
+0211KCA,Roysambu Ward
+0211KDO,Zimmerman Ward
+0211KEI,Ngara Ward Ward
+0211KEO,Mwiki Ward
+0211KIP,Roysambu Ward
+0211KIU,Karura Ward
+0211KMJ,Nairobi Central Ward
+0211KNI,Kariobangi North Ward
+0211KPO,Karura Ward
+0211KRD,Kahawa West
+0211KRE,Kahawa West
+0211KRM,Mlango Kubwa
+0211KST,Zimmerman Ward
+0211K.U,Kahawa West
+0211LIB,Pipeline Ward
+0211LIT,Ruai Ward
+0211LMU,Karura Ward
+0211LND,Parklands/highridge Ward
+0211LOA,Pipeline Ward
+0211LTI,Utalii Ward
+0211MBS,Karura Ward
+0211MEV,Karura Ward
+0211MNG,Ruai Ward
+0211MOO,Ruai Ward
+0211MRT,Kasarani Ward
+0211MTG,Roysambu Ward
+0211MUU,Karura Ward
+0211NAS,Kasarani Ward
+0211NDA,Babandogo
+0211NDK,Pipeline Ward
+0211NGE,Kahawa West
+0211NGI,Karura Ward
+0211NGR,Ngara Ward Ward
+0211NIC,Roysambu Ward
+0211NIJ,Karura Ward
+0211NIV,Utawala Ward
+0211NNO,Clay City
+0211NOR,Clay City
+0211NPA,Karura Ward
+0211NRD,Karura Ward
+0211NUK,Ngara Ward Ward
+0211NYS,Roysambu Ward
+0211ODO,Karura Ward
+0211/OE,Ngara Ward Ward
+0211OEO,Kariobangi North Ward
+0211OIN,Ruai Ward
+0211OOD,Kasarani Ward
+0211OOU,Zimmerman Ward
+0211OSL,Roysambu Ward
+0211OTL,Kahawa West
+0211PCA,Karura Ward
+0211PIO,Ngara Ward Ward
+0211POA,Roysambu Ward
+0211POL,Utalii Ward
+0211PSE,Babandogo
+0211RIA,Babandogo
+0211RIT,Karura Ward
+0211RMT,Kasarani Ward
+0211RMU,Karura Ward
+0211RNE,Roysambu Ward
+0211RSB,Kasarani Ward
+0211RUI,Kahawa West
+0211S5K,Embakasi Ward
+0211SAA,Roysambu Ward
+0211SEB,Embakasi Ward
+0211SEO,Ruai Ward
+0211SEW,Kahawa West
+0211SHM,Babandogo
+0211SHP,Roysambu Ward
+0211SHR,Zimmerman Ward
+0211SLR,Mihango Ward
+0211SMC,Lucky Summer Ward
+0211SOW,Kahawa West
+0211SRK,Nairobi Central Ward
+0211SSN,Kasarani Ward
+0211STD,Roysambu Ward
+0211STM,Clay City
+0211SYT,Embakasi Ward
+0211TAI,Roysambu Ward
+0211TAM,Pipeline Ward
+0211TGA,Karura Ward
+0211TIG,Zimmerman Ward
+0211TIR,Zimmerman Ward
+0211TMQ,Kahawa West
+0211TND,Roysambu Ward
+0211TOA,Ruai Ward
+0211TOR,Roysambu Ward
+0211UNN,Zimmerman Ward
+0211UNR,Ruai Ward
+0211USG,Mihango Ward
+0211USM,Ngara Ward Ward
+0211UUN,Kahawa West
+0211VIN,Zimmerman Ward
+0211VSI,Babandogo
+0211VSR,Utalii Ward
+0211WAK,Kahawa West
+0211WKN,Kahawa West
+0211WOK,Kahawa West
+0211WSR,Zimmerman Ward
+0211WTH,Ruai Ward
+0211XLE,Babandogo
+0211YMY,Eastleigh North Ward
+0211YTA,Karura Ward
+0211YTC,Mwiki Ward
+0212APT,Babandogo
+0212BST,Nairobi Central Ward
+0212DDT,Nairobi Central Ward
+0212GBT,Pumwani Ward
+0212GRD,Nairobi Central Ward
+0212GTP,Githurai Ward
+0212KRT,Nairobi Central Ward
+0212KUS,Nairobi Central Ward
+0212NGS,Nairobi Central Ward
+0212RSY,Kasarani Ward
+0212RUS,Karura Ward
+0212SNT,Nairobi Central Ward
+0212TKT,Nairobi Central Ward
+0213BDT,Babandogo
+0213DRD,Karura Ward
+0213GGD,Karura Ward
+0213GHD,Githurai Ward
+0213KHO,Karura Ward
+0213LUD,Lucky Summer Ward
+0213MAT,Utalii Ward
+0213MKU,Kahawa West
+0213MRY,Kahawa West
+0213NGB,Kasarani Ward
+0213PGG,Clay City
+0213RNS,Kiamaiko Ward
+0213STG,Mwiki Ward
+0213TKD,Ruai Ward
+0213TMA,Karura Ward
+0213WTD,Parklands/highridge Ward
+0300AHE,Komarock Ward
+0300AIA,Ziwani/kariokor
+0300AOK,Ruai Ward
+0300AOU,Njiru Ward
+0300AYM,Komarock Ward
+0300BAS,Airbase Ward
+0300BCM,Eastleigh North Ward
+0300BPS,Dandora Area Ii Ward
+0300DSC,Dandora Area Ii Ward
+0300E2S,Komarock Ward
+0300ENG,Pumwani Ward
+0300EQT,Ngara Ward Ward
+0300FM,Pangani Ward
+0300FTY,Dandora Area Ii Ward
+0300GER,Komarock Ward
+0300GHT,Komarock Ward
+0300IDA,Pangani Ward
+0300JAS,Kiamaiko Ward
+0300KAR,Ziwani/kariokor
+0300KRE,Ziwani/kariokor
+0300KRG,Kiamaiko Ward
+0300LSE,Njiru Ward
+0300MAA,Pangani Ward
+0300MAR,Kayole Central Ward
+0300MF,Pangani Ward
+0300MIA,Upper Savanna Ward
+0300MLG,Pangani Ward
+0300MSB,Njiru Ward
+0300MUT,Kariobangi South Ward
+0300NFI,Komarock Ward
+0300NGE,Ngara Ward Ward
+0300NME,Dandora Area Iii Ward
+0300NRG,Mlango Kubwa
+0300OBI,Airbase Ward
+0300OLE,Njiru Ward
+0300OPE,Airbase Ward
+0300PST,Ngara Ward Ward
+0300R0D,Komarock Ward
+0300RND,Kiamaiko Ward
+0300SAU,Kiamaiko Ward
+0300UIH,Kiamaiko Ward
+0300UJT,Komarock Ward
+0300UNE,Kayole North Ward
+0300ZII,Ziwani/kariokor
+0300ZIN,Ziwani/kariokor
+0300ZWN,Ziwani/kariokor
+03014HM,Komarock Ward
+0301ACC,Dandora Area Ii Ward
+0301AIC,Dandora Area Ii Ward
+0301AIZ,Ziwani/kariokor
+0301ALB,Mlango Kubwa
+0301ASN,Umoja I Ward
+0301ASP,Dandora Area Iii Ward
+0301AUN,Dandora Area I Ward
+0301AWB,Dandora Area I Ward
+0301BAS,Ngei Ward
+0301BHS,Mabatini Ward
+0301EGG,Kariobangi South Ward
+0301FLT,Ngei Ward
+0301FM,Pangani Ward
+0301GEE,Eastleigh North Ward
+0301ICH,Airbase Ward
+0301IDB,Kariobangi South Ward
+0301III,Ziwani/kariokor
+0301IRA,Ziwani/kariokor
+0301JUN,Njiru Ward
+0301KDC,Ziwani/kariokor
+0301KMB,Mlango Kubwa
+0301LJH,Komarock Ward
+0301LLS,Njiru Ward
+0301MAP,Mlango Kubwa
+0301MBK,Mlango Kubwa
+0301MBP,Pangani Ward
+0301MF,Pangani Ward
+0301MJA,Mabatini Ward
+0301MLG,Pangani Ward
+0301MOH,Dandora Area Ii Ward
+0301MSB,Njiru Ward
+0301MTS,Kiamaiko Ward
+0301MYA,Mowlem Ward
+0301NGE,Ngara Ward Ward
+0301NUN,Njiru Ward
+0301OIO,Dandora Area Ii Ward
+0301OSK,Komarock Ward
+0301PST,Ngara Ward Ward
+0301RDR,Kariobangi North Ward
+0301ROD,Komarock Ward
+0301/RR,Eastleigh North Ward
+0301SNT,Mlango Kubwa
+0301.ST,Ruai Ward
+0301TAO,Kariobangi South Ward
+0301TOT,Ngara Ward Ward
+0301TTS,Mlango Kubwa
+0301TUJ,Airbase Ward
+0301URE,Njiru Ward
+0301WAI,Ziwani/kariokor
+0301WTE,Njiru Ward
+0301YAM,Kariobangi South Ward
+0302RND,Kiamaiko Ward
+0303GKM,Pumwani Ward
+0303KND,Kayole Central Ward
+0303KRG,Kiamaiko Ward
+0303KST,Kiamaiko Ward
+0303PGT,Pangani Ward
+03106SE,Dandora Area I Ward
+0310AAA,Eastleigh North Ward
+0310ACC,Dandora Area Ii Ward
+0310ADA,Ruai Ward
+0310AE.,Eastleigh North Ward
+0310AEA,Eastleigh North Ward
+0310AMB,Pangani Ward
+0310ANS,Umoja Ii Ward
+0310BAO,Kariobangi South Ward
+0310BH,Airbase Ward
+0310CHF,Airbase Ward
+0310DUN,Dandora Area Ii Ward
+0310EAS,Eastleigh North Ward
+0310ENA,Dandora Area Iii Ward
+0310EQT,Dandora Area Ii Ward
+0310FLT,Airbase Ward
+0310FRC,Airbase Ward
+0310GEG,California Ward
+0310GTR,Komarock Ward
+0310HAA,Kiamaiko Ward
+0310IES,Dandora Area I Ward
+0310IKE,Ngara Ward Ward
+0310IKK,Ziwani/kariokor
+0310JAK,Nairobi Central Ward
+0310JAY,Airbase Ward
+0310JMT,Umoja Ii Ward
+0310JNH,Airbase Ward
+0310JST,Kiamaiko Ward
+0310JUN,Njiru Ward
+0310LBW,Airbase Ward
+0310LMH,Upper Savanna Ward
+0310MBO,Mowlem Ward
+0310MPP,Njiru Ward
+0310MSB,Njiru Ward
+0310NPI,Upper Savanna Ward
+0310OGP,Mowlem Ward
+0310OSO,Korogocho Ward
+0310OYT,Airbase Ward
+0310PGG,Pangani Ward
+0310PGP,Ngara Ward Ward
+0310PHI,Airbase Ward
+0310PSE,Komarock Ward
+0310RIS,Kariobangi South Ward
+0310SEN,Kariobangi South Ward
+0310SKA,Njiru Ward
+0310SNT,Eastleigh North Ward
+0310STP,Dandora Area Iii Ward
+0310TAO,Airbase Ward
+0310TEN,Airbase Ward
+0310TOE,Kariobangi South Ward
+0310TON,Njiru Ward
+0310TOT,Dandora Area Ii Ward
+0310TUA,Kayole South Ward
+0310UYU,Airbase Ward
+0310WSJ,Airbase Ward
+0310YAO,Eastleigh North Ward
+0311AG1,Dandora Area Iii Ward
+0311AGP,Mabatini Ward
+0311ASV,Kayole Central Ward
+0311AUL,Airbase Ward
+0311BAO,Kariobangi South Ward
+0311BET,Dandora Area Iii Ward
+0311CHF,Airbase Ward
+0311CIN,Dandora Area Ii Ward
+0311DIZ,Dandora Area Ii Ward
+0311DTB,Komarock Ward
+0311ENA,Komarock Ward
+0311EPC,Komarock Ward
+0311ESL,Ruai Ward
+0311FOR,Airbase Ward
+0311FTY,Dandora Area Iii Ward
+0311GAM,Komarock Ward
+0311GHS,Eastleigh North Ward
+0311GIO,Dandora Area Ii Ward
+0311INP,Karura Ward
+0311ION,Ngei Ward
+0311ISN,Komarock Ward
+0311JOD,Njiru Ward
+0311JSG,Ngei Ward
+0311JUA,Dandora Area Iii Ward
+0311KAR,Ngara Ward Ward
+0311KEW,Mlango Kubwa
+0311MAI,Dandora Area Ii Ward
+0311MAN,Mlango Kubwa
+0311MBS,Komarock Ward
+0311MNA,Airbase Ward
+0311NJO,Kiamaiko Ward
+0311NNE,Dandora Area Ii Ward
+0311NNU,Ngara Ward Ward
+0311OTG,Njiru Ward
+0311PGG,Pangani Ward
+0311PGP,Ngara Ward Ward
+0311PQZ,Komarock Ward
+0311PSE,Komarock Ward
+0311.RE,Mlango Kubwa
+0311RIS,Dandora Area I Ward
+0311RSA,Ruai Ward
+0311RTO,Komarock Ward
+0311SAN,Komarock Ward
+0311SAS,Airbase Ward
+0311SBE,Komarock Ward
+0311SEN,Kariobangi South Ward
+0311SOK,Korogocho Ward
+0311TEN,Mabatini Ward
+0311THY,Airbase Ward
+0311TON,Njiru Ward
+0311TOT,Kariobangi South Ward
+0311WAK,Ruai Ward
+0311WMI,Eastleigh North Ward
+0312BSK,Nairobi Central Ward
+0312EST,Airbase Ward
+0312GKM,Pumwani Ward
+0312NGR,Ngara Ward Ward
+0312SOK,Korogocho Ward
+0313DDS,Dandora Area Iii Ward
+0313EST,Eastleigh North Ward
+0313JST,Kiamaiko Ward
+0313RND,Kiamaiko Ward
+04001ES,Komarock Ward
+04001LV,Umoja Ii Ward
+040056_,Kariobangi South Ward
+0400AAS,Maringo/hamza Ward
+0400ACS,Njiru Ward
+0400AFP,Lower Savanna Ward
+0400ALF,Komarock Ward
+0400AOS,Landimawe Ward
+0400AP1,Pipeline Ward
+0400AP2,Pipeline Ward
+0400ARR,Umoja I Ward
+0400.AS,Landimawe Ward
+0400AZS,Kayole South Ward
+0400BDC,Maringo/hamza Ward
+0400BEC,Upper Savanna Ward
+0400BER,Umoja Ii Ward
+0400BFA,Harambee Ward
+0400BFR,Eastleigh South Ward
+0400BHC,Maringo/hamza Ward
+0400BKB,Harambee Ward
+0400BNB,Imara Daima Ward
+0400BPS,Harambee Ward
+0400BRB,Harambee Ward
+0400BSA,Landimawe Ward
+0400CBN,South C Ward
+0400CHK,Mihango Ward
+0400CIN,Nairobi Central Ward
+0400CKC,Umoja I Ward
+0400CKW,Makongeni Ward
+0400CLT,Viwandani Ward
+0400CLX,Umoja I Ward
+0400CMT,Pipeline Ward
+0400CNK,Mwiki Ward
+0400CNR,Kariobangi South Ward
+0400CNT,Pipeline Ward
+0400CRN,Landimawe Ward
+0400CRS,Viwandani Ward
+0400CST,Umoja Ii Ward
+0400CSV,Kariobangi South Ward
+0400CTB,Nairobi Central Ward
+0400CTE,Umoja I Ward
+0400CWN,Landimawe Ward
+0400DAA,Nairobi South Ward
+0400DC,Makongeni Ward
+0400DNB,Viwandani Ward
+0400DNE,Ruai Ward
+0400DSP,Kariobangi South Ward
+0400EAM,Dandora Area Ii Ward
+0400EES,South C Ward
+0400EIH,Umoja Ii Ward
+0400ELO,Makongeni Ward
+0400ENA,Komarock Ward
+0400EPA,Lower Savanna Ward
+0400ERE,Komarock Ward
+0400ESH,Komarock Ward
+0400EST,Umoja I Ward
+0400ETR,Umoja Ii Ward
+0400EUL,Ruai Ward
+0400EXP,Landimawe Ward
+0400FAH,Pipeline Ward
+0400FDA,Pipeline Ward
+0400FDE,Utawala Ward
+0400FDS,Maringo/hamza Ward
+0400FNN,Kariobangi South Ward
+0400FSX,Kariobangi South Ward
+0400GAM,Pipeline Ward
+0400GAO,Viwandani Ward
+0400GGE,Harambee Ward
+0400GMT,Nairobi South Ward
+0400GNS,Lower Savanna Ward
+0400GPM,Umoja I Ward
+0400GRS,Umoja Ii Ward
+0400HAJ,Komarock Ward
+0400HAW,Lower Savanna Ward
+0400HCC,Nairobi South Ward
+0400HDH,Maringo/hamza Ward
+0400H/M,Imara Daima Ward
+0400HMN,Kariobangi South Ward
+0400HNB,Umoja I Ward
+0400HRB,Harambee Ward
+0400HRS,Lower Savanna Ward
+0400HRU,Makongeni Ward
+0400IAC,Nairobi Central Ward
+0400IAK,Utawala Ward
+0400IBO,Harambee Ward
+0400IEA,Ruai Ward
+0400IGM,Kariobangi South Ward
+0400IIA,Makongeni Ward
+0400ILC,Kariobangi South Ward
+0400IND,Landimawe Ward
+0400INR,Harambee Ward
+0400IOI,Kayole South Ward
+0400IOR,South C Ward
+0400IRJ,Njiru Ward
+0400IWK,Komarock Ward
+0400JMC,Umoja Ii Ward
+0400JNC,Kayole North Ward
+0400JNT,Umoja I Ward
+0400JNV,Maringo/hamza Ward
+0400JSC,Maringo/hamza Ward
+0400JSF,Viwandani Ward
+0400JSK,Umoja Ii Ward
+0400KAG,Maringo/hamza Ward
+0400KBE,Mwiki Ward
+0400KBL,Kwa Njenga Ward
+0400KCB,Kariobangi North Ward
+0400KCU,Umoja I Ward
+0400KDO,Kayole South Ward
+0400KFW,Kariobangi South Ward
+0400KHE,Kariobangi South Ward
+0400KIN,Utawala Ward
+0400KMJ,Komarock Ward
+0400KMK,Kahawa West
+0400KNA,Umoja Ii Ward
+0400KNP,Viwandani Ward
+0400KNS,Kayole Central Ward
+0400KOI,Kayole South Ward
+0400KON,Kayole North Ward
+0400KOT,Maringo/hamza Ward
+0400KPS,Kayole North Ward
+0400KRT,Viwandani Ward
+0400KRY,Kahawa West
+0400KSD,Lower Savanna Ward
+0400KSP,Kariobangi South Ward
+0400KTA,Makongeni Ward
+0400KTN,Pipeline Ward
+0400KWA,Landimawe Ward
+0400KWC,Umoja I Ward
+0400KWR,Pipeline Ward
+0400KYB,Landimawe Ward
+0400KYJ,Komarock Ward
+0400LBM,South C Ward
+0400LET,Mihango Ward
+0400LKN,Makongeni Ward
+0400LLE,South C Ward
+0400LNC,Nairobi South Ward
+0400LRA,Mihango Ward
+0400LTM,Makongeni Ward
+0400MAE,Landimawe Ward
+0400MAJ,Umoja Ii Ward
+0400MCW,Umoja Ii Ward
+0400MIU,Ruai Ward
+0400MKG,Makongeni Ward
+0400MLA,Viwandani Ward
+0400MLH,Umoja I Ward
+0400MNL,Harambee Ward
+0400MRA,Kayole Central Ward
+0400MRS,Lower Savanna Ward
+0400MRT,Umoja Ii Ward
+0400MSB,Komarock Ward
+0400MTK,Mwiki Ward
+0400MTP,Harambee Ward
+0400MTW,Harambee Ward
+0400MYC,Komarock Ward
+0400MYK,Kariobangi South Ward
+0400MZW,Makongeni Ward
+0400N10,Maringo/hamza Ward
+0400NCC,Nairobi Central Ward
+0400NKN,Nairobi West Ward
+0400NLI,Kayole Central Ward
+0400NOI,Landimawe Ward
+0400NPC,Maringo/hamza Ward
+0400NYD,Kayole South Ward
+0400NYV,Kayole South Ward
+0400OLC,Njiru Ward
+0400ONA,Viwandani Ward
+0400ONT,Mwiki Ward
+0400OOJ,Umoja I Ward
+0400OPS,Dandora Area Iii Ward
+0400OSO,Kariobangi South Ward
+0400PCK,Umoja I Ward
+0400PCL,Utawala Ward
+0400PES,Harambee Ward
+0400PFS,Harambee Ward
+0400PH5,Lower Savanna Ward
+0400PIO,Kariobangi South Ward
+0400PMR,Kayole South Ward
+0400POS,Kayole North Ward
+0400PPL,Pipeline Ward
+0400PS1,Maringo/hamza Ward
+0400PSG,Harambee Ward
+0400PSM,Harambee Ward
+0400PST,Upper Savanna Ward
+0400PTC,Viwandani Ward
+0400QPM,Mihango Ward
+0400QTY,Landimawe Ward
+0400RAH,Kayole South Ward
+0400RAU,Airbase Ward
+0400RBA,Landimawe Ward
+0400RCK,Kayole Central Ward
+0400RDA,Utawala Ward
+0400REN,Komarock Ward
+0400RND,Komarock Ward
+0400ROA,Nairobi South Ward
+0400ROD,Kariobangi South Ward
+0400ROU,Kariobangi South Ward
+0400RPY,Viwandani Ward
+0400RST,Kayole Central Ward
+0400RUU,South C Ward
+0400S3B,Komarock Ward
+0400SBA,Kayole Central Ward
+0400SET,Komarock Ward
+0400SFD,Nairobi South Ward
+0400SIX,Kariobangi South Ward
+0400SKJ,Komarock Ward
+0400SLA,Umoja Ii Ward
+0400SNC,Eastleigh South Ward
+0400SNG,Umoja Ii Ward
+0400SOS,Upper Savanna Ward
+0400SP1,Komarock Ward
+0400SPE,Kahawa West
+0400SRY,Lower Savanna Ward
+0400STG,Pipeline Ward
+0400STL,Umoja Ii Ward
+0400SUR,Upper Savanna Ward
+0400SVN,Lower Savanna Ward
+0400SWT,Kayole South Ward
+0400TAT,Kariobangi South Ward
+0400TIU,Kariobangi South Ward
+0400TJR,Viwandani Ward
+0400TLA,Viwandani Ward
+0400TLS,Njiru Ward
+0400TMI,Pipeline Ward
+0400TMN,Lower Savanna Ward
+0400TMW,Harambee Ward
+0400TNJ,Dandora Area Iii Ward
+0400TOO,Harambee Ward
+0400TPK,Viwandani Ward
+0400TRN,Pipeline Ward
+0400TSA,Pipeline Ward
+0400TSH,Kayole Central Ward
+0400TSK,Lower Savanna Ward
+0400TSX,Dandora Area I Ward
+0400TTP,Kariobangi South Ward
+0400TUI,South C Ward
+0400TUY,Viwandani Ward
+0400TYO,Umoja Ii Ward
+0400UAU,Viwandani Ward
+0400UCB,Harambee Ward
+0400UFD,Harambee Ward
+0400UJJ,Umoja I Ward
+0400UJN,Harambee Ward
+0400UJR,Makongeni Ward
+0400UM1,Umoja I Ward
+0400UM2,Umoja Ii Ward
+0400UMA,Umoja I Ward
+0400UMD,Umoja I Ward
+0400UMJ,Umoja I Ward
+0400UMM,Umoja I Ward
+0400UMP,Umoja I Ward
+0400UOJ,Mowlem Ward
+0400URH,Nairobi Central Ward
+0400USM,Upper Savanna Ward
+0400USS,Harambee Ward
+0400VAN,Maringo/hamza Ward
+0400VNA,Landimawe Ward
+0400VPK,Komarock Ward
+0400VSP,Umoja I Ward
+0400WKM,Ruai Ward
+0400YAA,Kariobangi South Ward
+0400ZAH,Viwandani Ward
+04011EP,Komarock Ward
+0401AAN,Maringo/hamza Ward
+0401ABL,Makongeni Ward
+0401ADI,Dandora Area Ii Ward
+0401AIM,Ruai Ward
+0401AIN,Kiamaiko Ward
+0401ALL,Komarock Ward
+0401AMA,Maringo/hamza Ward
+0401AMB,Mowlem Ward
+0401AMG,Maringo/hamza Ward
+0401ANE,Umoja Ii Ward
+0401ANK,Pumwani Ward
+0401ANO,Pumwani Ward
+0401ARA,Kayole Central Ward
+0401ATN,Umoja Ii Ward
+0401BCK,Kiamaiko Ward
+0401BDG,Harambee Ward
+0401BEC,Upper Savanna Ward
+0401BEN,Komarock Ward
+0401BFR,California Ward
+0401BKC,Kiamaiko Ward
+0401BLK,Utawala Ward
+0401BMP,Komarock Ward
+0401BPF,Maringo/hamza Ward
+0401BPH,Harambee Ward
+0401BPR,Harambee Ward
+0401BPS,Maringo/hamza Ward
+0401BRG,Harambee Ward
+0401BSA,Landimawe Ward
+0401BSR,Kayole Central Ward
+0401CAS,Mowlem Ward
+0401CEX,Imara Daima Ward
+0401CHK,Ruai Ward
+0401CLT,Lower Savanna Ward
+0401CLV,Kayole North Ward
+0401CLX,Mowlem Ward
+0401CMT,Utawala Ward
+0401CNI,Maringo/hamza Ward
+0401CNK,Mwiki Ward
+0401CRS,Viwandani Ward
+0401CVS,Kariobangi South Ward
+0401CVT,Harambee Ward
+0401CWS,Utawala Ward
+0401DAA,Imara Daima Ward
+0401DAR,Landimawe Ward
+0401DC,Maringo/hamza Ward
+0401DHC,Utawala Ward
+0401DNE,Ruai Ward
+0401DOA,Viwandani Ward
+0401DPG,Umoja Ii Ward
+0401DSL,Kayole Central Ward
+0401ECM,Dandora Area Ii Ward
+0401EDN,Komarock Ward
+0401ENJ,Maringo/hamza Ward
+0401EOJ,Pipeline Ward
+0401EPA,Lower Savanna Ward
+0401EQM,Upper Savanna Ward
+0401ESN,Dandora Area Ii Ward
+0401EYT,Kiamaiko Ward
+0401FDA,Utawala Ward
+0401FDE,Utawala Ward
+0401FDJ,Utawala Ward
+0401FDS,Maringo/hamza Ward
+0401FLC,Imara Daima Ward
+0401FNN,Kariobangi South Ward
+0401FPL,Mowlem Ward
+0401GEA,Harambee Ward
+0401GEE,Umoja I Ward
+0401GKC,Kayole Central Ward
+0401GM,Imara Daima Ward
+0401GMA,Umoja Ii Ward
+0401GNF,Lower Savanna Ward
+0401GSE,Lower Savanna Ward
+0401HBN,Ruai Ward
+0401HDH,Maringo/hamza Ward
+0401HHH,Umoja I Ward
+0401HIO,Imara Daima Ward
+0401HLL,Nairobi South Ward
+0401HMB,Landimawe Ward
+0401HMT,Utawala Ward
+0401HOD,Harambee Ward
+0401HPE,Harambee Ward
+0401HRB,Harambee Ward
+0401HRC,Mowlem Ward
+0401HRS,Lower Savanna Ward
+0401HSU,Harambee Ward
+0401HUJ,Harambee Ward
+0401IDO,Landimawe Ward
+0401IEK,Kariobangi South Ward
+0401IFA,Komarock Ward
+0401IFB,Komarock Ward
+0401ILE,Lower Savanna Ward
+0401IND,Landimawe Ward
+0401IVA,Maringo/hamza Ward
+0401IYU,Kiamaiko Ward
+0401JCN,Lower Savanna Ward
+0401JCY,Utawala Ward
+0401JEN,Umoja Ii Ward
+0401JNT,Umoja I Ward
+0401JTA,Pipeline Ward
+0401JUC,Harambee Ward
+0401JUN,Kayole South Ward
+0401KAU,Umoja I Ward
+0401KBE,Mwiki Ward
+0401KBU,Harambee Ward
+0401KCC,Mowlem Ward
+0401KCF,Umoja I Ward
+0401KCT,Harambee Ward
+0401KDO,Kayole South Ward
+0401KIE,Viwandani Ward
+0401KMJ,Mowlem Ward
+0401KMK,Kahawa West
+0401KNA,Nairobi South Ward
+0401KNB,Harambee Ward
+0401KNL,Harambee Ward
+0401KNM,Kayole North Ward
+0401KNS,Komarock Ward
+0401KOB,Kariobangi South Ward
+0401KOJ,Komarock Ward
+0401KON,Kayole North Ward
+0401KOT,Maringo/hamza Ward
+0401KRY,Kahawa West
+0401KSD,Lower Savanna Ward
+0401KSR,Umoja I Ward
+0401KST,Maringo/hamza Ward
+0401KTN,Pipeline Ward
+0401KWR,Utawala Ward
+0401KYJ,Matopeni/spring Valley Ward
+0401LEP,Utawala Ward
+0401LEU,Ruai Ward
+0401LHS,Harambee Ward
+0401LUM,Maringo/hamza Ward
+0401M,Umoja Ii Ward
+0401MAA,Umoja Ii Ward
+0401MAM,Viwandani Ward
+0401MBA,Kayole South Ward
+0401MBC,Komarock Ward
+0401MEA,Upper Savanna Ward
+0401MHN,Kayole North Ward
+0401MKB,Maringo/hamza Ward
+0401MKC,Komarock Ward
+0401MLD,Utawala Ward
+0401MLH,Mowlem Ward
+0401MPC,Komarock Ward
+0401MPS,Maringo/hamza Ward
+0401MRA,Kayole Central Ward
+0401MRJ,Umoja Ii Ward
+0401MRR,Umoja Ii Ward
+0401MSB,Upper Savanna Ward
+0401MSC,Komarock Ward
+0401MTK,Mwiki Ward
+0401MTP,Harambee Ward
+0401MVC,Komarock Ward
+0401MWS,Harambee Ward
+0401MYA,Mowlem Ward
+0401MYJ,Lower Savanna Ward
+0401N10,Maringo/hamza Ward
+0401NAS,Embakasi Ward
+0401NAT,Upper Savanna Ward
+0401NBP,Harambee Ward
+0401NCK,Maringo/hamza Ward
+0401NMA,Lower Savanna Ward
+0401NPC,Maringo/hamza Ward
+0401NTR,Kayole Central Ward
+0401NYD,Kayole South Ward
+0401NYR,Kayole North Ward
+0401NYV,Komarock Ward
+0401ODI,Viwandani Ward
+0401ODO,Imara Daima Ward
+0401OGS,Maringo/hamza Ward
+0401OHS,Nairobi South Ward
+0401OIL,Nairobi South Ward
+0401OLJ,Umoja I Ward
+0401ONH,Harambee Ward
+0401ONT,Mwiki Ward
+0401ONY,Airbase Ward
+0401ORC,Kayole South Ward
+0401OTM,Komarock Ward
+0401P1M,Komarock Ward
+0401P3B,Komarock Ward
+0401PCE,Kayole Central Ward
+0401PCK,Umoja I Ward
+0401PD1,Embakasi Ward
+0401PDO,Embakasi Ward
+0401PLB,Umoja I Ward
+0401PMR,Kayole South Ward
+0401PNR,Harambee Ward
+0401POS,Kayole South Ward
+0401PPL,Utawala Ward
+0401PS1,Maringo/hamza Ward
+0401PS4,Komarock Ward
+0401PSN,Landimawe Ward
+0401QTY,Landimawe Ward
+0401RCK,Komarock Ward
+0401RDA,Dandora Area Ii Ward
+0401RKN,Pumwani Ward
+0401ROA,Imara Daima Ward
+0401ROK,Kayole Central Ward
+0401RPL,Harambee Ward
+0401RSE,Upper Savanna Ward
+0401RWE,Njiru Ward
+0401S1S,Harambee Ward
+0401S3B,Komarock Ward
+0401SAQ,Viwandani Ward
+0401SBA,Kayole Central Ward
+0401SDA,Pumwani Ward
+0401SEE,Nairobi South Ward
+0401SHL,Viwandani Ward
+0401SIX,Kariobangi South Ward
+0401SLT,Landimawe Ward
+0401SMJ,Umoja I Ward
+0401SNI,Viwandani Ward
+0401SOS,Harambee Ward
+0401SOY,Umoja Ii Ward
+0401SPE,Kahawa West
+0401SPL,Mowlem Ward
+0401SPN,Pipeline Ward
+0401STG,Utawala Ward
+0401SVN,Lower Savanna Ward
+0401SWM,Kayole North Ward
+0401SWT,Kayole South Ward
+0401TAL,Landimawe Ward
+0401TEU,Harambee Ward
+0401TGS,Lower Savanna Ward
+0401TIT,Nairobi South Ward
+0401TKY,Ruai Ward
+0401TLT,Harambee Ward
+0401TMI,Utawala Ward
+0401TNS,Embakasi Ward
+0401TPK,Viwandani Ward
+0401TQU,Harambee Ward
+0401TRN,Pipeline Ward
+0401TSX,Kariobangi South Ward
+0401TTL,Harambee Ward
+0401TUI,Njiru Ward
+0401TUY,Viwandani Ward
+0401TYI,Dandora Area Ii Ward
+0401UCB,Harambee Ward
+0401UES,Upper Savanna Ward
+0401UJJ,Umoja I Ward
+0401UJR,Maringo/hamza Ward
+0401UM1,Umoja I Ward
+0401UM2,Umoja I Ward
+0401UM3,Mowlem Ward
+0401UMD,Umoja I Ward
+0401UMJ,Harambee Ward
+0401UMM,Umoja Ii Ward
+0401UOU,Maringo/hamza Ward
+0401UPS,Harambee Ward
+0401-UR,Viwandani Ward
+0401USC,Harambee Ward
+0401VWA,Viwandani Ward
+0401VWP,Komarock Ward
+0401.WD,Maringo/hamza Ward
+0401WIA,Mowlem Ward
+0401WKM,Ruai Ward
+0401YKA,Harambee Ward
+0401YMK,Harambee Ward
+0402AQN,Maringo/hamza Ward
+0402CLT,Lower Savanna Ward
+0402CTY,Makongeni Ward
+0402DON,Viwandani Ward
+0402KY1,Kayole North Ward
+0402LDR,Nairobi Central Ward
+0402MLY,Komarock Ward
+0402MWH,Maringo/hamza Ward
+0402RAU,Kariobangi North Ward
+0403BNG,Kariobangi North Ward
+0403DMS,Viwandani Ward
+0403DSL,Kayole Central Ward
+0403GMW,Nairobi South Ward
+0403INC,Umoja Ii Ward
+0403JCN,Lower Savanna Ward
+0403JOS,Eastleigh South Ward
+0403KBL,Pipeline Ward
+0403KSE,Kariobangi South Ward
+0403KY1,Kayole North Ward
+0403LMS,Harambee Ward
+0403MKC,Komarock Ward
+0403MKI,Mwiki Ward
+0403MTW,Harambee Ward
+0403MWF,Utawala Ward
+0403NYO,Landimawe Ward
+0403QKM,Ruai Ward
+0403RAU,Kariobangi North Ward
+0403RDA,Utawala Ward
+0403SKJ,Njiru Ward
+0403UM2,Umoja I Ward
+040HHH,Umoja I Ward
+040PLB,Umoja I Ward
+0410AAA,Umoja Ii Ward
+0410AAL,South C Ward
+0410ABT,Pipeline Ward
+0410ADA,South C Ward
+0410AG2,Maringo/hamza Ward
+0410AKO,Komarock Ward
+0410AMW,Makongeni Ward
+0410ANA,Kayole South Ward
+0410ANN,Umoja Ii Ward
+0410AOC,Embakasi Ward
+0410API,Kayole South Ward
+0410APT,Embakasi Ward
+0410AQA,Upper Savanna Ward
+0410ARA,Umoja Ii Ward
+0410ARL,South C Ward
+0410ARN,Nairobi Central Ward
+0410ASE,South C Ward
+0410ASN,Komarock Ward
+0410AWC,Umoja Ii Ward
+0410BAT,Landimawe Ward
+0410BBP,Harambee Ward
+0410BDN,Harambee Ward
+0410BEN,Lower Savanna Ward
+0410BHS,Maringo/hamza Ward
+0410B/M,South C Ward
+0410BPF,Maringo/hamza Ward
+0410BPS,Ruai Ward
+0410BRG,Harambee Ward
+0410CCR,Makongeni Ward
+0410CEX,Nairobi South Ward
+0410CGR,Landimawe Ward
+0410CJA,Harambee Ward
+0410CMH,Maringo/hamza Ward
+0410COM,Landimawe Ward
+0410CPK,Umoja I Ward
+0410CRN,Umoja I Ward
+0410CST,Makongeni Ward
+0410CUS,Harambee Ward
+0410CUT,Harambee Ward
+0410DCJ,Maringo/hamza Ward
+0410DNB,Viwandani Ward
+0410DNR,Harambee Ward
+0410DPI,Dandora Area Iii Ward
+0410DTB,Landimawe Ward
+0410EAD,Nairobi Central Ward
+0410EHA,Harambee Ward
+0410EIE,Pipeline Ward
+0410ENI,Pipeline Ward
+0410ERO,Kariobangi South Ward
+0410ETJ,Komarock Ward
+0410GRE,Kariobangi South Ward
+0410HCO,Harambee Ward
+0410HMA,Lower Savanna Ward
+0410HMZ,Viwandani Ward
+0410HRB,Harambee Ward
+0410IBN,Woodley/kenyatta Golf Course Ward
+0410IEO,Harambee Ward
+0410ILO,Harambee Ward
+0410ISR,Matopeni/spring Valley Ward
+0410ITN,Harambee Ward
+0410J1K,Umoja I Ward
+0410JKJ,South C Ward
+0410JMN,Umoja I Ward
+0410JNC,Kayole North Ward
+0410JUO,Umoja Ii Ward
+0410K1M,Kayole North Ward
+0410KBM,South C Ward
+0410KCF,Kayole Central Ward
+0410KEE,South C Ward
+0410KLL,Makongeni Ward
+0410KNS,Komarock Ward
+0410KOB,Kariobangi South Ward
+0410KSD,Lower Savanna Ward
+0410KWC,Umoja I Ward
+0410LAM,Lower Savanna Ward
+0410LAO,Embakasi Ward
+0410LET,Lower Savanna Ward
+0410LIT,Harambee Ward
+0410LMW,Nairobi West Ward
+0410LOM,Viwandani Ward
+0410LSE,South C Ward
+0410MAK,Harambee Ward
+0410MIA,Makongeni Ward
+0410MKD,Makongeni Ward
+0410MLI,Lower Savanna Ward
+0410MRB,Viwandani Ward
+0410MRR,Lower Savanna Ward
+0410MSB,Upper Savanna Ward
+0410MUT,Umoja Ii Ward
+0410NA0,Kayole South Ward
+0410NAI,Harambee Ward
+0410NBT,Umoja Ii Ward
+0410NCK,Maringo/hamza Ward
+0410NJB,Pipeline Ward
+0410NJR,Njiru Ward
+0410NKO,Kayole North Ward
+0410NML,Kayole South Ward
+0410NOD,South C Ward
+0410NPB,Maringo/hamza Ward
+0410NSE,Umoja Ii Ward
+0410OAD,Kayole South Ward
+0410OAP,Kayole Central Ward
+0410OAS,Makongeni Ward
+0410OAU,Umoja Ii Ward
+0410OEA,Ruai Ward
+0410OJH,Harambee Ward
+0410OKL,Harambee Ward
+0410OML,Viwandani Ward
+0410PAW,South C Ward
+0410PCE,Kayole Central Ward
+0410PDA,Harambee Ward
+0410PFJ,Maringo/hamza Ward
+0410PH8,Lower Savanna Ward
+0410PST,Makongeni Ward
+0410PWS,Komarock Ward
+0410RAT,Upper Savanna Ward
+0410RIK,Maringo/hamza Ward
+0410RPT,Ruai Ward
+0410RSK,Nairobi Central Ward
+0410RST,Kayole South Ward
+0410RTO,Komarock Ward
+0410SAH,Kayole Central Ward
+0410SIA,Komarock Ward
+0410SNI,Viwandani Ward
+0410SSO,Harambee Ward
+0410TAM,Harambee Ward
+0410TEN,Lower Savanna Ward
+0410THU,South C Ward
+0410TIA,Kayole Central Ward
+0410TKY,Ruai Ward
+0410TMH,Viwandani Ward
+0410TOA,Harambee Ward
+0410TOS,Kayole South Ward
+0410TSH,Komarock Ward
+0410UGI,Nairobi Central Ward
+0410UIA,Kariobangi South Ward
+0410UIY,Harambee Ward
+0410ULA,Harambee Ward
+0410USP,Harambee Ward
+0410WAA,Umoja I Ward
+0410WDA,Kayole North Ward
+0410YYN,Nairobi West Ward
+04111YO,Kayole Central Ward
+04112G4,Maringo/hamza Ward
+0411A1M,Umoja I Ward
+0411AAG,Viwandani Ward
+0411AAN,Harambee Ward
+0411AAS,Nairobi Central Ward
+0411ABT,Viwandani Ward
+0411ACD,Maringo/hamza Ward
+0411ACE,Umoja I Ward
+0411ADR,Maringo/hamza Ward
+0411AGI,Kiamaiko Ward
+0411AIO,Kayole Central Ward
+0411AJW,Komarock Ward
+0411AKI,Umoja Ii Ward
+0411ALB,Nairobi South Ward
+0411AOO,Landimawe Ward
+0411AOT,Nairobi South Ward
+0411APA,Nairobi South Ward
+0411ASC,Pipeline Ward
+0411ASI,Umoja Ii Ward
+0411AUJ,Komarock Ward
+0411AWA,Umoja Ii Ward
+0411BEN,Umoja Ii Ward
+0411BIA,Umoja Ii Ward
+0411BLK,Pipeline Ward
+0411BP1,Harambee Ward
+0411BPF,Maringo/hamza Ward
+0411BPS,Ruai Ward
+0411BYU,Harambee Ward
+0411CAI,Mowlem Ward
+0411CAR,Maringo/hamza Ward
+0411CAT,Maringo/hamza Ward
+0411CER,Kariobangi South Ward
+0411CGR,Landimawe Ward
+0411CIR,Maringo/hamza Ward
+0411CRG,Embakasi Ward
+0411CRN,Umoja I Ward
+0411CST,Pumwani Ward
+0411DC,Maringo/hamza Ward
+0411DEI,Dandora Area Iii Ward
+0411DGC,Maringo/hamza Ward
+0411DLP,Maringo/hamza Ward
+0411DRU,Airbase Ward
+0411DTB,Landimawe Ward
+0411EAO,Kayole North Ward
+0411EAS,Dandora Area Iii Ward
+0411EDS,Kayole Central Ward
+0411EEA,Utawala Ward
+0411EEE,Komarock Ward
+0411EER,Kayole Central Ward
+0411EIL,Umoja Ii Ward
+0411ELC,Umoja I Ward
+0411ELL,Nairobi South Ward
+0411ERC,Viwandani Ward
+0411EST,Maringo/hamza Ward
+0411ETA,Nairobi South Ward
+0411GMM,Imara Daima Ward
+0411GOI,Harambee Ward
+0411GSA,Komarock Ward
+0411GSL,Njiru Ward
+0411HHI,Harambee Ward
+0411HMZ,Maringo/hamza Ward
+0411HOM,Viwandani Ward
+0411HRB,Harambee Ward
+0411HSG,Lower Savanna Ward
+0411IFB,Komarock Ward
+0411ILO,Utawala Ward
+0411ILP,Harambee Ward
+0411IMU,Umoja I Ward
+0411IOT,Harambee Ward
+0411IRL,Ruai Ward
+0411IRS,Nairobi South Ward
+0411IRT,Kariobangi South Ward
+0411ITO,Ruai Ward
+0411IWA,Mowlem Ward
+0411JEA,Umoja Ii Ward
+0411JNV,Pumwani Ward
+0411JSC,Harambee Ward
+0411JUU,Harambee Ward
+0411KAA,Kiamaiko Ward
+0411KCF,Kayole Central Ward
+0411KDW,Maringo/hamza Ward
+0411KOI,Kayole South Ward
+0411KPL,Landimawe Ward
+0411KPS,Umoja I Ward
+0411KSD,Lower Savanna Ward
+0411LCR,Njiru Ward
+0411LRF,Umoja Ii Ward
+0411MAA,Umoja Ii Ward
+0411MAS,Komarock Ward
+0411MCR,Harambee Ward
+0411MCW,Umoja Ii Ward
+0411MEB,Nairobi Central Ward
+0411MIR,Imara Daima Ward
+0411MPT,Landimawe Ward
+0411MRB,Viwandani Ward
+0411MSC,Pumwani Ward
+0411MUT,Harambee Ward
+0411MZW,Pumwani Ward
+0411N,Umoja Ii Ward
+0411NAA,Pipeline Ward
+0411NAH,Viwandani Ward
+0411NAI,Komarock Ward
+0411NDL,Harambee Ward
+0411NGS,Umoja Ii Ward
+0411NII,Makongeni Ward
+0411NJR,Njiru Ward
+0411NJT,Komarock Ward
+0411NLE,Njiru Ward
+0411NOO,Ruai Ward
+0411NRI,Harambee Ward
+0411NSE,Komarock Ward
+0411NSO,Nairobi South Ward
+0411OAT,Harambee Ward
+0411OKR,Harambee Ward
+0411ONY,Airbase Ward
+0411OOC,Pipeline Ward
+0411OOK,Kayole Central Ward
+0411OON,Harambee Ward
+0411OOO,Harambee Ward
+0411OOU,Maringo/hamza Ward
+0411ORE,Mowlem Ward
+0411OTR,Pipeline Ward
+0411P1M,Komarock Ward
+0411P3A,Komarock Ward
+0411PAC,Viwandani Ward
+0411PEV,Utawala Ward
+0411PFJ,Harambee Ward
+0411PFS,Harambee Ward
+0411PH5,Lower Savanna Ward
+0411PST,Maringo/hamza Ward
+0411RCK,Komarock Ward
+0411REB,Komarock Ward
+0411RIB,Kiamaiko Ward
+0411RIK,Pumwani Ward
+0411RND,Komarock Ward
+0411RON,Kayole North Ward
+0411RRC,Kayole Central Ward
+0411RST,Kayole South Ward
+0411RUU,Harambee Ward
+0411RVP,Komarock Ward
+0411SAS,Utawala Ward
+0411SIA,Kayole Central Ward
+0411SIE,Njiru Ward
+0411SIR,Utawala Ward
+0411SKA,Njiru Ward
+0411SMY,Pumwani Ward
+0411SNC,California Ward
+0411SOS,Harambee Ward
+0411SP1,Komarock Ward
+0411STJ,Dandora Area Iii Ward
+0411STO,Maringo/hamza Ward
+0411SUQ,Maringo/hamza Ward
+0411SVN,Lower Savanna Ward
+0411TAA,Utawala Ward
+0411TAM,Nairobi South Ward
+0411TAU,Komarock Ward
+0411TEM,Harambee Ward
+0411TEN,Umoja Ii Ward
+0411TGS,Lower Savanna Ward
+0411TMH,Maringo/hamza Ward
+0411TOL,Komarock Ward
+0411TRH,Njiru Ward
+0411TSH,Komarock Ward
+0411UAJ,Komarock Ward
+0411UB1,Harambee Ward
+0411UJL,Harambee Ward
+0411URD,Airbase Ward
+0411VAU,Umoja Ii Ward
+0411YYA,Landimawe Ward
+0412CAR,Makongeni Ward
+0412CSD,Pumwani Ward
+0412CTI,Makongeni Ward
+0412DLP,Maringo/hamza Ward
+0412DON,Lower Savanna Ward
+0412KNC,Nairobi Central Ward
+0412MKD,Maringo/hamza Ward
+0412MTH,Nairobi Central Ward
+0412MTW,Nairobi Central Ward
+0412NAI,Harambee Ward
+0412TSR,Nairobi Central Ward
+0413PSB,Embakasi Ward
+04O2CLT,Lower Savanna Ward
+0500AA,Imara Daima Ward
+0500AAL,South C Ward
+0500AAZ,Karen Ward
+0500ABL,South C Ward
+0500ACA,Karen Ward
+0500ACC,Karen Ward
+0500AGB,Karen Ward
+0500AHS,South C Ward
+0500AKI,Karen Ward
+0500ALA,Karen Ward
+0500AME,South C Ward
+0500ANE,Nairobi South Ward
+0500APJ,South C Ward
+0500AST,Mihango Ward
+0500AUT,Mihango Ward
+0500BAL,Nairobi South Ward
+0500BAR,Karen Ward
+0500BAS,Embakasi Ward
+0500BDS,Karen Ward
+0500BLZ,Nairobi South Ward
+0500BMS,Mugumo-ini Ward
+0500BOI,South C Ward
+0500BPS,Karen Ward
+0500BRM,Karen Ward
+0500CAB,Pipeline Ward
+0500CAM,Karen Ward
+0500CAR,Karen Ward
+0500CAU,Kahawa West
+0500CHN,Embakasi Ward
+0500CIT,South C Ward
+0500CLX,Karen Ward
+0500CMZ,Karen Ward
+0500COC,South C Ward
+0500CON,Karen Ward
+0500CRW,Embakasi Ward
+0500CSH,Mugumo-ini Ward
+0500CUE,Karen Ward
+0500CUV,Karen Ward
+0500DAD,Karen Ward
+0500DAK,South C Ward
+0500DBC,Karen Ward
+0500DMS,Mugumo-ini Ward
+0500DRN,Karen Ward
+0500DVK,Mugumo-ini Ward
+0500ELD,Mihango Ward
+0500EPZ,Mugumo-ini Ward
+0500EVP,Embakasi Ward
+0500EXC,Karen Ward
+0500EYR,Nairobi West Ward
+0500FAA,Karen Ward
+0500FCT,South C Ward
+0500FLT,Karen Ward
+0500FNA,South C Ward
+0500FRT,Karen Ward
+0500FTM,Karen Ward
+0500GCG,Karen Ward
+0500GCT,Karen Ward
+0500GOE,South C Ward
+0500HAW,Karen Ward
+0500HAZ,Nairobi South Ward
+0500HIC,Mihango Ward
+0500HJS,Ruai Ward
+0500HLL,Karen Ward
+0500HLM,Ruai Ward
+0500HLT,Karen Ward
+0500HMN,Karen Ward
+0500HRN,Karen Ward
+0500HSM,Karen Ward
+0500HST,Mugumo-ini Ward
+0500HZS,Nairobi South Ward
+0500IKO,Karen Ward
+0500IMD,Imara Daima Ward
+0500ITM,Karen Ward
+0500JCC,Nairobi South Ward
+0500JKL,Embakasi Ward
+0500KAE,Karen Ward
+0500KAN,Karen Ward
+0500KAP,South C Ward
+0500KBL,Karen Ward
+0500KBR,Nairobi West Ward
+0500KCH,Karen Ward
+0500KCL,Karen Ward
+0500KCY,Karen Ward
+0500KEA,Embakasi Ward
+0500KHN,Karen Ward
+0500KJI,Karen Ward
+0500KKM,Karen Ward
+0500KLB,South C Ward
+0500KMC,Mugumo-ini Ward
+0500KME,South C Ward
+0500KMR,Karen Ward
+0500KNC,Mugumo-ini Ward
+0500KOB,Nairobi South Ward
+0500KPS,Nairobi West Ward
+0500KRJ,Karen Ward
+0500KRT,Karen Ward
+0500KSG,Nairobi West Ward
+0500KSP,Karen Ward
+0500KSR,Karen Ward
+0500KTT,Mugumo-ini Ward
+0500KWG,Embakasi Ward
+0500KWI,South C Ward
+0500KWT,Embakasi Ward
+0500LBN,Karen Ward
+0500LGS,Mugumo-ini Ward
+0500LIM,Karen Ward
+0500LMA,Karen Ward
+0500LRJ,Karen Ward
+0500MAR,Nairobi South Ward
+0500MBT,South C Ward
+0500MBZ,Karen Ward
+0500MCH,Landimawe Ward
+0500MCT,Karen Ward
+0500MEM,Woodley/kenyatta Golf Course Ward
+0500MER,Ruai Ward
+0500MGA,South C Ward
+0500MGC,Karen Ward
+0500MGH,Nairobi West Ward
+0500MGT,Karen Ward
+0500MGY,South C Ward
+0500MIN,South C Ward
+0500MIO,Nairobi West Ward
+0500MJN,Mugumo-ini Ward
+0500MKY,Karen Ward
+0500MLN,Karen Ward
+0500MMU,Karen Ward
+0500MOW,South C Ward
+0500MPF,South C Ward
+0500MPK,Karen Ward
+0500MPS,Nairobi West Ward
+0500MRL,Karen Ward
+0500MSC,Nairobi West Ward
+0500MSL,Karen Ward
+0500MSQ,Nairobi West Ward
+0500MSR,Karen Ward
+0500MSU,Karen Ward
+0500MSV,Karen Ward
+0500MSW,Karen Ward
+0500MUQ,Woodley/kenyatta Golf Course Ward
+0500MWR,Karen Ward
+0500NBA,Karen Ward
+0500NBW,Karen Ward
+0500NDB,South C Ward
+0500NDG,Karen Ward
+0500NGA,Karen Ward
+0500NLP,Karen Ward
+0500NMJ,Mugumo-ini Ward
+0500NNE,Kahawa West
+0500NRA,South C Ward
+0500NSK,Nairobi Central Ward
+0500NTN,South C Ward
+0500NTU,Karen Ward
+0500NYT,Karen Ward
+0500NYY,Nairobi West Ward
+0500OAI,South C Ward
+0500OBT,Mugumo-ini Ward
+0500OLR,Karen Ward
+0500OLS,Nairobi South Ward
+0500OOB,Karen Ward
+0500ORP,Mugumo-ini Ward
+0500OSA,South C Ward
+0500PCH,Nairobi West Ward
+0500PHP,Nairobi South Ward
+0500PLC,Karen Ward
+0500PLV,Nairobi South Ward
+0500PNR,South C Ward
+0500PTL,Mugumo-ini Ward
+0500PVE,Nairobi South Ward
+0500QRL,Karen Ward
+0500RAJ,Embakasi Ward
+0500RAL,Landimawe Ward
+0500RLN,South C Ward
+0500RMP,Karen Ward
+0500RNG,Karen Ward
+0500RNO,Mwiki Ward
+0500RRN,South C Ward
+0500RTN,South C Ward
+0500S39,Mugumo-ini Ward
+0500SAA,Embakasi Ward
+0500SAE,Karen Ward
+0500SAT,South C Ward
+0500SBK,Mugumo-ini Ward
+0500SCS,Nairobi West Ward
+0500SFA,Nairobi West Ward
+0500SHL,South C Ward
+0500SHM,Mugumo-ini Ward
+0500SKR,South C Ward
+0500SKW,Mugumo-ini Ward
+0500SLN,Mugumo-ini Ward
+0500SMI,Mugumo-ini Ward
+0500SMR,South C Ward
+0500SNA,Nairobi South Ward
+0500SNR,Mugumo-ini Ward
+0500SST,Karen Ward
+0500STM,South C Ward
+0500STR,Nairobi West Ward
+0500STS,Mugumo-ini Ward
+0500SUP,Nairobi West Ward
+0500SWR,Karen Ward
+0500SYJ,Mugumo-ini Ward
+0500SYK,Mugumo-ini Ward
+0500TAB,Nairobi South Ward
+0500TBA,Makongeni Ward
+0500TEA,Nairobi South Ward
+0500TJI,Makongeni Ward
+0500TKS,Embakasi Ward
+0500TNI,Mihango Ward
+0500TOL,Mugumo-ini Ward
+0500TON,Pipeline Ward
+0500TRN,Karen Ward
+0500TSH,Pipeline Ward
+0500/TT,Mugumo-ini Ward
+0500TTK,Karen Ward
+0500TUR,Nairobi West Ward
+0500TUY,Karen Ward
+0500UFK,Ruai Ward
+0500UIR,South C Ward
+0500URO,Nairobi West Ward
+0500VUM,Nairobi South Ward
+0500WAT,Nairobi West Ward
+0500WNN,Nairobi South Ward
+0500WTH,Karen Ward
+0500WTO,Karen Ward
+0501AAD,Nairobi West Ward
+0501ACA,Karen Ward
+0501ADV,Karen Ward
+0501AES,Nairobi South Ward
+0501AFL,Mugumo-ini Ward
+0501AGC,Karen Ward
+0501AKL,South C Ward
+0501AMB,South C Ward
+0501AMN,Mihango Ward
+0501AMR,Nairobi West Ward
+0501APJ,Pipeline Ward
+0501APV,Mugumo-ini Ward
+0501ATH,South C Ward
+0501ATL,Karen Ward
+0501BAL,Nairobi South Ward
+0501BAN,Landimawe Ward
+0501BDS,Mugumo-ini Ward
+0501BLU,Mugumo-ini Ward
+0501BLZ,Nairobi South Ward
+0501BMH,South C Ward
+0501BMS,Mugumo-ini Ward
+0501BOT,Karen Ward
+0501BRE,Embakasi Ward
+0501BRK,Embakasi Ward
+0501CEM,Karen Ward
+0501CHI,Mugumo-ini Ward
+0501CHN,Embakasi Ward
+0501CIC,Nairobi West Ward
+0501CIV,Nairobi West Ward
+0501COG,Karen Ward
+0501COI,South C Ward
+0501CRW,Embakasi Ward
+0501CUE,Imara Daima Ward
+0501DAR,Landimawe Ward
+0501DBB,Karen Ward
+0501DBC,Karen Ward
+0501DME,Nairobi West Ward
+0501DSC,Nairobi West Ward
+0501EAR,Karen Ward
+0501ELD,Ruai Ward
+0501ENE,Kahawa West
+0501ERR,Mwiki Ward
+0501EXC,Karen Ward
+0501FAR,Karen Ward
+0501FDE,Pipeline Ward
+0501FOR,Karen Ward
+0501FRC,South C Ward
+0501GMS,Imara Daima Ward
+0501GTD,Embakasi Ward
+0501GTH,Nairobi South Ward
+0501HAZ,Nairobi South Ward
+0501HCC,Karen Ward
+0501HLC,Karen Ward
+0501HLR,Karen Ward
+0501HMA,Karen Ward
+0501HOT,Nairobi West Ward
+0501IMR,Imara Daima Ward
+0501INR,Landimawe Ward
+0501JKL,Embakasi Ward
+0501KAD,South C Ward
+0501KAE,Karen Ward
+0501KBL,Nairobi Central Ward
+0501KBX,Karen Ward
+0501KCL,Karen Ward
+0501KCR,Karen Ward
+0501KDO,Nairobi West Ward
+0501KDT,Nairobi West Ward
+0501KET,Karen Ward
+0501KIL,Karen Ward
+0501KIR,Mugumo-ini Ward
+0501KIS,Karen Ward
+0501KMC,Mugumo-ini Ward
+0501KNA,Karen Ward
+0501KNL,Karen Ward
+0501KOD,Karen Ward
+0501KPT,Nairobi South Ward
+0501KPU,Nairobi Central Ward
+0501KRD,South C Ward
+0501KSG,Karen Ward
+0501KSN,Ruai Ward
+0501KSP,Karen Ward
+0501KSS,Karen Ward
+0501KWG,Embakasi Ward
+0501KWK,Embakasi Ward
+0501LRJ,Karen Ward
+0501LSR,Karen Ward
+0501MAB,Karen Ward
+0501MAG,Nairobi West Ward
+0501MAL,Karen Ward
+0501MAS,Karen Ward
+0501MAU,Karen Ward
+0501MBE,Mugumo-ini Ward
+0501MBO,Karen Ward
+0501MBT,South C Ward
+0501MDN,South C Ward
+0501MIA,Mihango Ward
+0501MIL,Nairobi West Ward
+0501MJN,Mugumo-ini Ward
+0501MKR,Mugumo-ini Ward
+0501MKS,Nairobi West Ward
+0501MLG,Mugumo-ini Ward
+0501MLK,Karen Ward
+0501MOA,Imara Daima Ward
+0501MOE,Nairobi West Ward
+0501MQE,Nairobi South Ward
+0501MRG,Mugumo-ini Ward
+0501MSA,Nairobi South Ward
+0501NDG,Karen Ward
+0501NEK,South C Ward
+0501NIB,Karen Ward
+0501NKO,Karen Ward
+0501NLP,Karen Ward
+0501NMD,Nairobi West Ward
+0501NMJ,Mugumo-ini Ward
+0501NNL,South C Ward
+0501NNP,Mugumo-ini Ward
+0501NPC,Karen Ward
+0501NTN,South C Ward
+0501NYY,Landimawe Ward
+0501OCN,Ruai Ward
+0501OHA,Ruai Ward
+0501OIL,Mugumo-ini Ward
+0501OIN,South C Ward
+0501OLA,Mihango Ward
+0501OLR,Karen Ward
+0501OLS,Nairobi South Ward
+0501ONM,Karen Ward
+0501OTT,Landimawe Ward
+0501OUT,Kahawa West
+0501PCE,Karen Ward
+0501PRI,Mugumo-ini Ward
+0501PTN,Nairobi South Ward
+0501PVW,Nairobi South Ward
+0501RCK,South C Ward
+0501RCR,South C Ward
+0501RET,Ruai Ward
+0501RIA,Nairobi South Ward
+0501RIM,Karen Ward
+0501RIV,Nairobi South Ward
+0501RNG,Karen Ward
+0501RNP,Karen Ward
+0501RRI,Nairobi West Ward
+0501RTI,Nairobi South Ward
+0501S39,Mugumo-ini Ward
+0501SBD,Nairobi South Ward
+0501SBK,Mugumo-ini Ward
+0501SDG,Nairobi South Ward
+0501SDO,Imara Daima Ward
+0501SEL,Nairobi South Ward
+0501SGC,Nairobi South Ward
+0501SHM,Mugumo-ini Ward
+0501SKN,Mugumo-ini Ward
+0501SLM,Mugumo-ini Ward
+0501SNA,Nairobi South Ward
+0501SRI,Nairobi South Ward
+0501STM,Karen Ward
+0501STS,Mugumo-ini Ward
+0501SVK,Nairobi South Ward
+0501SYC,Mugumo-ini Ward
+0501SYJ,Mugumo-ini Ward
+0501TAM,Karen Ward
+0501TFS,Pipeline Ward
+0501TKS,Embakasi Ward
+0501TLL,Mugumo-ini Ward
+0501TML,Nairobi West Ward
+0501TTO,South C Ward
+0501UCH,Nairobi West Ward
+0501UMI,Kahawa West
+0501UTJ,Mihango Ward
+0501VIL,Embakasi Ward
+0501VLG,Mugumo-ini Ward
+0501VNL,Mugumo-ini Ward
+0501VOD,Karen Ward
+0501WCK,Mugumo-ini Ward
+0501WEB,Nairobi West Ward
+0501WIL,Nairobi West Ward
+0501WMN,Karen Ward
+0501ZZL,Karen Ward
+0502AMB,Nairobi Central Ward
+0502BMA,Karen Ward
+0502DVK,Mugumo-ini Ward
+0503CNA,South C Ward
+0503HRS,Nyayo Highrise Ward
+0503KNK,Karen Ward
+0503KRL,Karen Ward
+0503MZW,Imara Daima Ward
+0503PEV,Embakasi Ward
+0503STS,Nairobi West Ward
+0503TMO,Nairobi West Ward
+0510AAD,Mugumo-ini Ward
+0510AAF,Kilimani Ward
+0510AAN,Mugumo-ini Ward
+0510AAU,Ruai Ward
+0510ABO,Mugumo-ini Ward
+0510ADP,Mihango Ward
+0510AEM,South C Ward
+0510AGP,Nairobi Central Ward
+0510AGR,Mugumo-ini Ward
+0510AIH,Nairobi South Ward
+0510AIM,South C Ward
+0510AIR,Woodley/kenyatta Golf Course Ward
+0510AIW,Imara Daima Ward
+0510ALM,Nairobi West Ward
+0510AMN,Mihango Ward
+0510AMR,Mugumo-ini Ward
+0510ANI,Embakasi Ward
+0510AOC,Nairobi Central Ward
+0510ARA,Mugumo-ini Ward
+0510ARK,Nairobi South Ward
+0510ATL,South C Ward
+0510ATN,Mihango Ward
+0510AVT,Embakasi Ward
+0510BAL,South C Ward
+0510BEI,South C Ward
+0510BKM,Karen Ward
+0510BLV,South C Ward
+0510BRC,Mugumo-ini Ward
+0510BRK,Embakasi Ward
+0510CAN,Mugumo-ini Ward
+0510CAO,Karen Ward
+0510CFI,Mugumo-ini Ward
+0510CNG,Landimawe Ward
+0510CRH,Mugumo-ini Ward
+0510CUN,South C Ward
+0510DOT,Landimawe Ward
+0510DUS,Landimawe Ward
+0510DVM,Nairobi West Ward
+0510E4E,Mugumo-ini Ward
+0510EAR,Karen Ward
+0510EAZ,Mihango Ward
+0510EGL,Karen Ward
+0510EKI,Mihango Ward
+0510EMG,Mugumo-ini Ward
+0510EON,Mugumo-ini Ward
+0510EPN,Pipeline Ward
+0510EPR,Mugumo-ini Ward
+0510EPZ,Mugumo-ini Ward
+0510ERE,Mugumo-ini Ward
+0510ETG,Karen Ward
+0510FGT,Woodley/kenyatta Golf Course Ward
+0510FHI,Kilimani Ward
+0510GAH,Nairobi South Ward
+0510GIE,Mugumo-ini Ward
+0510GMS,South C Ward
+0510GSU,Mihango Ward
+0510HAS,Ruai Ward
+0510HDY,Karen Ward
+0510HEL,Nairobi West Ward
+0510HLC,Karen Ward
+0510HQS,Mugumo-ini Ward
+0510IAA,South C Ward
+0510IAR,Nairobi South Ward
+0510IAV,Mugumo-ini Ward
+0510IBE,Mihango Ward
+0510IBR,Woodley/kenyatta Golf Course Ward
+0510IDD,Landimawe Ward
+0510IIH,Nyayo Highrise Ward
+0510ITI,Mihango Ward
+0510IWT,Karen Ward
+0510/JA,Pipeline Ward
+0510JAS,South C Ward
+0510JNT,Nairobi South Ward
+0510KAB,Woodley/kenyatta Golf Course Ward
+0510KAL,Nairobi Central Ward
+0510KAO,Karen Ward
+0510KAS,Mugumo-ini Ward
+0510KBL,Pipeline Ward
+0510KEF,Woodley/kenyatta Golf Course Ward
+0510KFA,Mugumo-ini Ward
+0510KIT,Mugumo-ini Ward
+0510KJC,Karen Ward
+0510KNH,Karen Ward
+0510KOB,Karen Ward
+0510KPT,Nairobi South Ward
+0510KSM,Karen Ward
+0510KWR,Karen Ward
+0510LEN,Mihango Ward
+0510LEO,South C Ward
+0510LGP,Mugumo-ini Ward
+0510LGT,Mugumo-ini Ward
+0510LIV,Mugumo-ini Ward
+0510LKO,Karen Ward
+0510LOO,Mugumo-ini Ward
+0510LTA,Landimawe Ward
+0510LTL,Nairobi West Ward
+0510LTO,Ruai Ward
+0510LTY,Mugumo-ini Ward
+0510MAR,Pipeline Ward
+0510MAS,Nairobi South Ward
+0510MAY,Nairobi West Ward
+0510MBL,South C Ward
+0510MCU,Nairobi South Ward
+0510MDA,Mugumo-ini Ward
+0510MEF,Mugumo-ini Ward
+0510MES,Nairobi Central Ward
+0510MFL,Nairobi West Ward
+0510MOB,South C Ward
+0510MSA,Nairobi South Ward
+0510MSL,Karen Ward
+0510MTK,Mugumo-ini Ward
+0510MY.,Karen Ward
+0510NAE,Mugumo-ini Ward
+0510NAH,Mugumo-ini Ward
+0510NIY,South C Ward
+0510NRA,South C Ward
+0510NSA,South C Ward
+0510NSB,Karen Ward
+0510NSS,Mugumo-ini Ward
+0510NST,Karen Ward
+0510NTO,Mihango Ward
+0510NYS,Nairobi West Ward
+0510OAI,Nairobi South Ward
+0510OAL,South C Ward
+0510OCU,Woodley/kenyatta Golf Course Ward
+0510ONI,Kahawa West
+0510PKP,Karen Ward
+0510PSA,Kahawa West
+0510RAN,Karen Ward
+0510RAO,South C Ward
+0510RBT,Pipeline Ward
+0510RGS,South C Ward
+0510RIS,Nairobi South Ward
+0510RKC,Mugumo-ini Ward
+0510RQA,Karen Ward
+0510RUN,South C Ward
+0510SAB,South C Ward
+0510SBR,Mugumo-ini Ward
+0510SCA,Pipeline Ward
+0510SEA,Mugumo-ini Ward
+0510SEM,Mugumo-ini Ward
+0510SHL,Mugumo-ini Ward
+0510SJT,South C Ward
+0510SKN,Mugumo-ini Ward
+0510SKY,Mihango Ward
+0510SLL,Karen Ward
+0510SLN,Mugumo-ini Ward
+0510SMC,Nairobi South Ward
+0510SMF,Ruai Ward
+0510SMP,Karen Ward
+0510SNS,Mugumo-ini Ward
+0510SOL,Karen Ward
+0510SOO,Karen Ward
+0510SR',Mugumo-ini Ward
+0510SSI,Mugumo-ini Ward
+0510STY,South C Ward
+0510SYC,Mugumo-ini Ward
+0510TAT,Mugumo-ini Ward
+0510TCK,Mugumo-ini Ward
+0510TEI,South C Ward
+0510TEN,Ruai Ward
+0510TIL,South C Ward
+0510TIM,Makongeni Ward
+0510TKY,Karen Ward
+0510TLA,South C Ward
+0510TML,Nairobi West Ward
+0510TNZ,Karen Ward
+0510TRP,South C Ward
+0510TSK,Embakasi Ward
+0510TSO,South C Ward
+0510TUM,Makongeni Ward
+0510TUO,Nairobi Central Ward
+0510U2E,Mugumo-ini Ward
+0510UAE,Nairobi West Ward
+0510UHO,South C Ward
+0510UHU,Mugumo-ini Ward
+0510UJC,Mugumo-ini Ward
+0510URD,Nairobi West Ward
+0510UTJ,Mihango Ward
+0510VCT,Nairobi South Ward
+0510VNL,Mugumo-ini Ward
+0510VRA,Mugumo-ini Ward
+0510WIL,Mugumo-ini Ward
+0510WOL,Mugumo-ini Ward
+0510YAN,Ruai Ward
+0510Z0A,South C Ward
+0511AA.,Imara Daima Ward
+0511ABC,Mugumo-ini Ward
+0511ABS,Karen Ward
+0511ACG,Nairobi South Ward
+0511ADP,Mihango Ward
+0511AGI,Ruai Ward
+0511AIM,Landimawe Ward
+0511AKI,Ruai Ward
+0511AKR,Nairobi South Ward
+0511ALB,Nairobi South Ward
+0511ALM,Karen Ward
+0511ALP,Mugumo-ini Ward
+0511ANA,Mugumo-ini Ward
+0511AOT,Ruai Ward
+0511ARA,Nairobi South Ward
+0511ARE,Embakasi Ward
+0511ARI,Ruai Ward
+0511ASM,Nairobi South Ward
+0511ASP,Nairobi South Ward
+0511ASS,Ruai Ward
+0511ATI,Utawala Ward
+0511ATL,Landimawe Ward
+0511BAL,Nairobi South Ward
+0511BAN,Pipeline Ward
+0511BLV,Nairobi South Ward
+0511BND,Mihango Ward
+0511BPS,Ruai Ward
+0511BRK,Mugumo-ini Ward
+0511CAB,South C Ward
+0511CAN,Ruai Ward
+0511CAT,Karen Ward
+0511CEH,Mugumo-ini Ward
+0511CHN,Embakasi Ward
+0511CKC,Mugumo-ini Ward
+0511CNG,Landimawe Ward
+0511CNL,Mugumo-ini Ward
+0511COM,South C Ward
+0511CPC,Nairobi South Ward
+0511CUE,Mugumo-ini Ward
+0511DNI,South C Ward
+0511DRE,Mugumo-ini Ward
+0511EAG,Nairobi South Ward
+0511EBK,South C Ward
+0511ECC,Mugumo-ini Ward
+0511EJS,South C Ward
+0511EKA,South C Ward
+0511EOI,Ruai Ward
+0511EPZ,Mugumo-ini Ward
+0511ERS,Ruai Ward
+0511ERY,Nairobi West Ward
+0511ESA,Mugumo-ini Ward
+0511GBE,Embakasi Ward
+0511GEA,Nairobi South Ward
+0511GOH,Karen Ward
+0511GSU,Mihango Ward
+0511GTA,Embakasi Ward
+0511HIR,Nairobi South Ward
+0511HOS,Mugumo-ini Ward
+0511HSL,Mihango Ward
+0511HYG,South C Ward
+0511IAA,Mugumo-ini Ward
+0511IAK,Mugumo-ini Ward
+0511IEB,Mugumo-ini Ward
+0511IFC,Landimawe Ward
+0511IIK,South C Ward
+0511IIV,Mugumo-ini Ward
+0511ILI,Pipeline Ward
+0511IND,Landimawe Ward
+0511INR,Ruai Ward
+0511ISP,Mugumo-ini Ward
+0511ITT,Ruai Ward
+0511IUF,Ruai Ward
+0511IUG,Kahawa West
+0511KAJ,Karen Ward
+0511KAP,South C Ward
+0511KCF,Mihango Ward
+0511KCT,Mugumo-ini Ward
+0511KNE,Karen Ward
+0511KNH,Karen Ward
+0511KOB,Karen Ward
+0511KSB,South C Ward
+0511KTM,Mugumo-ini Ward
+0511KZE,Mihango Ward
+0511LEM,Mugumo-ini Ward
+0511LER,South C Ward
+0511LGT,Mugumo-ini Ward
+0511LLM,Pipeline Ward
+0511LNA,Mugumo-ini Ward
+0511LSN,Mugumo-ini Ward
+0511LTI,Mugumo-ini Ward
+0511LUP,Nairobi South Ward
+0511LVU,Nairobi West Ward
+0511MAD,Nairobi West Ward
+0511MAK,Nairobi South Ward
+0511MAM,Karen Ward
+0511MAT,Nairobi South Ward
+0511MCH,Landimawe Ward
+0511MCU,Nairobi South Ward
+0511MDK,Mugumo-ini Ward
+0511MDO,Kilimani Ward
+0511MER,Nairobi South Ward
+0511MHG,Mihango Ward
+0511MLL,Mugumo-ini Ward
+0511MMU,Mugumo-ini Ward
+0511MSH,Nairobi South Ward
+0511MSL,Karen Ward
+0511MTA,Nairobi South Ward
+0511MTE,Mihango Ward
+0511NAA,Nairobi South Ward
+0511NAB,Landimawe Ward
+0511NAC,Karen Ward
+0511NAV,Mugumo-ini Ward
+0511NBK,Embakasi Ward
+0511NGI,Mugumo-ini Ward
+0511NIS,Imara Daima Ward
+0511NOG,Nairobi South Ward
+0511NOI,Nairobi South Ward
+0511NTN,Mugumo-ini Ward
+0511NYS,Nairobi West Ward
+0511NYY,Landimawe Ward
+0511OAM,Nairobi South Ward
+0511OED,Mugumo-ini Ward
+0511OFM,Karen Ward
+0511OMT,Mugumo-ini Ward
+0511OPR,Mugumo-ini Ward
+0511OST,South C Ward
+0511OTI,Mugumo-ini Ward
+0511OTN,Mugumo-ini Ward
+0511PHC,Karen Ward
+0511PJC,Mugumo-ini Ward
+0511PLV,Nairobi South Ward
+0511PNR,Nairobi South Ward
+0511PST,Nairobi South Ward
+0511PTU,Ruai Ward
+0511RAA,Karen Ward
+0511RAH,Imara Daima Ward
+0511RCN,South C Ward
+0511RDA,Utawala Ward
+0511RHR,Nairobi West Ward
+0511RNE,Mugumo-ini Ward
+0511SE.,Mugumo-ini Ward
+0511SHL,Mugumo-ini Ward
+0511SIT,Imara Daima Ward
+0511SMR,Nairobi South Ward
+0511SNA,Nairobi South Ward
+0511SNP,Pipeline Ward
+0511SOL,Karen Ward
+0511SPM,Ruai Ward
+0511SPS,Nairobi South Ward
+0511SRG,South C Ward
+0511SST,Nairobi South Ward
+0511STA,Mugumo-ini Ward
+0511SUP,Nairobi West Ward
+0511SUY,Karen Ward
+0511SYK,Mugumo-ini Ward
+0511TAN,Karen Ward
+0511TAY,Mugumo-ini Ward
+0511TCU,South C Ward
+0511/TE,Imara Daima Ward
+0511T.E,Nairobi South Ward
+0511TEV,Mugumo-ini Ward
+0511TGG,Mugumo-ini Ward
+0511THC,South C Ward
+0511TIA,Utawala Ward
+0511TLL,Mugumo-ini Ward
+0511TOJ,Nairobi South Ward
+0511TOL,Mugumo-ini Ward
+0511TOP,Mugumo-ini Ward
+0511TSH,Mugumo-ini Ward
+0511TSK,Embakasi Ward
+0511TUS,Karen Ward
+0511TYK,Embakasi Ward
+0511UCC,Ruai Ward
+0511UCH,Nairobi West Ward
+0511UHU,Nairobi West Ward
+0511UNG,South C Ward
+0511USO,Mugumo-ini Ward
+0511UYT,Embakasi Ward
+0511VHO,Nairobi South Ward
+0511VOE,Nairobi South Ward
+0511WAM,Imara Daima Ward
+0511WEP,Mihango Ward
+0511WIL,Nairobi West Ward
+0511WKN,Karen Ward
+0511YRA,Karen Ward
+0511YSA,Mugumo-ini Ward
+0512ADU,Nairobi Central Ward
+0512BST,Nairobi Central Ward
+0512CMC,Nairobi Central Ward
+0512CML,Nairobi Central Ward
+0512EAS,Nairobi Central Ward
+0512NKG,Karen Ward
+0513CAB,Imara Daima Ward
+0513GTR,Ruai Ward
+0513HOS,Mugumo-ini Ward
+0513IMD,Imara Daima Ward
+0513KIT,Mugumo-ini Ward
+0513KWR,Karen Ward
+0513MDK,Mugumo-ini Ward
+0513TER,Karen Ward
+0600AMB,Kilimani Ward
+0600AOV,Kilimani Ward
+0600ARC,Kilimani Ward
+0600ATS,Kabiro Ward
+0600BRB,Kilimani Ward
+0600CHK,Kilimani Ward
+0600CHO,Kilimani Ward
+0600CNG,Kabiro Ward
+0600COP,Kabiro Ward
+0600DON,Kilimani Ward
+0600HGH,Nyayo Highrise Ward
+0600KIL,Kilimani Ward
+0600KIR,Kilimani Ward
+0600KNG,Gatina Ward
+0600MBA,Woodley/kenyatta Golf Course Ward
+0600MIE,Kileleshwa Ward
+0600MON,Kileleshwa Ward
+0600MOS,Woodley/kenyatta Golf Course Ward
+0600NGM,Woodley/kenyatta Golf Course Ward
+0600NSO,Kilimani Ward
+0600OLM,Nairobi South Ward
+0600OTH,Kileleshwa Ward
+0600RUS,Kilimani Ward
+0600SAA,Kilimani Ward
+0600SFK,Gatina Ward
+0600STH,Mugumo-ini Ward
+0600TOI,Kileleshwa Ward
+0600VRP,Kilimani Ward
+0600YAY,Kilimani Ward
+0600ZEB,Gatina Ward
+0601AMB,Kilimani Ward
+0601ARB,Woodley/kenyatta Golf Course Ward
+0601ARC,Kilimani Ward
+0601AYO,Kilimani Ward
+0601BRB,Kilimani Ward
+0601CNG,Kabiro Ward
+0601COA,Kabiro Ward
+0601CTU,Woodley/kenyatta Golf Course Ward
+0601DRO,Woodley/kenyatta Golf Course Ward
+0601ENL,Woodley/kenyatta Golf Course Ward
+0601FLY,Woodley/kenyatta Golf Course Ward
+0601GEE,Kilimani Ward
+0601HDH,Kabiro Ward
+0601HIG,Woodley/kenyatta Golf Course Ward
+0601HTD,Kilimani Ward
+0601INT,Kilimani Ward
+0601IRN,Kilimani Ward
+0601KIR,Kilimani Ward
+0601KON,Gatina Ward
+0601MGA,Woodley/kenyatta Golf Course Ward
+0601MON,Kileleshwa Ward
+0601NAT,Woodley/kenyatta Golf Course Ward
+0601NEU,Kilimani Ward
+0601OLL,Woodley/kenyatta Golf Course Ward
+0601PCE,Woodley/kenyatta Golf Course Ward
+0601QUA,Kilimani Ward
+0601SFK,Kabiro Ward
+0601THT,Kileleshwa Ward
+0601THY,Kilimani Ward
+0601TWZ,Kabiro Ward
+0601WAR,Gatina Ward
+0602STP,Nairobi Central Ward
+0603COP,Kabiro Ward
+0603KNG,Gatina Ward
+0603STB,Nairobi South Ward
+0603YAY,Kilimani Ward
+0610GEE,Kilimani Ward
+0610GOP,Nairobi Central Ward
+0610GPO,Nairobi Central Ward
+0610HUL,Kilimani Ward
+0610IAY,Kilimani Ward
+0610INM,Nairobi Central Ward
+0610KSS,Gatina Ward
+0610MHS,Woodley/kenyatta Golf Course Ward
+0610MKF,Gatina Ward
+0610NWH,Kilimani Ward
+0610PNF,Kilimani Ward
+0610RMX,Kilimani Ward
+0610SER,Kilimani Ward
+0610SHP,South C Ward
+0610SOK,Kabiro Ward
+0610VAJ,Woodley/kenyatta Golf Course Ward
+0611BKS,Woodley/kenyatta Golf Course Ward
+0611CKA,Kilimani Ward
+0611COM,Kilimani Ward
+0611DOD,Kilimani Ward
+0611GPO,Nairobi Central Ward
+0611HGH,Kilimani Ward
+0611HUR,Kilimani Ward
+0611ISP,Kilimani Ward
+0611IYQ,Woodley/kenyatta Golf Course Ward
+0611KIL,Kilimani Ward
+0611MKF,Gatina Ward
+0611NAV,Kilimani Ward
+0611SEB,Woodley/kenyatta Golf Course Ward
+0611SOK,Kabiro Ward
+0611SRN,Kilimani Ward
+0611VJA,Woodley/kenyatta Golf Course Ward
+0611VRP,Kilimani Ward
+0611YAY,Kilimani Ward
+0613MWI,Kabiro Ward
+0700AAY,Kilimani Ward
+0700ABB,Riruta Ward
+0700ABN,Karen Ward
+0700ACI,Kitisuru Ward
+0700ADR,Uthiru/ruthimitu Ward
+0700AIA,Uthiru/ruthimitu Ward
+0700AIC,Riruta Ward
+0700AIV,Karen Ward
+0700AKA,Uthiru/ruthimitu Ward
+0700AMD,Mutu-ini Ward
+0700AOT,Uthiru/ruthimitu Ward
+0700AOW,Uthiru/ruthimitu Ward
+0700ASM,Karen Ward
+0700AYY,Kilimani Ward
+0700BDB,Karen Ward
+0700BID,Riruta Ward
+0700BMC,Kilimani Ward
+0700BMY,Riruta Ward
+0700BPS,Kabiro Ward
+0700BRM,Woodley/kenyatta Golf Course Ward
+0700BTG,Riruta Ward
+0700CAH,Riruta Ward
+0700CDT,Ngando Ward
+0700CKK,Riruta Ward
+0700CRP,Karen Ward
+0700CUM,Kilimani Ward
+0700CWH,Karen Ward
+0700CWT,Uthiru/ruthimitu Ward
+0700DBS,Karen Ward
+0700DCR,Mutu-ini Ward
+0700DCT,Kabiro Ward
+0700DDO,Kilimani Ward
+0700DIN,Mountain View Ward
+0700DNO,Karen Ward
+0700DRI,Mountain View Ward
+0700EAY,Sarang'ombe Ward
+0700EOL,Karen Ward
+0700E'P,Kitisuru Ward
+0700ESU,Kilimani Ward
+0700ETN,Kilimani Ward
+0700ETR,Uthiru/ruthimitu Ward
+0700EUI,Kawangware Ward
+0700FDI,Riruta Ward
+0700FED,Kilimani Ward
+0700FJS,Makina Ward
+0700FMK,Mutu-ini Ward
+0700FVM,Ngando Ward
+0700GBK,Uthiru/ruthimitu Ward
+0700GCP,Uthiru/ruthimitu Ward
+0700GEH,Ngando Ward
+0700GGL,Uthiru/ruthimitu Ward
+0700GMW,Kileleshwa Ward
+0700GNG,Kilimani Ward
+0700GPF,Uthiru/ruthimitu Ward
+0700GRS,Uthiru/ruthimitu Ward
+0700GRU,Uthiru/ruthimitu Ward
+0700/HI,Woodley/kenyatta Golf Course Ward
+0700HKA,Karen Ward
+0700HRW,Karen Ward
+0700HSN,Riruta Ward
+0700HTA,Uthiru/ruthimitu Ward
+0700HVE,Mutu-ini Ward
+0700HVI,Mountain View Ward
+0700HWA,Uthiru/ruthimitu Ward
+0700IBI,Kawangware Ward
+0700IER,Kabiro Ward
+0700IOO,Uthiru/ruthimitu Ward
+0700IRI,Uthiru/ruthimitu Ward
+0700ITO,Mugumo-ini Ward
+0700IUA,Mugumo-ini Ward
+0700JAN,Mugumo-ini Ward
+0700JER,Riruta Ward
+0700JKW,Uthiru/ruthimitu Ward
+0700JLD,Riruta Ward
+0700JNR,Riruta Ward
+0700JOO,Karen Ward
+0700JPS,Woodley/kenyatta Golf Course Ward
+0700KAC,Uthiru/ruthimitu Ward
+0700KAK,Kitisuru Ward
+0700KCQ,Woodley/kenyatta Golf Course Ward
+0700KDN,Karen Ward
+0700KEH,Mutu-ini Ward
+0700KEL,Karen Ward
+0700KEO,Ngando Ward
+0700KEQ,Riruta Ward
+0700KII,Kabiro Ward
+0700KIM,Mountain View Ward
+0700KMH,Riruta Ward
+0700KMJ,Riruta Ward
+0700KMM,Karen Ward
+0700KON,Karen Ward
+0700KPG,Uthiru/ruthimitu Ward
+0700KPI,Karen Ward
+0700KPL,Karen Ward
+0700KRA,Makina Ward
+0700KRR,Uthiru/ruthimitu Ward
+0700KSS,Karen Ward
+0700KVE,Uthiru/ruthimitu Ward
+0700KWK,Karen Ward
+0700LEA,Ngando Ward
+0700LEM,Ngando Ward
+0700LHI,Kabiro Ward
+0700MAA,Uthiru/ruthimitu Ward
+0700MAU,Karen Ward
+0700MDA,Riruta Ward
+0700MDR,Mugumo-ini Ward
+0700MHU,Kilimani Ward
+0700MKC,Uthiru/ruthimitu Ward
+0700MMB,Riruta Ward
+0700MNO,Uthiru/ruthimitu Ward
+0700MOG,Woodley/kenyatta Golf Course Ward
+0700MRT,Uthiru/ruthimitu Ward
+0700MSK,Riruta Ward
+0700MTM,Waithaka Ward
+0700MTO,Karen Ward
+0700MUL,Kawangware Ward
+0700MUM,Waithaka Ward
+0700N44,Karen Ward
+0700NCS,Kileleshwa Ward
+0700NDU,Kawangware Ward
+0700NHF,Kilimani Ward
+0700NKA,Kitisuru Ward
+0700NMA,Uthiru/ruthimitu Ward
+0700NMI,Kileleshwa Ward
+0700NPC,Karen Ward
+0700NPS,Waithaka Ward
+0700NUQ,Kileleshwa Ward
+0700NWA,Uthiru/ruthimitu Ward
+0700NYA,Karen Ward
+0700NYM,Karen Ward
+0700OAA,Riruta Ward
+0700OLM,Sarang'ombe Ward
+0700OOH,Woodley/kenyatta Golf Course Ward
+0700OOR,Nairobi Central Ward
+0700OOT,Kileleshwa Ward
+0700ORK,Kitisuru Ward
+0700ORS,Karen Ward
+0700OST,Karen Ward
+0700PBG,Kawangware Ward
+0700PCS,Karen Ward
+0700PTR,Karen Ward
+0700PWA,Ngando Ward
+0700RAC,Ngando Ward
+0700RCK,Riruta Ward
+0700RCR,Uthiru/ruthimitu Ward
+0700REL,Ngando Ward
+0700RIR,Kilimani Ward
+0700RMN,Karen Ward
+0700RNG,Kilimani Ward
+0700RPR,Mutu-ini Ward
+0700RSP,Riruta Ward
+0700RSR,Kawangware Ward
+0700SAD,Karen Ward
+0700SAN,Uthiru/ruthimitu Ward
+0700SGR,Ngando Ward
+0700SHW,Karen Ward
+0700SJK,Mountain View Ward
+0700SJL,Kawangware Ward
+0700SMK,Mountain View Ward
+0700SPC,Uthiru/ruthimitu Ward
+0700STK,Ngando Ward
+0700STY,Riruta Ward
+0700SUC,Woodley/kenyatta Golf Course Ward
+0700TBK,Kilimani Ward
+0700TDI,Karen Ward
+0700TED,Mugumo-ini Ward
+0700TLF,Karen Ward
+0700TON,Makina Ward
+0700TRD,Ngando Ward
+0700TSK,Karen Ward
+0700UAS,Mountain View Ward
+0700UKG,Uthiru/ruthimitu Ward
+0700ULT,Uthiru/ruthimitu Ward
+0700UNV,Karen Ward
+0700URB,Kitisuru Ward
+0700WAG,Kitisuru Ward
+0700WIJ,Uthiru/ruthimitu Ward
+0700WTA,Waithaka Ward
+0700ZBA,Karen Ward
+0700ZEK,Karen Ward
+0700ZLL,Kilimani Ward
+0701ACC,Kitisuru Ward
+0701ACH,Uthiru/ruthimitu Ward
+0701ACI,Uthiru/ruthimitu Ward
+0701ADA,Kilimani Ward
+0701ADC,Makina Ward
+0701AEE,Kitisuru Ward
+0701AHS,Uthiru/ruthimitu Ward
+0701AIU,Karen Ward
+0701APA,Woodley/kenyatta Golf Course Ward
+0701ATO,Woodley/kenyatta Golf Course Ward
+0701AUT,Uthiru/ruthimitu Ward
+0701BCA,Karen Ward
+0701BLC,Karen Ward
+0701BMK,Riruta Ward
+0701BPP,Riruta Ward
+0701BPS,Riruta Ward
+0701CCL,Karen Ward
+0701CMD,Woodley/kenyatta Golf Course Ward
+0701CRS,Karen Ward
+0701CWH,Karen Ward
+0701DAM,Kilimani Ward
+0701DBO,Karen Ward
+0701DCR,Riruta Ward
+0701DCT,Mutu-ini Ward
+0701DFA,Kilimani Ward
+0701DNL,Uthiru/ruthimitu Ward
+0701DUA,Uthiru/ruthimitu Ward
+0701ELP,Karen Ward
+0701EMO,Woodley/kenyatta Golf Course Ward
+0701FGK,Ngando Ward
+0701FGS,Uthiru/ruthimitu Ward
+0701FIR,Woodley/kenyatta Golf Course Ward
+0701FJE,Makina Ward
+0701FRK,Mutu-ini Ward
+0701GAC,Uthiru/ruthimitu Ward
+0701GCU,Uthiru/ruthimitu Ward
+0701GDB,Uthiru/ruthimitu Ward
+0701GDR,Karen Ward
+0701GGS,Uthiru/ruthimitu Ward
+0701GHS,Ngando Ward
+0701GRD,Uthiru/ruthimitu Ward
+0701GRG,Karen Ward
+0701GTR,Uthiru/ruthimitu Ward
+0701ITE,Ngando Ward
+0701ITG,Uthiru/ruthimitu Ward
+0701JBC,Karen Ward
+0701JCR,Riruta Ward
+0701KAR,Makina Ward
+0701KBG,Woodley/kenyatta Golf Course Ward
+0701KCC,Karen Ward
+0701KDF,Karen Ward
+0701KFR,Karen Ward
+0701KJI,Riruta Ward
+0701KMC,Karen Ward
+0701KMH,Karen Ward
+0701KNC,Karen Ward
+0701KNK,Karen Ward
+0701KNO,Karen Ward
+0701KNR,Uthiru/ruthimitu Ward
+0701KON,Karen Ward
+0701KPC,Mutu-ini Ward
+0701KPY,Riruta Ward
+0701KRC,Riruta Ward
+0701KRE,Riruta Ward
+0701LNA,Ngando Ward
+0701LRI,Uthiru/ruthimitu Ward
+0701MGJ,Woodley/kenyatta Golf Course Ward
+0701MHS,Karen Ward
+0701MKA,Makina Ward
+0701MTS,Karen Ward
+0701MTW,Riruta Ward
+0701MUT,Uthiru/ruthimitu Ward
+0701N44,Karen Ward
+0701NDL,Karen Ward
+0701NDW,Kawangware Ward
+0701NGD,Riruta Ward
+0701NGR,Karen Ward
+0701NHS,Woodley/kenyatta Golf Course Ward
+0701NJR,Makina Ward
+0701NMO,Uthiru/ruthimitu Ward
+0701NMY,Kilimani Ward
+0701NPC,Woodley/kenyatta Golf Course Ward
+0701NSC,Woodley/kenyatta Golf Course Ward
+0701NSP,Riruta Ward
+0701NTO,Karen Ward
+0701NVI,Riruta Ward
+0701NVV,Karen Ward
+0701NWT,Woodley/kenyatta Golf Course Ward
+0701NYH,Karen Ward
+0701NYI,Karen Ward
+0701OEN,Karen Ward
+0701OLY,Sarang'ombe Ward
+0701PAC,Ngando Ward
+0701PBG,Riruta Ward
+0701PCY,Karen Ward
+0701PKA,Woodley/kenyatta Golf Course Ward
+0701PMS,Karen Ward
+0701PPT,Karen Ward
+0701PSA,Woodley/kenyatta Golf Course Ward
+0701PTR,Karen Ward
+0701PWY,Karen Ward
+0701RCE,Karen Ward
+0701REU,Riruta Ward
+0701RHP,Karen Ward
+0701RNR,Uthiru/ruthimitu Ward
+0701ROS,Woodley/kenyatta Golf Course Ward
+0701RSF,Riruta Ward
+0701RSP,Riruta Ward
+0701SAT,Riruta Ward
+0701SBR,Riruta Ward
+0701SDP,Uthiru/ruthimitu Ward
+0701SFY,Woodley/kenyatta Golf Course Ward
+0701SHK,Karen Ward
+0701SHS,Karen Ward
+0701SHT,Karen Ward
+0701SJC,Kawangware Ward
+0701SJO,Riruta Ward
+0701SMA,Kabiro Ward
+0701SMH,Ngando Ward
+0701SMN,Karen Ward
+0701SMR,Uthiru/ruthimitu Ward
+0701SSR,Makina Ward
+0701STP,Mugumo-ini Ward
+0701SWD,Woodley/kenyatta Golf Course Ward
+0701SYU,Karen Ward
+0701TAN,Ngando Ward
+0701TAT,Uthiru/ruthimitu Ward
+0701TGA,Woodley/kenyatta Golf Course Ward
+0701THR,Uthiru/ruthimitu Ward
+0701TKS,Woodley/kenyatta Golf Course Ward
+0701TRE,Woodley/kenyatta Golf Course Ward
+0701TSK,Karen Ward
+0701TTE,Woodley/kenyatta Golf Course Ward
+0701TTW,Kitisuru Ward
+0701UAK,Uthiru/ruthimitu Ward
+0701UCN,Woodley/kenyatta Golf Course Ward
+0701UGK,Uthiru/ruthimitu Ward
+0701UKC,Uthiru/ruthimitu Ward
+0701UMJ,Karen Ward
+0701UTM,Karen Ward
+0701VNS,Karen Ward
+0701WGT,Uthiru/ruthimitu Ward
+0701WMA,Uthiru/ruthimitu Ward
+0701WNK,Woodley/kenyatta Golf Course Ward
+0701WOO,Woodley/kenyatta Golf Course Ward
+0701WRG,Karen Ward
+0701WTK,Waithaka Ward
+0701WWU,Uthiru/ruthimitu Ward
+0701YAA,Kilimani Ward
+0701ZMB,Karen Ward
+0702DCS,Ngando Ward
+0702KDC,Kilimani Ward
+0703DGT,Mutu-ini Ward
+0703EQY,Sarang'ombe Ward
+0703KIS,Karen Ward
+0703MHR,Riruta Ward
+0703UTP,Uthiru/ruthimitu Ward
+071004_,Kilimani Ward
+071064A,Riruta Ward
+0710A.A,Karen Ward
+0710AAY,Kilimani Ward
+0710ADC,Kilimani Ward
+0710AEA,Uthiru/ruthimitu Ward
+0710AHE,Kileleshwa Ward
+0710AHL,Uthiru/ruthimitu Ward
+0710AIJ,Kileleshwa Ward
+0710AJA,Kileleshwa Ward
+0710AJI,Kileleshwa Ward
+0710BBT,Kilimani Ward
+0710BLL,Karen Ward
+0710BUM,Karen Ward
+0710CAE,Nairobi Central Ward
+0710CCT,Kilimani Ward
+0710CEI,Nairobi Central Ward
+0710CME,Kilimani Ward
+0710CNG,Karen Ward
+0710DAC,Makina Ward
+0710DCD,Kawangware Ward
+0710EAY,Kilimani Ward
+0710ELK,Nairobi West Ward
+0710ELS,Karen Ward
+0710EOE,Kileleshwa Ward
+0710ESW,Nairobi West Ward
+0710FGP,Ngando Ward
+0710GID,Karen Ward
+0710GKI,Mountain View Ward
+0710GON,Kabiro Ward
+0710GVC,Uthiru/ruthimitu Ward
+0710GVN,Kilimani Ward
+0710GYE,Kilimani Ward
+0710HAK,Karen Ward
+0710HAO,Kileleshwa Ward
+0710IAA,Karen Ward
+0710IEP,Kilimani Ward
+0710IIH,Kilimani Ward
+0710IKM,Makina Ward
+0710IM&,Nairobi Central Ward
+0710IMJ,Woodley/kenyatta Golf Course Ward
+0710INA,Kitisuru Ward
+0710INP,Kileleshwa Ward
+0710IOS,Kabiro Ward
+0710JPS,Karen Ward
+0710JSS,Woodley/kenyatta Golf Course Ward
+0710KEM,Woodley/kenyatta Golf Course Ward
+0710KJS,Kilimani Ward
+0710KNA,Kitisuru Ward
+0710KNS,Woodley/kenyatta Golf Course Ward
+0710KRD,Kilimani Ward
+0710KWA,Kilimani Ward
+0710KWN,Riruta Ward
+0710KYJ,Kabiro Ward
+0710LHB,Kileleshwa Ward
+0710LIB,Kilimani Ward
+0710LIV,Kilimani Ward
+0710LNE,Kileleshwa Ward
+0710LNN,Ngando Ward
+0710MAU,Uthiru/ruthimitu Ward
+0710MIH,Waithaka Ward
+0710MIR,Kilimani Ward
+0710MTE,Uthiru/ruthimitu Ward
+0710MWA,Uthiru/ruthimitu Ward
+0710MY/,Kawangware Ward
+0710NAA,Kilimani Ward
+0710NAL,Kilimani Ward
+0710NAN,Kileleshwa Ward
+0710NAQ,Kilimani Ward
+0710NCU,Kileleshwa Ward
+0710NEA,Kilimani Ward
+0710NKT,Kilimani Ward
+0710NLA,Kilimani Ward
+0710NWA,Kabiro Ward
+0710OAE,Kilimani Ward
+0710OLS,Sarang'ombe Ward
+0710OSV,Uthiru/ruthimitu Ward
+0710OUK,Kileleshwa Ward
+0710PBW,Kileleshwa Ward
+0710PMP,Karen Ward
+0710POD,Kilimani Ward
+0710RAC,Kilimani Ward
+0710RAR,Kileleshwa Ward
+0710RAV,Mugumo-ini Ward
+0710RCN,Kileleshwa Ward
+0710RCS,Uthiru/ruthimitu Ward
+0710RFO,Mountain View Ward
+0710RII,Uthiru/ruthimitu Ward
+0710RIT,Kilimani Ward
+0710RJG,Uthiru/ruthimitu Ward
+0710RKU,Uthiru/ruthimitu Ward
+0710RLN,Mugumo-ini Ward
+0710RLU,Kabiro Ward
+0710RNP,Kileleshwa Ward
+0710RUE,Kileleshwa Ward
+0710RUP,Kileleshwa Ward
+0710RYA,Mugumo-ini Ward
+0710SAA,Kilimani Ward
+0710SAE,Kileleshwa Ward
+0710SAO,Karen Ward
+0710SEL,Uthiru/ruthimitu Ward
+0710SGT,Kilimani Ward
+0710SH4,Kabiro Ward
+0710SHO,Karen Ward
+0710SIN,Kabiro Ward
+0710SNI,Kilimani Ward
+0710STO,Kileleshwa Ward
+0710TAK,Kabiro Ward
+0710TAY,Kilimani Ward
+0710TLH,Kilimani Ward
+0710TNA,Kilimani Ward
+0710TOR,Woodley/kenyatta Golf Course Ward
+0710TOS,Kabiro Ward
+0710TRU,Uthiru/ruthimitu Ward
+0710TSS,Karen Ward
+0710TTL,Kilimani Ward
+0710UKT,Uthiru/ruthimitu Ward
+0710UML,Uthiru/ruthimitu Ward
+0710UMS,Karen Ward
+0710VAS,Karen Ward
+0710VIC,Ngando Ward
+0710WRE,Karen Ward
+0710WSE,Ngando Ward
+0710WWD,Karen Ward
+0710YAA,Kilimani Ward
+0710ZAR,Kilimani Ward
+07113AV,Kilimani Ward
+0711AAD,Kilimani Ward
+0711ADA,Kileleshwa Ward
+0711AGI,Kileleshwa Ward
+0711AIU,Karen Ward
+0711ALA,Woodley/kenyatta Golf Course Ward
+0711ALT,Nairobi West Ward
+0711AOE,Woodley/kenyatta Golf Course Ward
+0711AON,Uthiru/ruthimitu Ward
+0711ARC,Kilimani Ward
+0711ARK,Kawangware Ward
+0711ASS,Uthiru/ruthimitu Ward
+0711ATC,Kileleshwa Ward
+0711ATG,Woodley/kenyatta Golf Course Ward
+0711ATM,Woodley/kenyatta Golf Course Ward
+0711AUH,Waithaka Ward
+0711BLB,Karen Ward
+0711CAB,Kileleshwa Ward
+0711CVL,Mugumo-ini Ward
+0711DKI,Uthiru/ruthimitu Ward
+0711DRC,Uthiru/ruthimitu Ward
+0711EAA,Woodley/kenyatta Golf Course Ward
+0711EAS,Mugumo-ini Ward
+0711EDE,Kangemi Ward
+0711EGN,Kileleshwa Ward
+0711EHR,Nairobi West Ward
+0711EKT,Mountain View Ward
+0711EOA,Nairobi South Ward
+0711EOD,Kileleshwa Ward
+0711ERE,Woodley/kenyatta Golf Course Ward
+0711ETH,Nairobi West Ward
+0711GCP,Woodley/kenyatta Golf Course Ward
+0711GTD,Uthiru/ruthimitu Ward
+0711HD/,Kileleshwa Ward
+0711HNT,Mountain View Ward
+0711HOR,Woodley/kenyatta Golf Course Ward
+0711HRT,Uthiru/ruthimitu Ward
+0711IEE,Kangemi Ward
+0711IGM,Uthiru/ruthimitu Ward
+0711IHR,Nairobi West Ward
+0711III,Kawangware Ward
+0711IMP,Woodley/kenyatta Golf Course Ward
+0711INI,Nairobi Central Ward
+0711(IO,Mountain View Ward
+0711IRI,Uthiru/ruthimitu Ward
+0711ISN,Karen Ward
+0711IUU,Uthiru/ruthimitu Ward
+0711IWA,Karen Ward
+0711JDO,Riruta Ward
+0711JKR,Woodley/kenyatta Golf Course Ward
+0711JOG,Karen Ward
+0711KEM,Woodley/kenyatta Golf Course Ward
+0711KNG,Riruta Ward
+0711KNO,Karen Ward
+0711KNY,Uthiru/ruthimitu Ward
+0711KRG,Uthiru/ruthimitu Ward
+0711KRN,Karen Ward
+0711LH.,Riruta Ward
+0711LIA,Woodley/kenyatta Golf Course Ward
+0711LLE,Nairobi West Ward
+0711LMO,Woodley/kenyatta Golf Course Ward
+0711LNN,Karen Ward
+0711LRI,Uthiru/ruthimitu Ward
+0711LSO,Kawangware Ward
+0711LTD,Kileleshwa Ward
+0711MAA,Kilimani Ward
+0711MAT,Waithaka Ward
+0711MCP,Woodley/kenyatta Golf Course Ward
+0711MET,Kileleshwa Ward
+0711MGU,Uthiru/ruthimitu Ward
+0711MJH,Woodley/kenyatta Golf Course Ward
+0711MKP,Karen Ward
+0711MLK,Riruta Ward
+0711MOS,Kileleshwa Ward
+0711MTE,Waithaka Ward
+0711MTI,Karen Ward
+0711MTL,Kilimani Ward
+0711MUI,Uthiru/ruthimitu Ward
+0711MUM,Nairobi West Ward
+0711MUR,Uthiru/ruthimitu Ward
+0711MUT,Waithaka Ward
+0711MWE,Waithaka Ward
+0711NAT,Woodley/kenyatta Golf Course Ward
+0711NEW,Woodley/kenyatta Golf Course Ward
+0711NGI,Kitisuru Ward
+0711NJG,Uthiru/ruthimitu Ward
+0711NKJ,Woodley/kenyatta Golf Course Ward
+0711NKP,Woodley/kenyatta Golf Course Ward
+0711NOB,Mountain View Ward
+0711NOI,Uthiru/ruthimitu Ward
+0711NRW,Uthiru/ruthimitu Ward
+0711NTR,Uthiru/ruthimitu Ward
+0711NUA,Kileleshwa Ward
+0711OLI,Sarang'ombe Ward
+0711OON,Nairobi West Ward
+0711ORI,Kileleshwa Ward
+0711OTP,Woodley/kenyatta Golf Course Ward
+0711PFE,Kitisuru Ward
+0711PST,Kilimani Ward
+0711PTE,Riruta Ward
+0711QUM,Nairobi West Ward
+0711RCA,Kileleshwa Ward
+0711REO,Uthiru/ruthimitu Ward
+0711RSS,Uthiru/ruthimitu Ward
+0711SEK,Uthiru/ruthimitu Ward
+0711SEN,Ngando Ward
+0711SGO,Riruta Ward
+0711SOA,Karen Ward
+0711SUN,Woodley/kenyatta Golf Course Ward
+0711SUR,Mugumo-ini Ward
+0711TER,Uthiru/ruthimitu Ward
+0711TLE,Woodley/kenyatta Golf Course Ward
+0711TTE,Woodley/kenyatta Golf Course Ward
+0711UCN,Woodley/kenyatta Golf Course Ward
+0711UDO,Nairobi South Ward
+0711UEM,Kileleshwa Ward
+0711UIS,Woodley/kenyatta Golf Course Ward
+0711UKS,Uthiru/ruthimitu Ward
+0711UMA,Nairobi West Ward
+0711UNV,Karen Ward
+0711'UO,Mountain View Ward
+0711UUA,Uthiru/ruthimitu Ward
+0711VWO,Ngando Ward
+0711WAK,Uthiru/ruthimitu Ward
+0711WAS,Kileleshwa Ward
+0711WDC,Karen Ward
+0711`WI,Uthiru/ruthimitu Ward
+0711WOA,Uthiru/ruthimitu Ward
+0711WRA,Riruta Ward
+0711WST,Ngando Ward
+0711YQS,Riruta Ward
+0712KNH,Kilimani Ward
+0712KNT,Woodley/kenyatta Golf Course Ward
+0712KRY,Karen Ward
+0712KTR,Karen Ward
+0712NGG,Karen Ward
+0713AYN,Sarang'ombe Ward
+0713DMM,Mutu-ini Ward
+0713KKY,Uthiru/ruthimitu Ward
+0713KNS,Woodley/kenyatta Golf Course Ward
+0713NBT,Karen Ward
+0713NGM,Woodley/kenyatta Golf Course Ward
+0713WNG,Kitisuru Ward
+08007IV,Uthiru/ruthimitu Ward
+080085_,Kileleshwa Ward
+0800AAD,Parklands/highridge Ward
+0800AAN,Ngara Ward Ward
+0800ACB,Kitisuru Ward
+0800ACC,Kitisuru Ward
+0800ACH,Kitisuru Ward
+0800AES,Kileleshwa Ward
+0800AGP,Parklands/highridge Ward
+0800AIO,Kilimani Ward
+0800AMA,Kitisuru Ward
+0800AOO,Kitisuru Ward
+0800APA,Kileleshwa Ward
+0800APD,Parklands/highridge Ward
+0800APH,Karura Ward
+0800ARM,Kilimani Ward
+0800ARO,Kitisuru Ward
+0800'AS,Parklands/highridge Ward
+0800ASG,Kitisuru Ward
+0800BAC,Kileleshwa Ward
+0800BAE,Kitisuru Ward
+0800BAM,Parklands/highridge Ward
+0800BEC,Kileleshwa Ward
+0800BKM,Kitisuru Ward
+0800BYS,Karura Ward
+0800CCK,Kitisuru Ward
+0800CFL,Kileleshwa Ward
+0800CHO,Kileleshwa Ward
+0800CHR,Kileleshwa Ward
+0800CIG,Parklands/highridge Ward
+0800CKH,Kitisuru Ward
+0800COS,Kilimani Ward
+0800COT,Kilimani Ward
+0800DER,Kileleshwa Ward
+0800DIM,Kitisuru Ward
+0800DPT,Kilimani Ward
+0800EAI,Parklands/highridge Ward
+0800EDS,Parklands/highridge Ward
+0800EIG,Kitisuru Ward
+0800ELM,Kilimani Ward
+0800EML,Kileleshwa Ward
+0800ERE,Parklands/highridge Ward
+0800ETN,Kitisuru Ward
+0800EWA,Uthiru/ruthimitu Ward
+0800GAT,Kitisuru Ward
+0800GIT,Uthiru/ruthimitu Ward
+0800GKS,Kitisuru Ward
+0800GMG,Parklands/highridge Ward
+0800GPR,Parklands/highridge Ward
+0800GRP,Kileleshwa Ward
+0800GSK,Kitisuru Ward
+0800HEK,Parklands/highridge Ward
+0800HES,Kitisuru Ward
+0800HOS,Kitisuru Ward
+0800HTA,Kitisuru Ward
+0800IAS,Uthiru/ruthimitu Ward
+0800IGB,Kitisuru Ward
+0800IGL,Kilimani Ward
+0800IML,Kileleshwa Ward
+0800IMP,Parklands/highridge Ward
+0800ISK,Karura Ward
+0800JCR,Kileleshwa Ward
+0800JGG,Kilimani Ward
+0800JJ.,Kilimani Ward
+0800KAH,Kitisuru Ward
+0800KAS,Kitisuru Ward
+0800KBA,Uthiru/ruthimitu Ward
+0800KBB,Parklands/highridge Ward
+0800KBL,Parklands/highridge Ward
+0800KBY,Kitisuru Ward
+0800KGT,Kitisuru Ward
+0800KHC,Kitisuru Ward
+0800KIN,Uthiru/ruthimitu Ward
+0800KIR,Karura Ward
+0800KKC,Kitisuru Ward
+0800KKI,Kileleshwa Ward
+0800KLH,Parklands/highridge Ward
+0800KMC,Kitisuru Ward
+0800KMD,Kitisuru Ward
+0800KMR,Kitisuru Ward
+0800KNE,Kitisuru Ward
+0800KNG,Kileleshwa Ward
+0800KNN,Kitisuru Ward
+0800KNO,Kitisuru Ward
+0800KRA,Kitisuru Ward
+0800KRN,Kileleshwa Ward
+0800KSP,Kitisuru Ward
+0800LAA,Kitisuru Ward
+0800LKM,Kitisuru Ward
+0800LMI,Kileleshwa Ward
+0800LNN,Kilimani Ward
+0800LRS,Kileleshwa Ward
+0800LUN,Parklands/highridge Ward
+0800LVI,Kitisuru Ward
+0800LVW,Kitisuru Ward
+0800LWE,Kitisuru Ward
+0800MAG,Karura Ward
+0800MAY,Parklands/highridge Ward
+0800MGJ,Kileleshwa Ward
+0800MMS,Kitisuru Ward
+0800MPS,Parklands/highridge Ward
+0800MRI,Kileleshwa Ward
+0800MTG,Uthiru/ruthimitu Ward
+0800MUI,Kileleshwa Ward
+0800MUN,Kileleshwa Ward
+0800MUS,Parklands/highridge Ward
+0800MWG,Kileleshwa Ward
+0800MWM,Kitisuru Ward
+0800N'A,Kitisuru Ward
+0800NDJ,Kitisuru Ward
+0800NGR,Ngara Ward Ward
+0800NJG,Parklands/highridge Ward
+0800NKE,Kitisuru Ward
+0800NMA,Kileleshwa Ward
+0800NTD,Kileleshwa Ward
+0800OAG,Parklands/highridge Ward
+0800ODO,Kitisuru Ward
+0800OG/,Kitisuru Ward
+0800OID,Parklands/highridge Ward
+0800OKC,Kileleshwa Ward
+0800OMO,Kitisuru Ward
+0800OOK,Kitisuru Ward
+0800ORI,Kileleshwa Ward
+0800ORS,Kileleshwa Ward
+0800OSO,Kitisuru Ward
+0800PBB,Kileleshwa Ward
+0800PEP,Kitisuru Ward
+0800PLP,Kileleshwa Ward
+0800PMN,Kileleshwa Ward
+0800PPN,Parklands/highridge Ward
+0800PPT,Parklands/highridge Ward
+0800PSC,Parklands/highridge Ward
+0800QPK,Kileleshwa Ward
+0800RAH,Kitisuru Ward
+0800RAZ,Kitisuru Ward
+0800REG,Uthiru/ruthimitu Ward
+0800RER,Parklands/highridge Ward
+0800RGR,Kitisuru Ward
+0800RHC,Parklands/highridge Ward
+0800RLN,Kileleshwa Ward
+0800RRD,Kilimani Ward
+0800SAC,Karura Ward
+0800SAP,Kitisuru Ward
+0800SFA,Karura Ward
+0800SHK,Ngara Ward Ward
+0800SNN,Kilimani Ward
+0800SRT,Parklands/highridge Ward
+0800STC,Karura Ward
+0800STR,Kilimani Ward
+0800STT,Kilimani Ward
+0800STY,Kilimani Ward
+0800SWZ,Kitisuru Ward
+0800TAC,Kitisuru Ward
+0800TAS,Kileleshwa Ward
+0800TCB,Kitisuru Ward
+0800TGR,Karura Ward
+0800TIU,Kitisuru Ward
+0800TOT,Kitisuru Ward
+0800TRR,Kileleshwa Ward
+0800TTM,Parklands/highridge Ward
+0800UAK,Kitisuru Ward
+0800UNK,Kitisuru Ward
+0800URI,Uthiru/ruthimitu Ward
+0800UTH,Uthiru/ruthimitu Ward
+0800UWI,Uthiru/ruthimitu Ward
+0800VRJ,Kileleshwa Ward
+0800WAR,Kitisuru Ward
+0800WDC,Parklands/highridge Ward
+0800WHC,Kitisuru Ward
+0800WHS,Parklands/highridge Ward
+0800WPB,Kileleshwa Ward
+0800WST,Parklands/highridge Ward
+0800YAE,Kitisuru Ward
+0800YSB,Kitisuru Ward
+0800YUE,Parklands/highridge Ward
+0800YYA,Kilimani Ward
+080185_,Kileleshwa Ward
+0801AAL,Kitisuru Ward
+0801ABE,Kileleshwa Ward
+0801ACI,Kilimani Ward
+0801ACR,Ngara Ward Ward
+0801AEG,Uthiru/ruthimitu Ward
+0801AEH,Kitisuru Ward
+0801AFL,Kileleshwa Ward
+0801AGM,Kitisuru Ward
+0801AKA,Uthiru/ruthimitu Ward
+0801AOA,Parklands/highridge Ward
+0801APH,Karura Ward
+0801ATI,Mountain View Ward
+0801AUT,Uthiru/ruthimitu Ward
+0801AWM,Kitisuru Ward
+0801AYA,Kitisuru Ward
+0801BCM,Kitisuru Ward
+0801BER,Kileleshwa Ward
+0801BIL,Parklands/highridge Ward
+0801BKL,Parklands/highridge Ward
+0801BME,Kitisuru Ward
+0801BPA,Kileleshwa Ward
+0801BRD,Parklands/highridge Ward
+0801BRK,Kileleshwa Ward
+0801BYS,Karura Ward
+0801C8J,Uthiru/ruthimitu Ward
+0801CFY,Kileleshwa Ward
+0801CHR,Kileleshwa Ward
+0801CNG,Uthiru/ruthimitu Ward
+0801COV,Kilimani Ward
+0801CPS,Kileleshwa Ward
+0801CUS,Mountain View Ward
+0801DCR,Kileleshwa Ward
+0801DEL,Kileleshwa Ward
+0801DEP,Uthiru/ruthimitu Ward
+0801DMN,Uthiru/ruthimitu Ward
+0801DOS,Kitisuru Ward
+0801DPR,Kilimani Ward
+0801DRU,Parklands/highridge Ward
+0801ECK,Uthiru/ruthimitu Ward
+0801EIV,Kileleshwa Ward
+0801ELW,Parklands/highridge Ward
+0801FLF,Kitisuru Ward
+0801GAC,Kitisuru Ward
+0801GCC,Uthiru/ruthimitu Ward
+0801GIN,Kitisuru Ward
+0801GMN,Parklands/highridge Ward
+0801GMU,Uthiru/ruthimitu Ward
+0801GNN,Kitisuru Ward
+0801GNW,Kileleshwa Ward
+0801HAI,Uthiru/ruthimitu Ward
+0801HAU,Kitisuru Ward
+0801HBE,Kitisuru Ward
+0801HIR,Kileleshwa Ward
+0801HVW,Kitisuru Ward
+0801IAO,Kilimani Ward
+0801IEB,Kitisuru Ward
+0801IF',Kitisuru Ward
+0801IKR,Ngara Ward Ward
+0801ILA,Kitisuru Ward
+0801IMA,Ngara Ward Ward
+0801IMP,Kileleshwa Ward
+0801IOR,Kileleshwa Ward
+0801IRA,Parklands/highridge Ward
+0801IUI,Kitisuru Ward
+0801JCA,Kileleshwa Ward
+0801JDU,Kitisuru Ward
+0801JGG,Kilimani Ward
+0801JGJ,Kileleshwa Ward
+0801JNA,Kileleshwa Ward
+0801KAC,Kileleshwa Ward
+0801KAH,Kitisuru Ward
+0801KAM,Kitisuru Ward
+0801KAN,Kileleshwa Ward
+0801KBI,Kitisuru Ward
+0801KBP,Kitisuru Ward
+0801KBT,Kitisuru Ward
+0801KBU,Kitisuru Ward
+0801KGD,Kileleshwa Ward
+0801KGH,Uthiru/ruthimitu Ward
+0801KHC,Kitisuru Ward
+0801KIG,Kitisuru Ward
+0801KIL,Kileleshwa Ward
+0801KMP,Uthiru/ruthimitu Ward
+0801KNG,Kileleshwa Ward
+0801KNN,Kitisuru Ward
+0801KPR,Kileleshwa Ward
+0801KRH,Kitisuru Ward
+0801KRW,Kitisuru Ward
+0801LIO,Kileleshwa Ward
+0801LKM,Kitisuru Ward
+0801LKN,Kileleshwa Ward
+0801LNI,Kileleshwa Ward
+0801LNN,Kilimani Ward
+0801LOT,Kileleshwa Ward
+0801LVW,Kitisuru Ward
+0801MAB,Kileleshwa Ward
+0801MBM,Kitisuru Ward
+0801MBR,Kitisuru Ward
+0801MBT,Kitisuru Ward
+0801MGI,Kileleshwa Ward
+0801MNI,Kileleshwa Ward
+0801MOS,Kitisuru Ward
+0801MPS,Parklands/highridge Ward
+0801MSO,Kileleshwa Ward
+0801MUC,Uthiru/ruthimitu Ward
+0801MUG,Kileleshwa Ward
+0801MUM,Uthiru/ruthimitu Ward
+0801MVT,Mountain View Ward
+0801MWG,Kileleshwa Ward
+0801MWK,Kileleshwa Ward
+0801NAB,Kileleshwa Ward
+0801NAE,Kileleshwa Ward
+0801NAG,Kitisuru Ward
+0801NAL,Kitisuru Ward
+0801NEE,Kileleshwa Ward
+0801NEI,Kileleshwa Ward
+0801NGD,Karura Ward
+0801NIG,Kileleshwa Ward
+0801NRS,Uthiru/ruthimitu Ward
+0801NSH,Kileleshwa Ward
+0801NTM,Kitisuru Ward
+0801OAH,Uthiru/ruthimitu Ward
+0801OAM,Kitisuru Ward
+0801OCF,Kileleshwa Ward
+0801ODN,Kitisuru Ward
+0801OII,Kitisuru Ward
+0801OKI,Parklands/highridge Ward
+0801OLK,Kileleshwa Ward
+0801OLO,Kileleshwa Ward
+0801OMH,Kitisuru Ward
+0801OSA,Kitisuru Ward
+0801PBN,Kileleshwa Ward
+0801PKK,Parklands/highridge Ward
+0801PKN,Kangemi Ward
+0801PMB,Kileleshwa Ward
+0801PPC,Kileleshwa Ward
+0801PPI,Parklands/highridge Ward
+0801PPN,Parklands/highridge Ward
+0801PSC,Parklands/highridge Ward
+0801PSE,Kitisuru Ward
+0801PST,Kitisuru Ward
+0801RGN,Uthiru/ruthimitu Ward
+0801RHY,Kitisuru Ward
+0801RIO,Uthiru/ruthimitu Ward
+0801RLN,Kileleshwa Ward
+0801RPD,Kileleshwa Ward
+0801RQE,Kileleshwa Ward
+0801RRN,Uthiru/ruthimitu Ward
+0801RTI,Kitisuru Ward
+0801SAF,Kileleshwa Ward
+0801SDM,Kangemi Ward
+0801SEP,Kitisuru Ward
+0801SGS,Kangemi Ward
+0801SHC,Uthiru/ruthimitu Ward
+0801SNT,Kilimani Ward
+0801SPA,Kangemi Ward
+0801SRT,Parklands/highridge Ward
+0801STC,Karura Ward
+0801STM,Kileleshwa Ward
+0801STU,Kilimani Ward
+0801SVP,Kitisuru Ward
+0801TGR,Kitisuru Ward
+0801TI/,Kilimani Ward
+0801TIE,Uthiru/ruthimitu Ward
+0801TIG,Uthiru/ruthimitu Ward
+0801TOT,Parklands/highridge Ward
+0801UEN,Uthiru/ruthimitu Ward
+0801UIT,Mountain View Ward
+0801UON,Kitisuru Ward
+0801VHW,Kitisuru Ward
+0801WAC,Kitisuru Ward
+0801WAL,Kitisuru Ward
+0801WID,Uthiru/ruthimitu Ward
+0801WPB,Kileleshwa Ward
+0801YGN,Kileleshwa Ward
+0801YYA,Kilimani Ward
+0801ZEN,Kitisuru Ward
+0803GAT,Kitisuru Ward
+0803LAV,Kilimani Ward
+0803MDM,Kileleshwa Ward
+0803NDT,Kitisuru Ward
+0803OYA,Kileleshwa Ward
+0810ACC,Kitisuru Ward
+0810AIE,Kileleshwa Ward
+0810AII,Uthiru/ruthimitu Ward
+0810ARB,Kileleshwa Ward
+0810ARK,Kitisuru Ward
+0810ARM,Kitisuru Ward
+0810BDI,Parklands/highridge Ward
+0810BEL,Uthiru/ruthimitu Ward
+0810CL',Parklands/highridge Ward
+0810CNG,Uthiru/ruthimitu Ward
+0810COP,Uthiru/ruthimitu Ward
+0810CRO,Kitisuru Ward
+0810CYH,Kileleshwa Ward
+0810EDU,Parklands/highridge Ward
+0810EGT,Uthiru/ruthimitu Ward
+0810EIV,Kitisuru Ward
+0810EOR,Kitisuru Ward
+0810EUE,Parklands/highridge Ward
+0810FTD,Kileleshwa Ward
+0810GCR,Uthiru/ruthimitu Ward
+0810GIC,Uthiru/ruthimitu Ward
+0810GIT,Uthiru/ruthimitu Ward
+0810GOA,Parklands/highridge Ward
+0810GWI,Kileleshwa Ward
+0810'HI,Kitisuru Ward
+0810HON,Kileleshwa Ward
+0810IA-,Kitisuru Ward
+0810ICK,Kileleshwa Ward
+0810IKA,Uthiru/ruthimitu Ward
+0810INL,Parklands/highridge Ward
+0810INO,Nairobi Central Ward
+0810IOA,Karura Ward
+0810IRT,Uthiru/ruthimitu Ward
+0810JUN,Kitisuru Ward
+0810KAM,Kitisuru Ward
+0810KAR,Kitisuru Ward
+0810KBA,Uthiru/ruthimitu Ward
+0810KBB,Kitisuru Ward
+0810KBT,Kitisuru Ward
+0810/KI,Kitisuru Ward
+0810KIN,Uthiru/ruthimitu Ward
+0810KMI,Kitisuru Ward
+0810KPL,Uthiru/ruthimitu Ward
+0810KPR,Kileleshwa Ward
+0810KRC,Kitisuru Ward
+0810LIO,Parklands/highridge Ward
+0810LLA,Parklands/highridge Ward
+0810LOR,Kitisuru Ward
+0810MAE,Karura Ward
+0810MCP,Nairobi Central Ward
+0810MOH,Parklands/highridge Ward
+0810MOI,Parklands/highridge Ward
+0810MRE,Kitisuru Ward
+0810MRG,Kitisuru Ward
+0810MSM,Ngara Ward Ward
+0810MTG,Uthiru/ruthimitu Ward
+0810MUG,Uthiru/ruthimitu Ward
+0810MUR,Kileleshwa Ward
+0810NAS,Kitisuru Ward
+0810NCO,Kilimani Ward
+0810NDG,Kitisuru Ward
+0810NIQ,Parklands/highridge Ward
+0810NMI,Kitisuru Ward
+0810NNN,Kitisuru Ward
+0810NPN,Nairobi Central Ward
+0810NQU,Parklands/highridge Ward
+0810NSH,Kitisuru Ward
+0810NUE,Parklands/highridge Ward
+0810OII,Parklands/highridge Ward
+0810OMH,Kitisuru Ward
+0810OPT,Kitisuru Ward
+0810ORA,Kitisuru Ward
+0810OSA,Parklands/highridge Ward
+0810PET,Kitisuru Ward
+0810RGA,Kangemi Ward
+0810RIR,Uthiru/ruthimitu Ward
+0810RL.,Parklands/highridge Ward
+0810R/O,Kitisuru Ward
+0810ROA,Kilimani Ward
+0810ROO,Parklands/highridge Ward
+0810RUG,Uthiru/ruthimitu Ward
+0810SAI,Parklands/highridge Ward
+0810SGB,Kitisuru Ward
+0810SIG,Uthiru/ruthimitu Ward
+0810SIT,Uthiru/ruthimitu Ward
+0810SMO,Kitisuru Ward
+0810SOE,Kilimani Ward
+0810SRA,Parklands/highridge Ward
+0810SVB,Parklands/highridge Ward
+0810SVI,Parklands/highridge Ward
+0810SYY,Kileleshwa Ward
+0810TNA,Uthiru/ruthimitu Ward
+0810TNG,Kitisuru Ward
+0810UAS,Parklands/highridge Ward
+0810UJN,Parklands/highridge Ward
+0810UON,Kitisuru Ward
+0810UTH,Uthiru/ruthimitu Ward
+0810VIU,Nairobi Central Ward
+0810VWO,Kitisuru Ward
+0810WIA,Kitisuru Ward
+0810WJM,Uthiru/ruthimitu Ward
+0810WKU,Kitisuru Ward
+0810WOA,Kitisuru Ward
+0810WPS,Parklands/highridge Ward
+0810WRA,Kitisuru Ward
+0810WST,Parklands/highridge Ward
+0810ZAB,Uthiru/ruthimitu Ward
+0810ZEN,Kitisuru Ward
+0811AAC,Kileleshwa Ward
+0811AAK,Kitisuru Ward
+0811AAP,Uthiru/ruthimitu Ward
+0811ABC,Kileleshwa Ward
+0811ABI,Uthiru/ruthimitu Ward
+0811AEU,Kitisuru Ward
+0811AFT,Kileleshwa Ward
+0811AGA,Kileleshwa Ward
+0811AKK,Kitisuru Ward
+0811/AM,Mountain View Ward
+0811ANG,Ngara Ward Ward
+0811APN,Uthiru/ruthimitu Ward
+0811ARK,Kitisuru Ward
+0811ASR,Kitisuru Ward
+0811AT.,Parklands/highridge Ward
+0811AUM,Parklands/highridge Ward
+0811CAR,Parklands/highridge Ward
+0811CNG,Uthiru/ruthimitu Ward
+0811CRU,Kileleshwa Ward
+0811CSA,Kitisuru Ward
+0811CSL,Kileleshwa Ward
+0811DAC,Kileleshwa Ward
+0811DHE,Uthiru/ruthimitu Ward
+0811ECA,Kileleshwa Ward
+0811ECK,Uthiru/ruthimitu Ward
+0811EIS,Uthiru/ruthimitu Ward
+0811ELH,Uthiru/ruthimitu Ward
+0811ENR,Uthiru/ruthimitu Ward
+0811EOK,Kitisuru Ward
+0811ETT,Uthiru/ruthimitu Ward
+0811EYH,Kitisuru Ward
+0811/FC,Parklands/highridge Ward
+0811FLA,Kileleshwa Ward
+0811GCN,Uthiru/ruthimitu Ward
+0811GGN,Parklands/highridge Ward
+0811GIT,Uthiru/ruthimitu Ward
+0811IAA,Kitisuru Ward
+0811IEC,Kileleshwa Ward
+0811IHG,Mountain View Ward
+0811IHR,Uthiru/ruthimitu Ward
+0811IKA,Uthiru/ruthimitu Ward
+0811IKM,Kitisuru Ward
+0811INI,Kileleshwa Ward
+0811IRS,Uthiru/ruthimitu Ward
+0811ISA,Parklands/highridge Ward
+0811ISE,Kitisuru Ward
+0811ISK,Karura Ward
+0811ITE,Uthiru/ruthimitu Ward
+0811JMK,Uthiru/ruthimitu Ward
+0811JOR,Uthiru/ruthimitu Ward
+0811KAM,Kitisuru Ward
+0811KAR,Kileleshwa Ward
+0811KBP,Kitisuru Ward
+0811KIM,Kitisuru Ward
+0811KIN,Uthiru/ruthimitu Ward
+0811KND,Kileleshwa Ward
+0811KNM,Kangemi Ward
+0811KNR,Kangemi Ward
+0811KRH,Kitisuru Ward
+0811KSA,Kitisuru Ward
+0811LAA,Parklands/highridge Ward
+0811LSE,Uthiru/ruthimitu Ward
+0811MAA,Kitisuru Ward
+0811MAY,Parklands/highridge Ward
+0811MBR,Kitisuru Ward
+0811MGN,Karura Ward
+0811MKE,Uthiru/ruthimitu Ward
+0811MRA,Kitisuru Ward
+0811MUG,Uthiru/ruthimitu Ward
+0811MUM,Ngara Ward Ward
+0811MUS,Kileleshwa Ward
+0811MWM,Kitisuru Ward
+0811NAA,Kitisuru Ward
+0811NIN,Kitisuru Ward
+0811NNS,Mountain View Ward
+0811OKL,Kileleshwa Ward
+0811OKO,Uthiru/ruthimitu Ward
+0811ONT,Kitisuru Ward
+0811OTD,Mountain View Ward
+0811PAE,Kitisuru Ward
+0811PAO,Kitisuru Ward
+0811PBG,Kileleshwa Ward
+0811P/N,Kileleshwa Ward
+0811POA,Kangemi Ward
+0811PPO,Parklands/highridge Ward
+0811RAM,Kilimani Ward
+0811RDH,Kitisuru Ward
+0811RKH,Kileleshwa Ward
+0811RMI,Kilimani Ward
+0811RNG,Uthiru/ruthimitu Ward
+0811RNR,Uthiru/ruthimitu Ward
+0811RUG,Kitisuru Ward
+0811SAB,Kileleshwa Ward
+0811SAV,Kilimani Ward
+0811SIG,Uthiru/ruthimitu Ward
+0811SKO,Mountain View Ward
+0811SLT,Kilimani Ward
+0811SNU,Kilimani Ward
+0811'SO,Kileleshwa Ward
+0811SRI,Kileleshwa Ward
+0811SSS,Karura Ward
+0811STR,Kilimani Ward
+0811SUU,Ngara Ward Ward
+0811SVI,Parklands/highridge Ward
+0811SVL,Kitisuru Ward
+0811SYJ,Kileleshwa Ward
+0811TAM,Kilimani Ward
+0811TGI,Uthiru/ruthimitu Ward
+0811TIP,Parklands/highridge Ward
+0811TKD,Kitisuru Ward
+0811TLR,Kileleshwa Ward
+0811TMS,Kilimani Ward
+0811TSI,Uthiru/ruthimitu Ward
+0811UER,Kitisuru Ward
+0811UEU,Uthiru/ruthimitu Ward
+0811UGC,Uthiru/ruthimitu Ward
+0811UHG,Uthiru/ruthimitu Ward
+0811UUI,Uthiru/ruthimitu Ward
+0811WAG,Kitisuru Ward
+0811WIM,Kileleshwa Ward
+0811ZOP,Uthiru/ruthimitu Ward
+0812GRT,Ngara Ward Ward
+0812KAK,Nairobi Central Ward
+0812WST,Kileleshwa Ward
+0813KGT,Kangemi Ward
+0813KKS,Uthiru/ruthimitu Ward
+0813LMT,Kitisuru Ward
+0813WSA,Parklands/highridge Ward
+1050COM,Kilimani Ward
+081178_,Uthiru/ruthimitu Ward
