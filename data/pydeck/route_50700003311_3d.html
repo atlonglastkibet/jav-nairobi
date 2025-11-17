@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~9.0.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#deck-container canvas {
+  z-index: 1;
+  background: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  
+    <div style="position: absolute; top: 20px; left: 20px; width: 360px; z-index: 1000;">
+        <!-- ROUTE HEADER -->
+        <div style="background: rgba(20, 20, 20, 0.95); border-radius: 8px; 
+                    padding: 16px; margin-bottom: 12px; border-left: 4px solid #34A853;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            <div style="font-size: 10px; color: #999; text-transform: uppercase; 
+                       letter-spacing: 0.8px; margin-bottom: 4px;">
+                ROUTE 50700003311 • 33UTW
+            </div>
+            <div style="font-size: 18px; font-weight: 700; color: #e0e0e0; line-height: 1.3;">
+                Utawala-Ambassadeur
+            </div>
+        </div>
+
+        <!-- STATS PANEL -->
+        <div style="background: rgba(20, 20, 20, 0.95); border-radius: 8px; 
+                    padding: 16px; border-left: 4px solid #34A853;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+
+            <div style="font-size: 12px; color: #34A853; font-weight: 700; margin-bottom: 12px;">
+                RECOMMENDED: 50700003311_B
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+                <div style="background: rgba(52, 168, 83, 0.1); padding: 10px; border-radius: 6px; 
+                           text-align: center; border: 1px solid rgba(52, 168, 83, 0.3);">
+                    <div style="font-size: 10px; color: #999;">EXISTING</div>
+                    <div style="font-size: 22px; font-weight: 700; color: #1A73E8;">44</div>
+                    <div style="font-size: 9px; color: #999;">stops</div>
+                </div>
+                <div style="background: rgba(52, 168, 83, 0.1); padding: 10px; border-radius: 6px; 
+                           text-align: center; border: 1px solid rgba(52, 168, 83, 0.3);">
+                    <div style="font-size: 10px; color: #999;">ADDING</div>
+                    <div style="font-size: 22px; font-weight: 700; color: #34A853;">2</div>
+                    <div style="font-size: 9px; color: #999;">stops</div>
+                </div>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 6px; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; margin: 5px 0; font-size: 12px;">
+                    <span style="color: #999;">Score</span>
+                    <span style="color: #e0e0e0; font-weight: 700;">0.254</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin: 5px 0; font-size: 12px;">
+                    <span style="color: #999;">Equity</span>
+                    <span style="color: #e0e0e0; font-weight: 700;">1.75x</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin: 5px 0; font-size: 12px;">
+                    <span style="color: #999;">Coverage</span>
+                    <span style="color: #e0e0e0;">0.049</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin: 5px 0; font-size: 12px;">
+                    <span style="color: #999;">Temporal</span>
+                    <span style="color: #e0e0e0;">0.198</span>
+                </div>
+            </div>
+
+            <div style="background: rgba(52, 168, 83, 0.2); color: #34A853; 
+                       padding: 12px; border-radius: 6px; text-align: center; 
+                       font-weight: 700; font-size: 14px; border: 1px solid rgba(52, 168, 83, 0.4);">
+                +4% Coverage
+            </div>
+
+            <div style="margin-top: 12px; font-size: 10px; color: #666; text-align: center; font-style: italic;">
+                🔮 3D Cyberpunk Transit Viz
+            </div>
+        </div>
+
+        <!-- ALTERNATIVES -->
+        <div style="background: rgba(20, 20, 20, 0.95); border-radius: 8px; 
+                    padding: 12px; margin-top: 12px; border-left: 4px solid #FBBC04;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+            <div style="font-size: 11px; color: #999; font-weight: 700; margin-bottom: 8px;">
+                ALTERNATIVES
+            </div>
+    
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 4px; 
+                       margin-bottom: 6px; border-left: 3px solid #FBBC04;">
+                <div style="font-size: 11px; color: #FBBC04; font-weight: 600;">50700003311_A</div>
+                <div style="font-size: 10px; color: #999; margin-top: 4px;">
+                    <span>1 stops</span> • 
+                    <span>Score: 0.181</span> • 
+                    <span>+3%</span>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    </body>
+  <script>
+    const container = document.getElementById('deck-container');
+    const jsonInput = {
+  "initialViewState": {
+    "bearing": 0,
+    "latitude": -1.3045760142727274,
+    "longitude": 36.914829582727265,
+    "pitch": 45,
+    "zoom": 13
+  },
+  "layers": [
+    {
+      "@@type": "PathLayer",
+      "autoHighlight": true,
+      "data": [
+        {
+          "color": [
+            26,
+            115,
+            232,
+            200
+          ],
+          "name": "Route 50700003311",
+          "path": [
+            [
+              36.98895514,
+              -1.2840271
+            ],
+            [
+              36.98617905,
+              -1.285293102
+            ],
+            [
+              36.98366314,
+              -1.286215782
+            ],
+            [
+              36.982478,
+              -1.286566
+            ],
+            [
+              36.98047668,
+              -1.287310123
+            ],
+            [
+              36.97961569,
+              -1.287605882
+            ],
+            [
+              36.97466,
+              -1.289385
+            ],
+            [
+              36.9739911,
+              -1.287530065
+            ],
+            [
+              36.97358608,
+              -1.286310017
+            ],
+            [
+              36.97274923,
+              -1.284273863
+            ],
+            [
+              36.9679749,
+              -1.278941631
+            ],
+            [
+              36.96675181,
+              -1.279563904
+            ],
+            [
+              36.963754,
+              -1.280986
+            ],
+            [
+              36.95979953,
+              -1.282970309
+            ],
+            [
+              36.956587,
+              -1.285025
+            ],
+            [
+              36.9546926,
+              -1.286044121
+            ],
+            [
+              36.95177436,
+              -1.288104057
+            ],
+            [
+              36.949425,
+              -1.289601
+            ],
+            [
+              36.94694638,
+              -1.290915012
+            ],
+            [
+              36.9441247,
+              -1.293013215
+            ],
+            [
+              36.923192,
+              -1.313313
+            ],
+            [
+              36.92119718,
+              -1.315848827
+            ],
+            [
+              36.918819,
+              -1.317696
+            ],
+            [
+              36.907426,
+              -1.319394
+            ],
+            [
+              36.89944983,
+              -1.324458718
+            ],
+            [
+              36.89787805,
+              -1.3254565
+            ],
+            [
+              36.89596832,
+              -1.32660985
+            ],
+            [
+              36.89244926,
+              -1.328755617
+            ],
+            [
+              36.89322174,
+              -1.335852742
+            ],
+            [
+              36.89177334,
+              -1.335378349
+            ],
+            [
+              36.88157558,
+              -1.328830719
+            ],
+            [
+              36.87062681,
+              -1.330257654
+            ],
+            [
+              36.86789632,
+              -1.330553412
+            ],
+            [
+              36.86492443,
+              -1.331062317
+            ],
+            [
+              36.85994625,
+              -1.331571937
+            ],
+            [
+              36.85575128,
+              -1.33020401
+            ],
+            [
+              36.84849858,
+              -1.325960755
+            ],
+            [
+              36.84123516,
+              -1.321653128
+            ],
+            [
+              36.83760881,
+              -1.319453716
+            ],
+            [
+              36.83068871,
+              -1.314169765
+            ],
+            [
+              36.82667613,
+              -1.305710077
+            ],
+            [
+              36.82333946,
+              -1.298146248
+            ],
+            [
+              36.81837201,
+              -1.285926104
+            ],
+            [
+              36.825803,
+              -1.2854
+            ]
+          ],
+          "width": 8
+        }
+      ],
+      "getColor": "@@=color",
+      "getPath": "@@=path",
+      "getWidth": "@@=width",
+      "id": "212f63bc-7a9d-4602-beb9-c4d74a296172",
+      "pickable": true,
+      "widthMinPixels": 3,
+      "widthScale": 1
+    },
+    {
+      "@@type": "ScatterplotLayer",
+      "autoHighlight": true,
+      "data": [
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 1",
+          "position": [
+            36.98895514,
+            -1.2840271
+          ],
+          "stop_id": "0510AAU"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 2",
+          "position": [
+            36.98617905,
+            -1.285293102
+          ],
+          "stop_id": "0500MER"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 3",
+          "position": [
+            36.98366314,
+            -1.286215782
+          ],
+          "stop_id": "0500UFK"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 4",
+          "position": [
+            36.982478,
+            -1.286566
+          ],
+          "stop_id": "0513GTR"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 5",
+          "position": [
+            36.98047668,
+            -1.287310123
+          ],
+          "stop_id": "0510SMF"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 6",
+          "position": [
+            36.97961569,
+            -1.287605882
+          ],
+          "stop_id": "0510HAS"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 7",
+          "position": [
+            36.97466,
+            -1.289385
+          ],
+          "stop_id": "0500ELD"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 8",
+          "position": [
+            36.9739911,
+            -1.287530065
+          ],
+          "stop_id": "0500HLM"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 9",
+          "position": [
+            36.97358608,
+            -1.286310017
+          ],
+          "stop_id": "0510TEN"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 10",
+          "position": [
+            36.97274923,
+            -1.284273863
+          ],
+          "stop_id": "0510SKY"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 11",
+          "position": [
+            36.9679749,
+            -1.278941631
+          ],
+          "stop_id": "0510IBE"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 12",
+          "position": [
+            36.96675181,
+            -1.279563904
+          ],
+          "stop_id": "0500TNI"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 13",
+          "position": [
+            36.963754,
+            -1.280986
+          ],
+          "stop_id": "0510AMN"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 14",
+          "position": [
+            36.95979953,
+            -1.282970309
+          ],
+          "stop_id": "0500HIC"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 15",
+          "position": [
+            36.956587,
+            -1.285025
+          ],
+          "stop_id": "0510ADP"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 16",
+          "position": [
+            36.9546926,
+            -1.286044121
+          ],
+          "stop_id": "0510EAZ"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 17",
+          "position": [
+            36.95177436,
+            -1.288104057
+          ],
+          "stop_id": "0510NTO"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 18",
+          "position": [
+            36.949425,
+            -1.289601
+          ],
+          "stop_id": "0510GSU"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 19",
+          "position": [
+            36.94694638,
+            -1.290915012
+          ],
+          "stop_id": "0500AST"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 20",
+          "position": [
+            36.9441247,
+            -1.293013215
+          ],
+          "stop_id": "0510ANI"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 21",
+          "position": [
+            36.923192,
+            -1.313313
+          ],
+          "stop_id": "0510BRK"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 22",
+          "position": [
+            36.92119718,
+            -1.315848827
+          ],
+          "stop_id": "0500BAS"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 23",
+          "position": [
+            36.918819,
+            -1.317696
+          ],
+          "stop_id": "0510TSK"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 24",
+          "position": [
+            36.907426,
+            -1.319394
+          ],
+          "stop_id": "0510AVT"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 25",
+          "position": [
+            36.89944983,
+            -1.324458718
+          ],
+          "stop_id": "0510RBT"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 26",
+          "position": [
+            36.89787805,
+            -1.3254565
+          ],
+          "stop_id": "0401TRN"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 27",
+          "position": [
+            36.89596832,
+            -1.32660985
+          ],
+          "stop_id": "0401KTN"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 28",
+          "position": [
+            36.89244926,
+            -1.328755617
+          ],
+          "stop_id": "0403KBL"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 29",
+          "position": [
+            36.89322174,
+            -1.335852742
+          ],
+          "stop_id": "0510SCA"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 30",
+          "position": [
+            36.89177334,
+            -1.335378349
+          ],
+          "stop_id": "0510RAO"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 31",
+          "position": [
+            36.88157558,
+            -1.328830719
+          ],
+          "stop_id": "0510TLA"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 32",
+          "position": [
+            36.87062681,
+            -1.330257654
+          ],
+          "stop_id": "0510GMS"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 33",
+          "position": [
+            36.86789632,
+            -1.330553412
+          ],
+          "stop_id": "0510BAL"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 34",
+          "position": [
+            36.86492443,
+            -1.331062317
+          ],
+          "stop_id": "0500SMR"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 35",
+          "position": [
+            36.85994625,
+            -1.331571937
+          ],
+          "stop_id": "0510MOB"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 36",
+          "position": [
+            36.85575128,
+            -1.33020401
+          ],
+          "stop_id": "0500PNR"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 37",
+          "position": [
+            36.84849858,
+            -1.325960755
+          ],
+          "stop_id": "0510ATL"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 38",
+          "position": [
+            36.84123516,
+            -1.321653128
+          ],
+          "stop_id": "0500SHL"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 39",
+          "position": [
+            36.83760881,
+            -1.319453716
+          ],
+          "stop_id": "0510BLV"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 40",
+          "position": [
+            36.83068871,
+            -1.314169765
+          ],
+          "stop_id": "0510TSO"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 41",
+          "position": [
+            36.82667613,
+            -1.305710077
+          ],
+          "stop_id": "0500NYY"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 42",
+          "position": [
+            36.82333946,
+            -1.298146248
+          ],
+          "stop_id": "0510KAB"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 43",
+          "position": [
+            36.81837201,
+            -1.285926104
+          ],
+          "stop_id": "0610GOP"
+        },
+        {
+          "color": [
+            95,
+            99,
+            104,
+            255
+          ],
+          "elevation": 50,
+          "name": "Stop 44",
+          "position": [
+            36.825803,
+            -1.2854
+          ],
+          "stop_id": "0502AMB"
+        }
+      ],
+      "elevationScale": 1,
+      "getColor": "@@=color",
+      "getElevation": "@@=elevation",
+      "getPosition": "@@=position",
+      "getRadius": 60,
+      "id": "f9338d05-920d-4a36-9708-ce1e3105fdf9",
+      "pickable": true
+    },
+    {
+      "@@type": "PathLayer",
+      "autoHighlight": true,
+      "data": [
+        {
+          "color": [
+            52,
+            168,
+            83,
+            230
+          ],
+          "elevation": 100,
+          "name": "50700003311_B",
+          "path": [
+            [
+              36.825803,
+              -1.2854
+            ],
+            [
+              36.905281581554746,
+              -1.3161611738040933
+            ],
+            [
+              36.90769737326669,
+              -1.3158496913485362
+            ]
+          ],
+          "width": 10
+        },
+        {
+          "color": [
+            251,
+            188,
+            4,
+            200
+          ],
+          "elevation": 150,
+          "name": "50700003311_A",
+          "path": [
+            [
+              36.825803,
+              -1.2854
+            ],
+            [
+              36.905281581554746,
+              -1.3161611738040933
+            ]
+          ],
+          "width": 6
+        }
+      ],
+      "extruded": true,
+      "getColor": "@@=color",
+      "getPath": "@@=path",
+      "getWidth": "@@=width",
+      "id": "51a98289-0dac-4b8a-801e-f90af4293e5b",
+      "pickable": true,
+      "widthMinPixels": 3,
+      "widthScale": 1
+    },
+    {
+      "@@type": "ColumnLayer",
+      "autoHighlight": true,
+      "data": [
+        {
+          "color": [
+            52,
+            168,
+            83,
+            230
+          ],
+          "elevation": 150,
+          "name": "CANDIDATE_Pipeline Ward_0",
+          "pop": 4986,
+          "position": [
+            36.905281581554746,
+            -1.3161611738040933
+          ],
+          "quality": 0.6764846,
+          "radius": 100,
+          "variant": "50700003311_B"
+        },
+        {
+          "color": [
+            52,
+            168,
+            83,
+            230
+          ],
+          "elevation": 150,
+          "name": "CANDIDATE_Embakasi Ward_32",
+          "pop": 2363,
+          "position": [
+            36.90769737326669,
+            -1.3158496913485362
+          ],
+          "quality": 0.36954564,
+          "radius": 100,
+          "variant": "50700003311_B"
+        },
+        {
+          "color": [
+            251,
+            188,
+            4,
+            200
+          ],
+          "elevation": 200,
+          "name": "CANDIDATE_Pipeline Ward_0",
+          "pop": 4986,
+          "position": [
+            36.905281581554746,
+            -1.3161611738040933
+          ],
+          "quality": 0.6764846,
+          "radius": 80,
+          "variant": "50700003311_A"
+        }
+      ],
+      "elevationScale": 1,
+      "extruded": true,
+      "getElevation": "@@=elevation",
+      "getFillColor": "@@=color",
+      "getPosition": "@@=position",
+      "id": "0246682a-3fce-4dce-8ad4-d1e988222b93",
+      "pickable": true,
+      "radius": "@@=radius"
+    }
+  ],
+  "mapProvider": "carto",
+  "mapStyle": "mapbox://styles/mapbox/dark-v10",
+  "views": [
+    {
+      "@@type": "MapView",
+      "controller": true
+    }
+  ]
+};
+    const tooltip = {'html': '\n    <div style="background: rgba(20, 20, 20, 0.95); padding: 12px; border-radius: 8px; \n                border-left: 4px solid #34A853; font-family: \'Segoe UI\', monospace; color: #e0e0e0;">\n        <b style="color: #34A853; font-size: 14px;">{name}</b><br/>\n        <div style="margin-top: 8px; font-size: 11px;">\n            <span style="color: #999;">Variant:</span> <b>{variant}</b><br/>\n            <span style="color: #999;">Population:</span> <b>{pop:,.0f}</b><br/>\n            <span style="color: #999;">Quality:</span> <b>{quality:.1%}</b>\n        </div>\n    </div>\n    ', 'style': {'backgroundColor': 'rgba(0,0,0,0)', 'color': 'white'}};
+    const customLibraries = null;
+    const configuration = null;
+
+    const deckInstance = createDeck({
+                  container,
+      jsonInput,
+      tooltip,
+      customLibraries,
+      configuration
+    });
+
+  </script>
+</html>
