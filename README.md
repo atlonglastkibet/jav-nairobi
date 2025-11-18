@@ -21,12 +21,8 @@ Existing transit applications optimize purely for efficiency-fastest routes, sho
 Jav combines Graph Neural Networks with geospatial equity analysis to:
 - Predict travel times with target accuracy under 5 minutes
 - Quantify spatial and temporal inequities across Nairobi's 85 wards
-- Recommend optimal stop placements that close equity gaps
-
-**Measurable Impact:**
-- Projected coverage improvement: 15-25% in underserved wards
-- Gini inequality coefficient reduction: 0.1-0.15
-- 37 target wards identified for intervention
+- Recommend optimal stop placements and route extensions that close equity gaps
+- 
 
 ## Quick Start
 
@@ -52,28 +48,28 @@ jupyter notebook
 Nairobi's matatu system lacks standardized schedules or predictive travel time data. A 10 km trip can take over **78 minutes** during peak congestion, particularly in low-income areas like **Kibera** or **Pipeline**.
 
 While commercial transit apps exist, none integrate:
-- Machine learning-based ETA forecasts using live traffic, weather, and route topology
+- Machine learning-based ETA forecasts using live traffic, and route topology
 - Equity metrics that identify and prioritize underserved regions
 - Data-driven recommendations for optimal stop placement
 
 ## Objectives
 
 **1. Equity-Aware Transit Evaluation**  
-Quantify spatial and temporal inequities across Nairobi's 85 wards using Gini coefficients, coverage analysis, and service frequency metrics.
+To qantify spatial and temporal inequities across Nairobi's 85 wards using Gini coefficients, coverage analysis, and service frequency metrics.
 
 **2. Graph Neural Network for Stop Placement**  
-Develop and train a GNN model to predict optimal stop locations by learning patterns from well-served benchmark areas and applying them to underserved regions.
+To develop and train a GNN model to predict optimal stop locations by learning patterns from well-served benchmark areas and applying them to underserved regions.
 
 **3. Route Performance Ranking**  
-Create a composite scoring system that balances coverage improvement, ETA efficiency, and congestion mitigation to rank route extension proposals.
+To create a composite scoring system that balances coverage improvement, ETA efficiency, and congestion mitigation to rank route extension proposals.
 
 ## How It Works
 
-### Stage 1: Equity Diagnosis; Identifying Service Gaps
+### Stage 1: Equity Evaluation - Identifying Service Gaps
 
 We measure transit access across Nairobi using two complementary frameworks:
 
-#### Spatial Equity: Geographic Coverage Analysis
+#### a. Spatial Equity: Geographic Coverage Analysis
 
 Measures **static access** by computing the proportion of each ward's area and population within 500m walking distance of matatu stops.
 
@@ -133,12 +129,12 @@ where $\bar{\mu} = \frac{1}{m}\sum_{j=1}^{m} \text{pct\_access}_j$ is the mean a
 - Folium choropleth maps visualizing access inequality
 - Identification of 37 underserved wards as intervention targets
 
-#### Temporal Equity: Dynamic Service Availability
+#### b. Temporal Equity: Dynamic Service Availability
 
 Extends spatial coverage into **time-varying access** using GTFS schedules to compute hourly service levels per ward.
 
 **Key Findings:**
-- Service concentrates during 6-9 AM and 5-8 PM peaks
+- Service concentrates during 6-9 AM and 3-8 PM peaks
 - Peak-to-off-peak ratio exceeds 4:1 for most wards
 - Minimal off-peak coverage in underserved areas creates "transit deserts"
 
@@ -200,7 +196,7 @@ Transit stops don't exist in isolation. A stop's suitability depends on:
 
 Graph networks capture these spatial dependencies and autocorrelation patterns that traditional tabular machine learning cannot model effectively.
 
-#### Traffic & Congestion Proxy Derivation
+#### a. Traffic & Congestion Proxy Derivation
 
 Since real-time traffic data is unavailable, we derive **traffic proxies** and **ETA estimates** from the WorldMove synthetic mobility dataset (104,538 agents, 1.05M trips).
 
@@ -246,7 +242,7 @@ def calculate_route_eta(route_id, hour):
 - Route-level ETA estimates for all GTFS routes
 - Temporal variability metrics (demand_cv, peak-to-offpeak ratio)
 
-#### Stop-Level Feature Engineering
+#### b. Stop-Level Feature Engineering
 
 Extract **36 features** per stop location (existing + candidates) combining road network, demographics, service patterns, and traffic.
 
@@ -301,7 +297,7 @@ Extract **36 features** per stop location (existing + candidates) combining road
 - **Negative samples**: 4,250 random candidate locations >300m from existing stops (label=0)
 - **Total training samples**: ~8,500
 
-#### Graph Construction & GNN Architecture
+#### c. Graph Construction & GNN Architecture
 
 **Graph Representation:**
 
@@ -380,6 +376,8 @@ where $w_i$ balances positive/negative classes.
 - Optimizer: Adam with $\alpha = 0.001$, $\beta_1 = 0.9$, $\beta_2 = 0.999$
 - Train/Val/Test Split: 70/15/15 from benchmark wards
 - Metrics: Accuracy, Precision, Recall, F1, AUC-ROC
+
+![Jav Banner](./docs/images/training_curves.png)
 
 ### Stage 3: Route Optimization: Route Extension
 
@@ -700,8 +698,6 @@ jav-nairobi/
 | [OpenWeatherMap API](https://openweathermap.org/history) | Historical weather features | JSON |
 | [OpenStreetMap Kenya](https://download.geofabrik.de/africa/kenya.html) | Road network topology | PBF |
 | KNBS Census | Ward population and demographics | Shapefiles |
-
----
 
 ## Results
 
