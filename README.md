@@ -427,6 +427,7 @@ $$S_{\text{temporal}} = \frac{1}{|N|}\sum_{i \in N} \text{Temporal Need}_i$$
 
 where $N$ is the set of new stops in the variant.
 
+
 **3. Performance Score (20% weight)**
 
 Combines route speed and congestion metrics to ensure extensions maintain operational efficiency:
@@ -456,8 +457,6 @@ $$D_{\text{new}} = \frac{1}{|N|}\sum_{i \in N} \min\left(\frac{\text{trip count 
 $$S_{\text{demand}} = 0.5 \times D_{\text{route}} + 0.5 \times D_{\text{new}}$$
 
 This ensures extensions both serve high-demand routes and reach areas with latent travel demand.
-
----
 
 **5. Additional Equity Weight (10% weight)**
 
