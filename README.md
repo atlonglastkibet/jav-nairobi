@@ -25,42 +25,69 @@ While commercial transit apps exist, none integrate **machine learning-based ETA
 
 ## Objectives
 
-1. **To evaluate transit equity across Nairobi** by integrating GTFS coverage data with socio-economic and spatial datasets to identify underserved regions and generate an equity scorecard.
-
-2. **To develop and train predictive models (LSTM-based)** to forecast ETA, congestion, and route reliability using GTFS schedules, traffic, and weather data, and compute a composite route ranking.
-
-3. **To benchmark and deploy the system** by comparing LSTM performance against ARIMA and Prophet baselines, and build a FastAPI backend exposing predictions and rankings through a documented, Dockerized API.
-
+1. To evaluate transit equity across Nairobi (GTFS).
+2. To develop and train predictive models (GNN)
+3. To rank routes based on coverage, ETA and congestion
 ## File Structure
 
 ```
 .
+├── client              # Frontend (React) placeholder
+│   ├── components
+│   ├── pages
+│   └── public
+│
 ├── data
-│   ├── raw/                        # Raw downloads (GTFS, CSVs, PBF)
-│   └── processed/                  # Cleaned tensors/CSVs (e.g., seqs.parquet)
+│   ├── folium/                  # Saved folium maps (interactive HTML)
+│   ├── model/                   # Trained models, checkpoints, embeddings
+│   ├── plots/                   # Static PNG/JPEG figures
+│   ├── processed/               # Cleaned datasets
+│   ├── pydeck/                  # PyDeck / Deck.gl visualizations
+│   ├── raw/                     # Raw GTFS, PBF, and API downloads
+│   ├── training_data/           # Datasets prepared for model training
+│   └── training_output/         # Logs, metrics, artifacts from training runs
 │
-├── notebooks/                      # Jupyter notebooks for EDA, training
-│   ├── 01_gtfs_eda.ipynb           # Parse GTFS & explore stop sequences
-│   ├── 02_feature_engineering.ipynb# Merge traffic & weather features
-│   └── 03_model_lstm.ipynb         # LSTM training + evaluation
+├── docs
+│   ├── architecture.md          # System design, pipeline architecture
+│   ├── gini_coeffecient.md      # Equity analysis methods
+│   ├── literature review/       # Academic + industry references
+│   ├── proposal.md              # Project proposal / white paper
+│   ├── results.md               # Model results + evaluation
+│   └── stop_features_test_data.csv
 │
-├── scripts/
-│   ├── fetch_gtfs.py               # Download Digital Matatus GTFS
-│   ├── preprocess_data.py          # Clean & prepare route/traffic/weather
-│   └── train_model.py              # Script-based model training
+├── notebooks
+│   ├── 01_gtfs_data.ipynb                     # Load + explore GTFS stops, routes, shapes
+│   ├── 02_worldmove_data.ipynb                # Load + explore WorldMove mobility/ETA data
+│   ├── 03b_spatial_clustering.ipynb           # Cluster stops based on spatial features
+│   ├── 03_equity_analysis(spatial).ipynb      # Spatial equity: access, Gini, underserved areas
+│   ├── 04b_temporal_clustering.ipynb          # Temporal clustering using traffic / peak-hour patterns
+│   ├── 04_equity_analysis(temporal).ipynb     # Temporal equity: time-of-day service fairness
+│   ├── 06_calendar(spatial+temporal).ipynb    # Merge spatial + temporal features into a unified calendar
+│   ├── 07_worldmove_traffic+ETA.ipynb         # Relationship between traffic and ETA; early models
+│   ├── 08_stop-level_feature_engineering.ipynb# Build stop-level features from all data sources
+│   ├── 09_stop-level_feature_cleaning.ipynb   # Clean, scale, and validate stop-level feature matrix
+│   ├── 10_gnn_training.ipynb                  # Train GNN on transit network + stop features
+│   ├── 11_route_extensions.ipynb              # Route variants, scoring, ranking, folium maps
+│   ├── cache/                                 # Cached artifacts for faster notebook execution
+│   └── lib/                                   # Notebook helper utilities
 │
-├── server/                         # Placeholder for FastAPI backend (later phase)
-│   └── app/
-│       └── main.py                 # (Future) endpoints /routes, /predict
+├── scripts
+│   ├── fetch_gtfs.py
+│   ├── premium_viz_minimal.py
+│   └── __pycache__/
 │
-├── docs/
-│   ├── proposal.md                 # White paper
-│   ├── architecture.md             # Methodology, system design
-│   └── results.md                  # Performance metrics, bias audit
+├── server
+│   └── app/                     # Backend (FastAPI) placeholder
 │
-├── requirements.txt
+├── utils
+│   ├── __init__.py
+│   ├── __pycache__/
+│   └── viz_utils.py             # folium viz util function for notebook 11
+│
 ├── README.md
+├── requirements.txt
 └── .gitignore
+
 ```
 
 ## Data Sources
@@ -72,200 +99,479 @@ While commercial transit apps exist, none integrate **machine learning-based ETA
 | [OpenWeatherMap API](https://openweathermap.org/history) | Weather features | JSON |
 | [OpenStreetMap (Geofabrik Kenya)](https://download.geofabrik.de/africa/kenya.html) | Road network topology | PBF |
 
-
 ## Methodology
 
 ### **Objective 1: Equity-Aware Transit Evaluation**
 
-**Foundation:** Ensure fair and inclusive transit service assessment. This will be broke down into two: `Spatial equity` and `Temporal equity`
+**Foundation:** Quantify spatial and temporal inequities in Nairobi's transit system to identify underserved areas requiring intervention.
 
-#### a. Spatial Equity - Static Coverage Analysis
+#### A. Spatial Equity — Static Coverage Analysis
 
-Measures _geographic access_ by computing the proportion of each ward’s area (and prorated population) within 500 m of matatu stops.  
-GTFS stops are buffered, unioned into a coverage polygon, then intersected with ward shapefiles (e.g., Kenya census boundaries).
+Measures **geographic access** by computing the proportion of each ward's area (and population) within 500m walking distance of matatu stops.
 
-| Step                   | Description                                    | Formula                                   | GeoPandas Implementation                                        |
-| ---------------------- | ---------------------------------------------- | ----------------------------------------- | --------------------------------------------------------------- |
-| 1 Stops - Points       | Convert GTFS stops to points (EPSG 4326).      | `Point(stop_lon, stop_lat)`               | `gpd.points_from_xy(stops.stop_lon, stops.stop_lat)`            |
-| 2 Buffer Service Areas | Project to UTM 37S (EPSG 32737); buffer 500 m. | `Buffer(point_i, 500)`                    | `stops_proj.buffer(500)`                                        |
-| 3 Union Coverage       | Dissolve buffers into single polygon.          | `coverage_union = ⋃ buffer_i`             | `all_service_areas_gdf.dissolve()`                              |
-| 4 Intersect with Wards | Compute overlap areas (m²).                    | `A_intersect,j = Area(ward_j ∩ union)`    | `wards_proj.intersection(coverage_union_proj.union_all()).area` |
-| 5 Coverage Ratio       | Fraction of ward area covered.                 | `r_coverage,j = A_intersect,j / A_ward,j` | `.fillna(0).clip(0,1)`                                          |
-| 6 Population Served    | Prorate by population density.                 | `P_served,j = P_j × r_coverage,j`         | `population * coverage_ratio`                                   |
-| 7 Equity Index         | Ward-level Gini of % access.                   | `Gini = Σ                                 | %_access,j − %_access,k                                         |
+**Mathematical Formulation:**
 
-**Inputs:** Digital Matatus GTFS stops + Kenya ward shapefiles  
-**Outputs:** Ward-level scorecard (target Gini ≥ 0.7) and Folium choropleth (% access)  
-**Equity Weight:**  
-`w_equity,route = 1 − Σ r_coverage,j / (stops in route)` → higher for underserved routes
+Let:
+- $S = \{s_1, s_2, ..., s_n\}$ be the set of $n$ transit stops
+- $W = \{w_1, w_2, ..., w_m\}$ be the set of $m$ wards
+- $P_j$ be the population of ward $w_j$
+- $A_j$ be the total area of ward $w_j$
 
-#### b. Temporal Equity — Dynamic Service Availability
+**Step 1: Buffer Generation**
 
-Extends spatial coverage into _time-varying access_ using GTFS hourly frequencies from `stop_times.txt` to compute per-capita service levels by ward/hour—revealing peak/off-peak inequities.
+For each stop $s_i$ with coordinates $(lat_i, lon_i)$, create a circular buffer:
 
-|Step|Description|Formula|Implementation|
-|---|---|---|---|
-|1 Spatial Join|Assign stops to wards (point-in-polygon).|`ward_i = within(stop_i, ward_j)`|`gpd.sjoin(stops_gdf, wards_gdf, predicate='within')`|
-|2 Merge with Frequencies|Link stops to hourly trips.|`trips_i,h = Σ trips_per_hour_trip,h`|`merge(on='stop_id')`|
-|3 Aggregate per Ward/Hour|Sum trips and population.|`total_trips_j,h = Σ trips_i,h`|`groupby(['ward','hour']).agg(...)`|
-|4 Per-Capita Service|Trips per person per hour.|`s_j,h = total_trips_j,h / P_j`|`trips_per_hour / population`|
-|5 Temporal Equity Index|Gini or CV of service over time.|`Temporal_Gini_j = Gini({ s_j,h|h=0…23 })`|
+$$B_i = \{(x, y) : d((x,y), (lat_i, lon_i)) \leq 500m\}$$
 
-**Inputs:** GTFS `stop_times.txt` + frequency tables  
-**Outputs:** Hourly service heatmaps and temporal scorecards (target avg `s_j,h ≥ 2 trips/person/hour`)  
-**Equity Weight Extension:**  
-`w_equity,route,t = 1 − min_h (s_j,h)` → penalize routes with temporal gaps
+where $d(\cdot, \cdot)$ is the Euclidean distance in projected coordinates (UTM Zone 37S).
 
-Here’s a clean, **Markdown-readable** and properly formatted version of your objective — equations included, fully GitHub-safe and visually neat for README use:
+**Step 2: Coverage Union**
 
-### **Objective 2 — Predictive Modeling for ETA, Congestion & Route Ranking**
+Compute the union of all buffers to create the total service coverage area:
 
-**Core Engine:** Context-aware forecasting and prioritization.
+$$C_{total} = \bigcup_{i=1}^{n} B_i$$
 
-After equity analysis, the outputs from **Objective 1** (e.g., spatial and temporal equity weights) flow downstream to shape the predictive modeling pipeline. The LSTM becomes **equity-aware**, meaning it doesn’t just predict travel times — it learns how reliability interacts with service fairness.
+**Step 3: Ward Intersection**
 
-#### **Data Flow & Integration Pipeline**
+For each ward $w_j$, calculate the intersection area with coverage:
 
-1. **Input Fusion**
+$$A_{covered,j} = \text{Area}(w_j \cap C_{total})$$
 
-   * **GTFS stop sequences:** `route_id`, `stop_id`, `stop_sequence`, `arrival_time`, `departure_time`
-   * Join with **WorldMove mobility data** (trajectory intensity per hour) to capture dynamic movement.
-   * Merge **traffic density** (Google Maps API) and **weather data** (OpenWeather) by timestamp and location.
-   * Integrate **spatial equity weights** from *Objective 1* (coverage indices and underserved scores).
-   * Add **temporal equity weights** *(placeholder — service frequency gaps by time-of-day or weekday/weekend)*.
+**Step 4: Coverage Ratio**
 
-2. **Feature Engineering**
-   Encode **time-series sequences** per route-day as tensors:
+Calculate the proportion of ward area covered:
 
-   ```math
-   X_t = [GTFS_t, Mobility_t, Traffic_t, Weather_t, Equity_t]
-   ```
+$$r_{coverage,j} = \frac{A_{covered,j}}{A_j}$$
 
-   * Normalize and window these into look-back sequences (e.g., 30–60 min windows) for the **LSTM**.
-   * Define the target variable:
+where $0 \leq r_{coverage,j} \leq 1$
 
-     ```math
-     y_t = \text{Actual ETA} - \text{Scheduled ETA}
-     ```
+**Step 5: Population Served**
 
-     or classify by congestion level *(low / medium / high)*.
+Estimate population with transit access (assuming uniform population distribution):
 
-3. **Model Training & Inference**
+$$P_{served,j} = P_j \times r_{coverage,j}$$
 
-   * Train **LSTM models** to forecast **ETA** and **congestion risk** per route segment.
-   * During inference, output predicted delays and reliability scores adjusted by the learned **equity context**.
+**Step 6: Access Percentage**
 
+Calculate percentage of population with transit access:
 
-4. **Composite Route Scoring**
-   Combine three weighted components into a single route score:
+$$\text{pct\_access}_j = \frac{P_{served,j}}{P_j} \times 100 = r_{coverage,j} \times 100$$
 
-   ```math
-   \text{Route Score} = w_1(\text{Reliability}) + w_2(\text{Congestion Risk}) + w_3(\text{Equity Weight})
-   ```
+**Step 7: Gini Coefficient for Spatial Inequality**
 
-   where `w₃` ensures that improving service in historically underserved zones positively influences ranking.
+Measure equity using the Gini coefficient across all wards:
 
-5. **Visualization & Outputs**
+$$G_{spatial} = \frac{\sum_{j=1}^{m} \sum_{k=1}^{m} |\text{pct\_access}_j - \text{pct\_access}_k|}{2m^2 \bar{\mu}}$$
 
-   * Generate **heatmaps** showing predicted congestion under different conditions.
-   * Produce a **ranked list of routes** balancing performance and fairness, ready for integration in **Objective 3**.
+where $\bar{\mu} = \frac{1}{m}\sum_{j=1}^{m} \text{pct\_access}_j$ is the mean access percentage.
 
-**Deliverables**
+Alternatively, using the standard Gini formulation with sorted values:
 
-* Trained LSTM models for ETA and congestion prediction
-* Equity-aware congestion forecasts
-* Ranked route lists visualized in interactive dashboards
+$$G_{spatial} = \frac{2\sum_{j=1}^{m} j \cdot \text{pct\_access}_j^{sorted}}{m \sum_{j=1}^{m} \text{pct\_access}_j} - \frac{m+1}{m}$$
 
+where $\text{pct\_access}_j^{sorted}$ represents access percentages sorted in ascending order.
 
-### **Objective 3: Benchmarking & Integration**
+**Interpretation:**
+- $G_{spatial} = 0$: Perfect equality (all wards have same access)
+- $G_{spatial} = 1$: Maximum inequality (one ward has all access)
+- Target: $G_{spatial} < 0.3$ (acceptable equity)
 
-**Validation & Scale:** Transition from prototype to production.
+**Outputs:**  
+- Ward-level scorecard ranking by coverage (0.15% to 100%)
+- Folium choropleth visualizing access inequality
+- Identification of 37 underserved wards (<70% coverage) as target areas
 
-* Benchmark LSTM model performance against **ARIMA** and **Prophet** baselines for accuracy and temporal stability.
-* Develop a **FastAPI backend** to serve predictions, congestion forecasts, and equity-adjusted route rankings in real time.
-* Integrate outputs into a **demo dashboard** for visualization and policy insight.
+**Key Finding:** 28 wards are well-served (≥90% coverage), while 17 are severely underserved (<50% coverage).
 
-```mermaid
-flowchart TD
-    %% === Objective 1: Equity-Aware Transit Evaluation ===
-    subgraph OBJ1[Objective 1: Equity-Aware Transit Evaluation]
-        A1[Data Collection]
-        A2[GTFS Routes & Stops]
-        A3[Ward Shapefiles]
-        A4[Census Data]
-        A1 --> A2 & A3 & A4
+---
 
-        B1[Compute Equity Indices]
-        B2[Population Density + Route Coverage + Accessibility]
-        A2 & A3 & A4 --> B1
-        B1 --> B2
+#### B. Temporal Equity — Dynamic Service Availability
 
-        C1[Assign Route-Level Equity Weights]
-        B2 --> C1
+Extends spatial coverage into **time-varying access** using GTFS schedules to compute hourly service levels per ward.
 
-        D1[Deliverables]
-        D2[Equity Scorecard]
-        D3[Coverage Dashboard]
-        C1 --> D1
-        D1 --> D2 & D3
-    end
+**Mathematical Formulation:**
 
-    %% === Objective 2: Predictive Modeling ===
-    subgraph OBJ2[Objective 2: Predictive Modeling]
-        E1[Feature Engineering]
-        E2[GTFS Sequences + WorldMove Data + Traffic + Weather + Time]
-        E1 --> E2
+Let:
+- $H = \{0, 1, 2, ..., 23\}$ be the set of hours in a day
+- $T_{i,h}$ be the number of trips at stop $s_i$ during hour $h$
+- $S_j = \{s_i : s_i \in w_j\}$ be the set of stops in ward $w_j$
 
-        F1[Train LSTM Models]
-        E2 --> F1
+**Step 1: Hourly Trip Aggregation**
 
-        G1[Generate Predictions]
-        G2[ETA Forecast]
-        G3[Congestion Risk]
-        F1 --> G1
-        G1 --> G2 & G3
+For each ward $w_j$ and hour $h$, sum all trips:
 
-        H1[Compute Composite Route Score]
-        G2 & G3 --> H1
-        C1 -.Equity Weights.-> H1
+$$T_{j,h} = \sum_{s_i \in S_j} T_{i,h}$$
 
-        I1[Deliverables]
-        I2[Trained LSTM Model]
-        I3[Congestion Heatmaps]
-        I4[Ranked Routes]
-        H1 --> I1
-        I1 --> I2 & I3 & I4
-    end
+**Step 2: Per-Capita Service Intensity**
 
-    %% === Objective 3: Benchmarking & Integration ===
-    subgraph OBJ3[Objective 3: Benchmarking & Integration]
-        J1[Model Benchmarking]
-        J2[LSTM vs ARIMA vs Prophet]
-        I2 --> J1
-        J1 --> J2
+Normalize by ward population:
 
-        K1[Build FastAPI Backend]
-        K2[Endpoints: /predict, /congestion, /routes]
-        J2 --> K1
-        K1 --> K2
+$$\sigma_{j,h} = \frac{T_{j,h}}{P_j}$$
 
-        M1[Deliverables]
-        M2[Benchmark Report]
-        M3[Deployable API]
-        M4[Demo Dashboard]
-        K2 --> M1
-        M1 --> M2 & M3 & M4
-    end
+This represents trips per person per hour in ward $j$ at time $h$.
 
-    %% === Flow Connections ===
-    Start([Start]) --> OBJ1
-    OBJ1 --> OBJ2
-    OBJ2 --> OBJ3
-    OBJ3 --> End([Reduced Uncertainty + #Jav: Deep Learning for Equitable Matatu Routing])
+**Step 3: Service Density (trips per 1000 people)**
+
+$$\sigma_{j,h}^{1000} = \sigma_{j,h} \times 1000 = \frac{1000 \cdot T_{j,h}}{P_j}$$
+
+**Step 4: Daily Service Profile**
+
+For each ward, create a 24-hour service vector:
+
+$$\vec{\sigma}_j = [\sigma_{j,0}, \sigma_{j,1}, ..., \sigma_{j,23}]$$
+
+**Step 5: Temporal Gini Coefficient**
+
+Measure within-ward temporal inequality:
+
+$$G_{temporal,j} = \frac{\sum_{h=1}^{24} \sum_{h'=1}^{24} |\sigma_{j,h} - \sigma_{j,h'}|}{2 \cdot 24^2 \cdot \bar{\sigma}_j}$$
+
+where $\bar{\sigma}_j = \frac{1}{24}\sum_{h=0}^{23} \sigma_{j,h}$ is the mean service intensity for ward $j$.
+
+**Step 6: Coefficient of Variation**
+
+Alternative temporal equity metric using coefficient of variation:
+
+$$CV_j = \frac{\sqrt{\frac{1}{24}\sum_{h=0}^{23}(\sigma_{j,h} - \bar{\sigma}_j)^2}}{\bar{\sigma}_j}$$
+
+Higher $CV_j$ indicates more variable (less equitable) service throughout the day.
+
+**Step 7: Peak-to-Off-Peak Ratio**
+
+Define peak hours $H_{peak} = \{6,7,8,9,17,18,19,20\}$ and calculate:
+
+$$\rho_j = \frac{\bar{\sigma}_{j,peak}}{\bar{\sigma}_{j,offpeak}}$$
+
+where:
+
+$$\bar{\sigma}_{j,peak} = \frac{1}{|H_{peak}|}\sum_{h \in H_{peak}} \sigma_{j,h}$$
+
+$$\bar{\sigma}_{j,offpeak} = \frac{1}{24-|H_{peak}|}\sum_{h \notin H_{peak}} \sigma_{j,h}$$
+
+**Step 8: Overall Temporal Equity Score**
+
+Aggregate across all wards:
+
+$$G_{temporal}^{overall} = \frac{1}{m}\sum_{j=1}^{m} G_{temporal,j}$$
+
+**Interpretation:**
+- $G_{temporal,j} \approx 0$: Consistent service throughout the day
+- $G_{temporal,j} \approx 1$: Service concentrated in few hours
+- $\rho_j > 3$: Significant peak concentration (poor temporal equity)
+
+**Outputs:**  
+- Hourly service heatmaps showing peak vs off-peak disparities
+- Temporal scorecards identifying wards with inconsistent service
+- Integration of $\sigma_{j,h}$ into ward features for downstream modeling
+
+**Key Finding:** Service concentrates during 6-9 AM and 5-8 PM peaks ($\rho_j > 4$ for most wards), with minimal off-peak coverage in underserved areas.
+
+### **Objective 2: Graph Neural Network for Stop Placement Optimization**
+
+**Core Engine:** Learn optimal stop placement patterns from well-served benchmark areas and predict suitable locations in underserved regions.
+
+#### A. Traffic & Congestion Proxy Derivation (WorldMove Data)
+
+Since real-time traffic data is unavailable, we derive **traffic proxies** and **ETA estimates** from the WorldMove synthetic mobility dataset.
+
+**Steps:**
+
+1. **Load WorldMove trajectories** (104,538 agents, 1.05M trips):
+```python
+   trips_df = pl.read_parquet('worldmove_trips.parquet')
 ```
 
+2. **Compute cell-level traffic metrics** by aggregating hourly:
+```python
+   cell_traffic = trips_df.group_by(['origin_cell', 'hour']).agg([
+       pl.col('speed_kmh').mean().alias('avg_speed_kmh'),
+       pl.col('agent_id').n_unique().alias('trip_count'),
+       (pl.col('congestion_level').is_in(['congested', 'heavily_congested']).sum() / 
+        pl.col('congestion_level').count() * 100).alias('congestion_pct')
+   ])
+```
+
+3. **Classify congestion levels** based on speed thresholds:
+```python
+   congestion_level = pl.when(speed < 10).then('heavily_congested')
+                        .when(speed < 20).then('congested')
+                        .when(speed < 30).then('moderate')
+                        .otherwise('free_flow')
+```
+
+4. **Estimate route ETAs** by summing segment travel times:
+```python
+   def calculate_route_eta(route_id, hour):
+       stops = get_route_stops(route_id)
+       total_eta = 0
+       for seg in stop_pairs(stops):
+           cell_speed = get_cell_speed(seg.midpoint, hour)
+           distance = haversine(seg.from_stop, seg.to_stop)
+           total_eta += (distance / cell_speed) * 60  # minutes
+       return total_eta
+```
+
+**Outputs:**  
+- `model2_traffic.csv`: Cell-level hourly traffic (170 cells, 24 hours)
+- Route-level ETA estimates for all GTFS routes
+- Temporal variability metrics (`demand_cv`, `peak_to_offpeak_ratio`)
+#### B. Stop-Level Feature Engineering
+
+Extract 36 features per stop location (existing + candidates) combining road network, demographics, service patterns, and traffic.
+
+**Feature Categories:**
+
+1. **Road Network** (via OSMNx):
+   - `nearest_node_degree`: Intersection connectivity
+   - `is_intersection`: Boolean (degree ≥ 3)
+   - `road_type`: OSM highway classification
+   - `distance_to_major_road`: Meters to primary/secondary road
+
+2. **Stop Spacing**:
+   - `distance_to_nearest_stop`, `distance_to_2nd_nearest`, `distance_to_3rd_nearest`
+   - `stop_density_1km`: Stops per km²
+   - `spacing_regularity`: Std dev of 3-nearest distances
+
+3. **Population/Demand**:
+   - `pop_within_500m`, `pop_within_1km`: People in catchment
+   - `pop_density_500m`: Density estimate
+   - `poverty_rate_weighted_pop`: Equity-weighted population
+
+4. **Service Patterns** (from GTFS):
+   - `route_count_serving`: Routes at this stop
+   - `trips_per_day`, `trips_per_hour_peak`, `trips_per_hour_offpeak`
+   - `avg_headway_minutes`: Time between vehicles
+   - `service_span_hours`: Operating hours
+
+5. **Traffic/Congestion** (from WorldMove):
+   - `avg_speed_daily`, `avg_speed_peak`, `avg_speed_offpeak`
+   - `congestion_pct_daily`, `congestion_pct_peak`
+   - `trip_count_daily`, `trip_count_peak`
+   - `demand_variability_cv`: Coefficient of variation
+
+6. **Ward Context**:
+   - `ward_pct_access`: Current coverage
+   - `ward_population`, `ward_pop_density`, `ward_poverty_rate`
+   - `is_benchmark_ward`: Coverage ≥70%
+   - `ward_service_per_capita`: Trips per 1000 people
+
+7. **Spatial Features**:
+   - `distance_to_cbd`: Distance to Nairobi CBD (-1.2864, 36.8172)
+   - `distance_to_ward_centroid`
+
+8. **Derived/Engineered**:
+   - `coverage_efficiency_nearby`: Ward access / stops in ward
+   - `demand_supply_ratio`: Population / trips per day
+   - `network_accessibility`: Node degree / distance to major road
+   - `equity_score`: Underserved population × poverty weight
+
+**Dataset Construction:**
+
+- **Positive samples**: 4,284 existing GTFS stops (label=1 if in benchmark ward)
+- **Negative samples**: 4,250 random candidate locations >300m from existing stops (label=0)
+- **Total training samples**: ~8,500 (sufficient for GNN training)
+
+#### C. Graph Construction & GNN Architecture
+
+**Graph Representation:**
+
+Construct an undirected graph $\mathcal{G} = (\mathcal{V}, \mathcal{E}, \mathbf{X})$ where:
+
+$$\mathcal{V} = V_{stops} \cup V_{candidates}$$
+
+$$V_{stops} = \{s_1, s_2, ..., s_n\} \text{ (existing GTFS stops)}$$
+
+$$V_{candidates} = \{c_1, c_2, ..., c_k\} \text{ (candidate locations)}$$
+
+**Edge Construction (k-NN Graph):**
+
+For each node $v_i \in \mathcal{V}$, connect to its $k$ nearest neighbors:
+
+$$\mathcal{E} = \{(v_i, v_j) : v_j \in \text{kNN}(v_i, k=10)\}$$
+
+where distance is computed as:
+
+$$d(v_i, v_j) = \sqrt{(lat_i - lat_j)^2 + (lon_i - lon_j)^2}$$
+
+**Node Feature Matrix:**
+
+$$\mathbf{X} \in \mathbb{R}^{|\mathcal{V}| \times 36}$$
+
+where each row $\mathbf{x}_i$ contains the 36-dimensional feature vector for node $v_i$.
+
+**GNN Model Architecture (Graph Attention Network):**
+
+$$\mathbf{H}^{(0)} = \mathbf{X}$$
+
+**Layer 1: Multi-head Graph Attention**
+
+$$\mathbf{H}^{(1)} = \text{ReLU}\left(\text{GAT}(\mathbf{H}^{(0)}, \mathcal{E}; \text{heads}=4)\right)$$
+
+where GAT attention mechanism:
+
+$$\alpha_{ij} = \frac{\exp(\text{LeakyReLU}(\mathbf{a}^T[\mathbf{W}\mathbf{h}_i || \mathbf{W}\mathbf{h}_j]))}{\sum_{k \in \mathcal{N}(i)} \exp(\text{LeakyReLU}(\mathbf{a}^T[\mathbf{W}\mathbf{h}_i || \mathbf{W}\mathbf{h}_k]))}$$
+
+$$\mathbf{h}_i^{(1)} = \sigma\left(\sum_{j \in \mathcal{N}(i)} \alpha_{ij} \mathbf{W}\mathbf{h}_j^{(0)}\right)$$
+
+**Layer 2: Additional GAT Layer**
+
+$$\mathbf{H}^{(2)} = \text{ReLU}\left(\text{GAT}(\mathbf{H}^{(1)}, \mathcal{E}; \text{heads}=2)\right)$$
+
+**Layer 3: GraphSAGE Aggregation**
+
+$$\mathbf{H}^{(3)} = \text{ReLU}\left(\text{SAGE}(\mathbf{H}^{(2)}, \mathcal{E})\right)$$
+
+where:
+
+$$\mathbf{h}_i^{(3)} = \sigma\left(\mathbf{W} \cdot \text{CONCAT}(\mathbf{h}_i^{(2)}, \text{AGG}(\{\mathbf{h}_j^{(2)}, \forall j \in \mathcal{N}(i)\}))\right)$$
+
+**Classification Head:**
+
+$$\mathbf{z}_i = \text{MLP}(\mathbf{h}_i^{(3)}) = \mathbf{W}_2 \cdot \text{ReLU}(\mathbf{W}_1 \mathbf{h}_i^{(3)} + \mathbf{b}_1) + \mathbf{b}_2$$
+
+$$\hat{y}_i = \sigma(\mathbf{z}_i)$$
+
+where $\sigma(\cdot)$ is the sigmoid function and $\hat{y}_i \in [0,1]$ is the predicted stop suitability score.
+
+**Loss Function:**
+
+Binary Cross-Entropy with class weights:
+
+$$\mathcal{L} = -\frac{1}{|\mathcal{V}|}\sum_{i=1}^{|\mathcal{V}|} w_i\left[y_i \log(\hat{y}_i) + (1-y_i)\log(1-\hat{y}_i)\right]$$
+
+where $w_i$ balances positive/negative classes.
+
+**Why GNN?**
+- Captures **spatial dependencies** via message passing: $\mathbf{h}_i^{(l+1)} = f(\mathbf{h}_i^{(l)}, \{\mathbf{h}_j^{(l)} : j \in \mathcal{N}(i)\})$
+- Models **spatial autocorrelation** (nearby locations have similar suitability)
+- Learns **graph-structured relationships** that tabular ML cannot capture
+
+**Training:**
+- Optimizer: Adam with $\alpha = 0.001$, $\beta_1 = 0.9$, $\beta_2 = 0.999$
+- Train/Val/Test Split: 70/15/15 from benchmark wards
+- Metrics: Accuracy, Precision, Recall, F1, AUC-ROC
+
+---
+
+#### D. Stop Placement Prediction & Route Ranking
+
+**Composite Scoring Function:**
+
+For each candidate location $c_i$, compute a multi-objective score:
+
+$$S_{composite}(c_i) = w_{cov} \cdot f_{coverage}(c_i) + w_{eta} \cdot f_{eta}(c_i) + w_{cong} \cdot f_{congestion}(c_i)$$
+
+where:
+
+**Coverage Gain:**
+
+$$f_{coverage}(c_i) = \frac{\Delta P_{served}}{\max(\Delta P_{served})} = \frac{P_{served}^{new} - P_{served}^{current}}{\max_j(P_{served,j}^{new} - P_{served,j}^{current})}$$
+
+**ETA Score (normalized, inverted):**
+
+$$f_{eta}(c_i) = 1 - \frac{\text{ETA}(c_i) - \min(\text{ETA})}{\max(\text{ETA}) - \min(\text{ETA})}$$
+
+**Congestion Score (normalized, inverted):**
+
+$$f_{congestion}(c_i) = 1 - \frac{\text{congestion\_pct}(c_i)}{100}$$
+
+**Weight Configuration:**
+
+$$w_{cov} = 0.6, \quad w_{eta} = 0.2, \quad w_{cong} = 0.2$$
+
+**Final Ranking:**
+
+$$\text{Rank}(c_i) = \text{argsort}_{descending}(S_{composite}(c_1), ..., S_{composite}(c_k))$$
+
+**Outputs:**
+- Top-K stop recommendations per underserved ward
+- Route extension proposals with predicted coverage gains
+- Interactive Folium maps showing predicted vs current coverage
+
+#### D. Stop Placement Prediction & Route Ranking
+
+**Composite Scoring Function:**
+
+For each candidate location $c_i$, compute a multi-objective score:
+
+$$S_{composite}(c_i) = w_{cov} \cdot f_{coverage}(c_i) + w_{eta} \cdot f_{eta}(c_i) + w_{cong} \cdot f_{congestion}(c_i)$$
+
+where:
+
+**Coverage Gain:**
+
+$$f_{coverage}(c_i) = \frac{\Delta P_{served}}{\max(\Delta P_{served})} = \frac{P_{served}^{new} - P_{served}^{current}}{\max_j(P_{served,j}^{new} - P_{served,j}^{current})}$$
+
+**ETA Score (normalized, inverted):**
+
+$$f_{eta}(c_i) = 1 - \frac{\text{ETA}(c_i) - \min(\text{ETA})}{\max(\text{ETA}) - \min(\text{ETA})}$$
+
+**Congestion Score (normalized, inverted):**
+
+$$f_{congestion}(c_i) = 1 - \frac{\text{congestion\_pct}(c_i)}{100}$$
+
+**Weight Configuration:**
+
+$$w_{cov} = 0.6, \quad w_{eta} = 0.2, \quad w_{cong} = 0.2$$
+
+**Final Ranking:**
+
+$$\text{Rank}(c_i) = \text{argsort}_{descending}(S_{composite}(c_1), ..., S_{composite}(c_k))$$
+
+**Outputs:**
+- Top-K stop recommendations per underserved ward
+- Route extension proposals with predicted coverage gains
+- Interactive Folium maps showing predicted vs current coverage
+
+
+### **Objective 3: Benchmarking & Validation**
+
+**Validation Strategy:**
+
+1. **Holdout validation**: Test GNN on held-out benchmark wards
+2. **Spatial cross-validation**: Ensure model generalizes across different geographic regions
+3. **Baseline comparison**: GNN vs Random Forest vs XGBoost on tabular features
+4. **Ablation studies**: Measure contribution of graph structure vs node features
+
+**Expected Metrics:**
+- GNN accuracy: >80% on stop classification
+- Coverage improvement: +15-25% in target wards
+- Equity gain: Gini coefficient reduction of 0.1-0.15
+
 **Deliverables:**
-Benchmark report, deployable API, and interactive visualization dashboard.
+- Trained GNN model weights
+- Benchmark report comparing GNN vs ML baselines
+- Interactive dashboard with stop recommendations
+- Policy brief for Nairobi transit authorities
+
+## Assumptions & Limitations
+
+### Assumptions
+
+1. **WorldMove as Traffic Proxy**: Synthetic mobility data accurately represents real-world traffic patterns in Nairobi. While derived from real trajectories, it may not capture extreme congestion events or special circumstances.
+
+2. **Static Population Distribution**: Ward-level population data is assumed uniform within each ward. Actual population density varies at finer spatial scales.
+
+3. **500m Walking Distance**: Universal 500m buffer assumes flat terrain and walkable infrastructure. Actual accessibility varies by neighborhood infrastructure quality.
+
+4. **GTFS Completeness**: Digital Matatus GTFS data (2014) represents current routes. The informal nature of matatus means routes may have changed.
+
+5. **Benchmark Transferability**: Patterns learned from well-served wards (≥70% coverage) are assumed transferable to underserved areas despite potential demographic/geographic differences.
+
+### Limitations
+
+1. **Temporal Scope**: WorldMove data represents a single day (October 1, 2025). Seasonal, weekly, and holiday variations are not captured.
+
+2. **Real-Time Data**: No live traffic feeds; all predictions based on historical proxy data.
+
+3. **Informal Dynamics**: Matatu routes are fluid and demand-responsive. Model assumes static route structure from GTFS.
+
+4. **Infrastructure Constraints**: Model predicts optimal locations but doesn't account for land availability, road safety, or physical feasibility.
+
+5. **Equity Weights**: Current equity scoring is heuristic. More sophisticated multi-criteria optimization could improve fairness metrics.
+
+6. **Validation Data**: No ground-truth "optimal stop" dataset exists. Validation relies on proxy metrics (coverage gain, existing stop patterns).
+
 
 ### Setup
 
@@ -276,12 +582,14 @@ pip install -r requirements.txt
 jupyter notebook
 ```
 
+
 ## License
 
 MIT License – see [LICENSE](LICENSE).
 
 ## Acknowledgments
 
-* Digital Matatus & University of Nairobi GTFS Project
-* WorldMove datasets
-* OpenWeatherMap & OSM for open APIs
+* Digital Matatus & University of Nairobi for GTFS data
+* WorldMove team at Tsinghua University for mobility dataset
+* OpenStreetMap contributors
+* Kenya National Bureau of Statistics for census data
