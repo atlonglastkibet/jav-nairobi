@@ -381,7 +381,7 @@ where $w_i$ balances positive/negative classes.
 - Train/Val/Test Split: 70/15/15 from benchmark wards
 - Metrics: Accuracy, Precision, Recall, F1, AUC-ROC
 
-### Stage 3: Route Optimization — Route Extension
+### Stage 3: Route Optimization: Route Extension
 
 For each underserved ward, we evaluate potential route extensions using a multi-dimensional scoring framework that balances equity, operational efficiency, and demand alignment.
 
@@ -403,7 +403,7 @@ Each route extension variant is evaluated across **five dimensions** that captur
 
 Measures the total population reached by newly added stops:
 
-$$\text{Coverage Score} = \min\left(\frac{\sum \text{pop\_served}}{150,000}, 1.0\right)$$
+$$\text{Coverage Score} = \min\left(\frac{\sum \text{pop served}}{150,000}, 1.0\right)$$
 
 Population estimates are capped at 150,000 for normalization. This score is multiplied by an **equity multiplier** based on ward category:
 
@@ -415,17 +415,17 @@ $$\text{Equity Multiplier} = \begin{cases}
 \end{cases}$$
 
 **Weighted Spatial Score:**
-$$S_{spatial} = \text{Coverage Score} \times \text{Equity Multiplier}$$
+$$S_{\text{spatial}} = \text{Coverage Score} \times \text{Equity Multiplier}$$
 
 **2. Temporal Equity (25% weight)**
 
 Rewards extensions that add stops in areas with currently low service frequency. For each new stop:
 
-$$\text{Temporal Need} = 1.0 - \min\left(\frac{\text{trips\_per\_1k\_pop\_per\_hour}}{10}, 1.0\right)$$
+$$\text{Temporal Need} = 1.0 - \min\left(\frac{\text{trips per 1k pop per hour}}{10}, 1.0\right)$$
 
 This inverted metric assigns higher scores to stops in areas with sparse existing service:
 
-$$S_{temporal} = \frac{1}{|N|}\sum_{i \in N} \text{Temporal Need}_i$$
+$$S_{\text{temporal}} = \frac{1}{|N|}\sum_{i \in N} \text{Temporal Need}_i$$
 
 where $N$ is the set of new stops in the variant.
 
@@ -434,13 +434,13 @@ where $N$ is the set of new stops in the variant.
 Combines route speed and congestion metrics to ensure extensions maintain operational efficiency:
 
 **Speed Score** (higher is better):
-$$S_{speed} = \text{normalized}(\text{avg\_speed\_daily})$$
+$$S_{\text{speed}} = \text{normalized}(\text{avg speed daily})$$
 
 **Congestion Score** (lower congestion is better):
-$$S_{congestion} = 1.0 - \text{normalized}(\text{congestion\_pct\_daily})$$
+$$S_{\text{congestion}} = 1.0 - \text{normalized}(\text{congestion pct daily})$$
 
 **Combined Performance:**
-$$S_{performance} = 0.6 \times S_{speed} + 0.4 \times S_{congestion}$$
+$$S_{\text{performance}} = 0.6 \times S_{\text{speed}} + 0.4 \times S_{\text{congestion}}$$
 
 This 60/40 weighting prioritizes maintaining reasonable speeds while considering congestion impact.
 
@@ -449,27 +449,29 @@ This 60/40 weighting prioritizes maintaining reasonable speeds while considering
 Evaluates alignment between route extensions and actual travel demand:
 
 **Existing Route Demand:**
-$$D_{route} = \text{normalized}(\text{trip\_count\_daily})$$
+$$D_{\text{route}} = \text{normalized}(\text{trip count daily})$$
 
 **New Stop Demand Potential:**
-$$D_{new} = \frac{1}{|N|}\sum_{i \in N} \min\left(\frac{\text{trip\_count\_daily}_i}{5000}, 1.0\right)$$
+$$D_{\text{new}} = \frac{1}{|N|}\sum_{i \in N} \min\left(\frac{\text{trip count daily}_i}{5000}, 1.0\right)$$
 
 **Combined Demand Score:**
-$$S_{demand} = 0.5 \times D_{route} + 0.5 \times D_{new}$$
+$$S_{\text{demand}} = 0.5 \times D_{\text{route}} + 0.5 \times D_{\text{new}}$$
 
 This ensures extensions both serve high-demand routes and reach areas with latent travel demand.
+
+---
 
 **5. Additional Equity Weight (10% weight)**
 
 Provides explicit bonus for socially important extensions:
 
-$$S_{equity\_bonus} = \frac{\text{Equity Multiplier}}{2.0}$$
+$$S_{\text{equity bonus}} = \frac{\text{Equity Multiplier}}{2.0}$$
 
 #### Final Composite Score
 
 All components are combined into a weighted final score:
 
-$$S_{final} = 0.30 \times S_{spatial} + 0.25 \times S_{temporal} + 0.20 \times S_{performance} + 0.15 \times S_{demand} + 0.10 \times S_{equity\_bonus}$$
+$$S_{\text{final}} = 0.30 \times S_{\text{spatial}} + 0.25 \times S_{\text{temporal}} + 0.20 \times S_{\text{performance}} + 0.15 \times S_{\text{demand}} + 0.10 \times S_{\text{equity bonus}}$$
 
 **Weight Rationale:**
 - **30% Spatial**: Prioritizes reaching underserved populations (equity-first design)
@@ -499,8 +501,6 @@ For each variant, the model produces:
 - **Component breakdown** showing which dimensions drive the score
 - **Population impact** (estimated people served)
 - **Ward equity categories** (which underserved areas benefit)
-
----
 
 #### Outputs
 
