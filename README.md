@@ -14,7 +14,7 @@ Nairobi's 135+ informal matatu routes serve as the city's transportation backbon
 
 **The Gap:**
 
-Existing transit applications optimize purely for efficiency—fastest routes, shortest ETAs. None optimize for **equity**, ensuring that underserved communities aren't algorithmically marginalized in route planning and resource allocation.
+Existing transit applications optimize purely for efficiency-fastest routes, shortest ETAs. None optimize for **equity**, ensuring that underserved communities aren't algorithmically marginalized in route planning and resource allocation.
 
 **Our Approach:**
 
@@ -381,44 +381,146 @@ where $w_i$ balances positive/negative classes.
 - Train/Val/Test Split: 70/15/15 from benchmark wards
 - Metrics: Accuracy, Precision, Recall, F1, AUC-ROC
 
-### Stage 3: Route Optimization — Ranking Stop Proposals
+### Stage 3: Route Optimization — Route Extension
 
-For each underserved ward, we score candidate locations using a composite objective function that balances multiple transit goals.
+For each underserved ward, we evaluate potential route extensions using a multi-dimensional scoring framework that balances equity, operational efficiency, and demand alignment.
 
-**Composite Scoring Function:**
+#### What are Route Extensions?
 
-For each candidate location $c_i$:
+Route extensions involve strategically adding new stops to existing matatu routes to reach underserved areas. Rather than proposing entirely new routes (which requires significant operational overhead and regulatory approval), we identify:
 
-$$S_{composite}(c_i) = w_{cov} \cdot f_{coverage}(c_i) + w_{eta} \cdot f_{eta}(c_i) + w_{cong} \cdot f_{congestion}(c_i)$$
+1. **Terminal extensions**: Adding stops beyond current route endpoints to reach deeper into underserved wards
+2. **Route variants**: Alternative paths that branch from existing routes to serve nearby underserved clusters
+3. **Infill stops**: Strategic additions along existing routes to improve coverage gaps
 
-where:
+This approach minimizes operational disruption while maximizing equity gains and maintains compatibility with existing route networks.
 
-**Coverage Gain (normalized):**
+#### Comprehensive Scoring Framework
 
-$$f_{coverage}(c_i) = \frac{\Delta P_{served}}{\max(\Delta P_{served})} = \frac{P_{served}^{new} - P_{served}^{current}}{\max_j(P_{served,j}^{new} - P_{served,j}^{current})}$$
+Each route extension variant is evaluated across **five dimensions** that capture both social impact and operational viability:
 
-**ETA Score (normalized, inverted):**
+**1. Spatial Coverage (30% weight)**
 
-$$f_{eta}(c_i) = 1 - \frac{\text{ETA}(c_i) - \min(\text{ETA})}{\max(\text{ETA}) - \min(\text{ETA})}$$
+Measures the total population reached by newly added stops:
 
-**Congestion Score (normalized, inverted):**
+$$\text{Coverage Score} = \min\left(\frac{\sum \text{pop\_served}}{150,000}, 1.0\right)$$
 
-$$f_{congestion}(c_i) = 1 - \frac{\text{congestion\_pct}(c_i)}{100}$$
+Population estimates are capped at 150,000 for normalization. This score is multiplied by an **equity multiplier** based on ward category:
 
-**Weight Configuration:**
+$$\text{Equity Multiplier} = \begin{cases}
+2.0 & \text{severely underserved wards} \\
+1.5 & \text{underserved wards} \\
+1.0 & \text{adequately served wards} \\
+0.8 & \text{well-served wards}
+\end{cases}$$
 
-$$w_{cov} = 0.6, \quad w_{eta} = 0.2, \quad w_{cong} = 0.2$$
+**Weighted Spatial Score:**
+$$S_{spatial} = \text{Coverage Score} \times \text{Equity Multiplier}$$
 
-Weights prioritize equity (60% coverage improvement) over pure efficiency metrics.
+**2. Temporal Equity (25% weight)**
 
-**Final Ranking:**
+Rewards extensions that add stops in areas with currently low service frequency. For each new stop:
 
-$$\text{Rank}(c_i) = \text{argsort}_{descending}(S_{composite}(c_1), ..., S_{composite}(c_k))$$
+$$\text{Temporal Need} = 1.0 - \min\left(\frac{\text{trips\_per\_1k\_pop\_per\_hour}}{10}, 1.0\right)$$
 
-**Outputs:**
-- Top-K stop recommendations per underserved ward
-- Route extension proposals with predicted coverage gains
-- Interactive Folium maps showing predicted vs current coverage
+This inverted metric assigns higher scores to stops in areas with sparse existing service:
+
+$$S_{temporal} = \frac{1}{|N|}\sum_{i \in N} \text{Temporal Need}_i$$
+
+where $N$ is the set of new stops in the variant.
+
+**3. Performance Score (20% weight)**
+
+Combines route speed and congestion metrics to ensure extensions maintain operational efficiency:
+
+**Speed Score** (higher is better):
+$$S_{speed} = \text{normalized}(\text{avg\_speed\_daily})$$
+
+**Congestion Score** (lower congestion is better):
+$$S_{congestion} = 1.0 - \text{normalized}(\text{congestion\_pct\_daily})$$
+
+**Combined Performance:**
+$$S_{performance} = 0.6 \times S_{speed} + 0.4 \times S_{congestion}$$
+
+This 60/40 weighting prioritizes maintaining reasonable speeds while considering congestion impact.
+
+**4. Demand Matching (15% weight)**
+
+Evaluates alignment between route extensions and actual travel demand:
+
+**Existing Route Demand:**
+$$D_{route} = \text{normalized}(\text{trip\_count\_daily})$$
+
+**New Stop Demand Potential:**
+$$D_{new} = \frac{1}{|N|}\sum_{i \in N} \min\left(\frac{\text{trip\_count\_daily}_i}{5000}, 1.0\right)$$
+
+**Combined Demand Score:**
+$$S_{demand} = 0.5 \times D_{route} + 0.5 \times D_{new}$$
+
+This ensures extensions both serve high-demand routes and reach areas with latent travel demand.
+
+**5. Additional Equity Weight (10% weight)**
+
+Provides explicit bonus for socially important extensions:
+
+$$S_{equity\_bonus} = \frac{\text{Equity Multiplier}}{2.0}$$
+
+#### Final Composite Score
+
+All components are combined into a weighted final score:
+
+$$S_{final} = 0.30 \times S_{spatial} + 0.25 \times S_{temporal} + 0.20 \times S_{performance} + 0.15 \times S_{demand} + 0.10 \times S_{equity\_bonus}$$
+
+**Weight Rationale:**
+- **30% Spatial**: Prioritizes reaching underserved populations (equity-first design)
+- **25% Temporal**: Ensures extensions improve service where it's weakest
+- **20% Performance**: Maintains operational viability (speed + low congestion)
+- **15% Demand**: Aligns with actual travel patterns
+- **10% Equity**: Additional boost for high-impact social extensions
+
+#### What This Scoring Reveals
+
+The comprehensive ranking identifies route extensions that simultaneously:
+
+**Spatial Benefits (Who and Where We Serve):**
+- Reach the most people in high-need areas
+- Target wards with currently inadequate service
+- Create largest geographic accessibility gains
+
+**Temporal & Operational Benefits (How Well We Serve):**
+- Improve service frequency where it's weakest
+- Maintain operational speed and reliability
+- Align with actual passenger demand patterns
+
+**Decision Support:**
+
+For each variant, the model produces:
+- **Final composite score** (0-1 scale, higher is better)
+- **Component breakdown** showing which dimensions drive the score
+- **Population impact** (estimated people served)
+- **Ward equity categories** (which underserved areas benefit)
+
+---
+
+#### Outputs
+
+**Top-K Route Recommendations:**
+- Ranked list of route extension variants by composite score
+- Detailed component scores for each variant
+- Population served and equity multipliers
+- Performance metrics (speed, congestion, demand)
+
+**Interactive Visualizations:**
+- Folium maps showing proposed stop locations
+- Before/after coverage comparisons
+- Route-level performance overlays
+
+**Deliverables:**
+- `route_recommendations_comprehensive.csv`: Full ranked list with all metrics
+- Interactive HTML maps in `data/folium/`
+- Ward-level impact summaries
+
+This comprehensive framework enables data-driven, equity-aware route planning that balances social impact with operational feasibility.
 
 ## Methodology Pipeline
 
