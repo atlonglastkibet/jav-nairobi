@@ -1,12 +1,10 @@
-![Jav Banner](./docs/images/banner.png)
-
 # Jav: Deep Learning for Equitable Matatu Routing in Nairobi's Informal Transit Networks
+
+![Jav Banner](./docs/images/banner.png)
 
 > **Jav** (Sheng for *Matatu*) is a deep learning project exploring how AI can make Nairobi's informal public transit system more **efficient**, **predictable**, and **equitable**.
 
 **3.5 million Nairobi commuters** use matatus daily. A 10km trip can take **78 minutes** in underserved areas. Jav uses Graph Neural Networks and geospatial analytics to predict travel times, identify service gaps, and recommend optimal stop placements that prioritize fairness alongside efficiency.
-
----
 
 ## Why This Matters
 
@@ -30,8 +28,6 @@ Jav combines Graph Neural Networks with geospatial equity analysis to:
 - Gini inequality coefficient reduction: 0.1-0.15
 - 37 target wards identified for intervention
 
----
-
 ## Quick Start
 
 ```bash
@@ -42,16 +38,14 @@ jupyter notebook
 ```
 
 **Key Notebooks:**
-- `notebooks/03_equity_analysis(spatial).ipynb` — Ward-level coverage analysis and maps
-- `notebooks/10_gnn_training.ipynb` — Train the Graph Neural Network
-- `notebooks/11_route_extensions.ipynb` — Generate stop recommendations with interactive maps
+- `notebooks/03_equity_analysis(spatial).ipynb`: Ward-level coverage analysis and maps
+- `notebooks/10_gnn_training.ipynb`: Train the Graph Neural Network
+- `notebooks/11_route_extensions.ipynb`: Generate stop recommendations with interactive maps
 
 **Explore Visualizations:**
-- `data/folium/` — Interactive HTML coverage maps
-- `data/pydeck/` — 3D transit visualizations
-- `data/plots/` — Static analysis figures
-
----
+- `data/folium/`: Interactive HTML coverage maps
+- `data/pydeck/`: 3D transit visualizations
+- `data/plots/`: Static analysis figures
 
 ## Problem Statement
 
@@ -61,8 +55,6 @@ While commercial transit apps exist, none integrate:
 - Machine learning-based ETA forecasts using live traffic, weather, and route topology
 - Equity metrics that identify and prioritize underserved regions
 - Data-driven recommendations for optimal stop placement
-
----
 
 ## Objectives
 
@@ -75,11 +67,9 @@ Develop and train a GNN model to predict optimal stop locations by learning patt
 **3. Route Performance Ranking**  
 Create a composite scoring system that balances coverage improvement, ETA efficiency, and congestion mitigation to rank route extension proposals.
 
----
-
 ## How It Works
 
-### Stage 1: Equity Diagnosis — Identifying Service Gaps
+### Stage 1: Equity Diagnosis; Identifying Service Gaps
 
 We measure transit access across Nairobi using two complementary frameworks:
 
@@ -143,8 +133,6 @@ where $\bar{\mu} = \frac{1}{m}\sum_{j=1}^{m} \text{pct\_access}_j$ is the mean a
 - Folium choropleth maps visualizing access inequality
 - Identification of 37 underserved wards as intervention targets
 
----
-
 #### Temporal Equity: Dynamic Service Availability
 
 Extends spatial coverage into **time-varying access** using GTFS schedules to compute hourly service levels per ward.
@@ -198,8 +186,6 @@ where $H_{peak} = \{6,7,8,9,17,18,19,20\}$
 - Temporal scorecards identifying wards with inconsistent service
 - Integration of temporal features into downstream modeling
 
----
-
 ### Stage 2: Deep Learning — Predicting Optimal Stop Locations
 
 We train a **Graph Neural Network** to learn what makes a good stop location by studying well-served areas, then apply that knowledge to underserved wards.
@@ -213,8 +199,6 @@ Transit stops don't exist in isolation. A stop's suitability depends on:
 - Existing congestion patterns
 
 Graph networks capture these spatial dependencies and autocorrelation patterns that traditional tabular machine learning cannot model effectively.
-
----
 
 #### Traffic & Congestion Proxy Derivation
 
@@ -261,8 +245,6 @@ def calculate_route_eta(route_id, hour):
 - `model2_traffic.csv`: Cell-level hourly traffic (170 cells × 24 hours)
 - Route-level ETA estimates for all GTFS routes
 - Temporal variability metrics (demand_cv, peak-to-offpeak ratio)
-
----
 
 #### Stop-Level Feature Engineering
 
@@ -318,8 +300,6 @@ Extract **36 features** per stop location (existing + candidates) combining road
 - **Positive samples**: 4,284 existing GTFS stops (label=1 if in benchmark ward)
 - **Negative samples**: 4,250 random candidate locations >300m from existing stops (label=0)
 - **Total training samples**: ~8,500
-
----
 
 #### Graph Construction & GNN Architecture
 
@@ -401,8 +381,6 @@ where $w_i$ balances positive/negative classes.
 - Train/Val/Test Split: 70/15/15 from benchmark wards
 - Metrics: Accuracy, Precision, Recall, F1, AUC-ROC
 
----
-
 ### Stage 3: Route Optimization — Ranking Stop Proposals
 
 For each underserved ward, we score candidate locations using a composite objective function that balances multiple transit goals.
@@ -441,8 +419,6 @@ $$\text{Rank}(c_i) = \text{argsort}_{descending}(S_{composite}(c_1), ..., S_{com
 - Top-K stop recommendations per underserved ward
 - Route extension proposals with predicted coverage gains
 - Interactive Folium maps showing predicted vs current coverage
-
----
 
 ## Methodology Pipeline
 
@@ -554,8 +530,6 @@ flowchart TD
     OBJ3 --> End([Improved Transit Equity +<br/>Data-Driven Stop Placement])
 ```
 
----
-
 ## Project Structure
 
 ```
@@ -615,8 +589,6 @@ jav-nairobi/
 └── .gitignore
 ```
 
----
-
 ## Data Sources
 
 | Source | Description | Format |
@@ -649,8 +621,6 @@ jav-nairobi/
 
 See [docs/results.md](docs/results.md) for comprehensive evaluation and ablation studies.
 
----
-
 ## Assumptions & Limitations
 
 ### Assumptions
@@ -679,8 +649,6 @@ See [docs/results.md](docs/results.md) for comprehensive evaluation and ablation
 
 6. **Validation Data**: No ground-truth "optimal stop" dataset exists. Validation relies on proxy metrics (coverage gain, existing stop patterns).
 
----
-
 ## Tech Stack
 
 **Machine Learning:**
@@ -702,8 +670,6 @@ See [docs/results.md](docs/results.md) for comprehensive evaluation and ablation
 **Backend (Planned):**
 - FastAPI (REST API)
 - Supabase/PostgreSQL (database)
-
----
 
 ## Citation
 
@@ -757,13 +723,9 @@ If you use this work, please cite:
 }
 ```
 
----
-
 ## License
 
 MIT License — See [LICENSE](LICENSE)
-
----
 
 ## Acknowledgments
 
@@ -771,9 +733,8 @@ MIT License — See [LICENSE](LICENSE)
 - WorldMove team at Tsinghua University for mobility dataset
 - Kenya National Bureau of Statistics for census data
 - OpenStreetMap contributors
-
----
+- Zindua School
 
 ## Contact
 
-For questions or collaboration inquiries, please open an issue on GitHub.
+For questions or collaboration inquiries, please open an issue on GitHub or email me [atlonglastkibet@gmail.com]
