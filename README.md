@@ -1,3 +1,5 @@
+![Jav Banner](./docs/images/banner.png)
+
 # Jav: Deep Learning for Equitable Matatu Routing in Nairobi's Informal Transit Networks
 
 > **Jav** (Sheng for *Matatu*) is a deep learning project exploring how AI can make Nairobi's informal public transit system more **efficient**, **predictable**, and **equitable**.
