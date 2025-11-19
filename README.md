@@ -18,15 +18,12 @@ This project demonstrates how modern deep learning can transform transit plannin
 ## Objectives
 
 **1. Equity-Aware Transit Evaluation**
-
 To quantify spatial and temporal inequities across Nairobi's 85 wards using Gini coefficients, coverage analysis, and service frequency metrics.
 
 **2. Graph Neural Network for Stop Placement**
-
 To develop and train a GNN model to predict optimal stop locations by learning patterns from well-served benchmark areas and applying them to underserved regions.
 
 **3. Route Performance Ranking**
-
 To create a composite scoring system that balances coverage improvement, ETA efficiency, and congestion mitigation to rank route extension proposals.
 
 ## Core Achievements and Impact
