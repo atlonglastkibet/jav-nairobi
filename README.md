@@ -11,7 +11,7 @@ This project demonstrates how modern deep learning can transform transit plannin
 
 **The Problem**: Nairobi's 136+ informal matatu routes serve as the city's transportation backbone, carrying 48-58% of daily commuters. Yet the system operates without standardized schedules, real-time tracking, or coordinated planning. Low-income neighborhoods like Kibera and Pipeline experience the longest wait times and most unreliable service.
 
-**The Gap**: Existing transit applications optimize purely for efficiency—fastest routes, shortest ETAs. None optimize for **equity**, ensuring that underserved communities aren't algorithmically marginalized in route planning and resource allocation.
+**The Gap**: Existing transit applications optimize purely for efficiency-fastest routes, shortest ETAs. None optimize for **equity**, ensuring that underserved communities aren't algorithmically marginalized in route planning and resource allocation.
 
 **Our Solution**: By training machine learning models on comprehensive feature sets including population density, road connectivity, service patterns, and demographic characteristics, the system achieves **94% accuracy** in predicting stop quality while maintaining explicit focus on serving underserved communities.
 
