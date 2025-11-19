@@ -158,8 +158,8 @@ graph LR
     A --> A1[Feature Standardization]:::preprocessing
     A --> A2[Missing Value Handling]:::preprocessing
 
-    B --> B1[k-NN Spatial Graph]:::graph
-    B --> B2[Node Feature Matrix]:::graph
+    B --> B1[k-NN Spatial Graph]:::graphcls
+    B --> B2[Node Feature Matrix]:::graphcls
 
     C --> C1[GCN Forward Pass]:::training
     C --> C2[Binary Cross-Entropy Loss]:::training
@@ -168,7 +168,7 @@ graph LR
     D --> D2[92.5% F1 Score]:::evaluation
 
     classDef preprocessing fill:#e1f5fe
-    classDef graph fill:#f3e5f5
+    classDef graphcls fill:#f3e5f5
     classDef training fill:#e8f5e8
     classDef evaluation fill:#fce4ec
 ```
