@@ -115,7 +115,7 @@ We measure transit access across Nairobi using two complementary frameworks that
 
 **Outputs**: Hourly service heatmaps showing peak vs off-peak disparities, temporal scorecards identifying wards with inconsistent service, and integration of temporal features into downstream modeling.
 
-### Stage 2: Deep Learning - Predicting Optimal Stop Locations
+### Stage 2: Deep Learning to Predict Optimal Stop Locations
 
 We train a **Graph Neural Network** to learn what makes a good stop location by studying well-served areas, then apply that knowledge to underserved wards. Transit stops don't exist in isolation-their suitability depends on network effects from nearby stops, road connectivity, population density, and existing congestion patterns.
 
