@@ -3,7 +3,7 @@
 ![Jav Banner](./docs/images/banner.png)
 >**Jav** (Sheng for *Matatu*) - Advanced spatial machine learning and graph neural networks for evidence-based public transport planning in informal transit systems. Click [here](https://atlonglastkibet.github.io/jav-nairobi/route_40701003311_interactive.html) to view the live map and [here](https://www.canva.com/design/DAG4mEkqPc8/_aqG0HrZheWVdhtnTFIRhA/edit?utm_content=DAG4mEkqPc8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) to view the canva slides.
 
-This project demonstrates how modern deep learning can transform transit planning in developing cities by combining multiple data sources, spatial analysis, and machine learning to predict optimal locations for transit infrastructure while ensuring equitable service distribution. Using Nairobi's matatu network as a case study, the analysis provides actionable recommendations for improving public transport accessibility across diverse urban neighborhoods.
+This project demonstrates how deep learning can transform transit planning in developing cities by combining multiple data sources, spatial analysis, and machine learning to predict optimal locations for transit infrastructure while ensuring equitable service distribution. Using Nairobi's matatu network as a case study, the analysis provides actionable recommendations for improving public transport accessibility across diverse urban neighborhoods.
 
 **3.5 million Nairobi commuters** use matatus daily, yet a 10km trip can take **78 minutes** in underserved areas. Traditional transit planning relies heavily on expert judgment and limited data analysis. This project addresses three critical challenges: identifying where to place new transit stops, understanding spatial and temporal equity in service distribution, and developing systematic approaches to network optimization that consider both ridership potential and social equity.
 
@@ -13,7 +13,7 @@ This project demonstrates how modern deep learning can transform transit plannin
 
 **The Gap**: Existing transit applications optimize purely for efficiency-fastest routes, shortest ETAs. None optimize for **equity**, ensuring that underserved communities aren't algorithmically marginalized in route planning and resource allocation.
 
-**Our Solution**: By training machine learning models on comprehensive feature sets including population density, road connectivity, service patterns, and demographic characteristics, the system achieves **94% accuracy** in predicting stop quality while maintaining explicit focus on serving underserved communities.
+**Our Solution**: By training deep learning models on comprehensive feature sets including population density, road connectivity, service patterns, and demographic characteristics, the system achieves **94% accuracy** in predicting stop quality while maintaining explicit focus on serving underserved communities.
 
 ## Objectives
 
@@ -115,9 +115,9 @@ We measure transit access across Nairobi using two complementary frameworks that
 
 **Outputs**: Hourly service heatmaps showing peak vs off-peak disparities, temporal scorecards identifying wards with inconsistent service, and integration of temporal features into downstream modeling.
 
-### Stage 2: Deep Learning — Predicting Optimal Stop Locations
+### Stage 2: Deep Learning - Predicting Optimal Stop Locations
 
-We train a **Graph Neural Network** to learn what makes a good stop location by studying well-served areas, then apply that knowledge to underserved wards. Transit stops don't exist in isolation—their suitability depends on network effects from nearby stops, road connectivity, population density, and existing congestion patterns.
+We train a **Graph Neural Network** to learn what makes a good stop location by studying well-served areas, then apply that knowledge to underserved wards. Transit stops don't exist in isolation-their suitability depends on network effects from nearby stops, road connectivity, population density, and existing congestion patterns.
 
 **Why Graph Neural Networks?** Traditional machine learning treats each stop as isolated, ignoring spatial dependencies and network effects. Graph networks capture these spatial autocorrelation patterns that are essential for realistic transit modeling.
 
