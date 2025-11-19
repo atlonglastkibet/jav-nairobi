@@ -1,6 +1,7 @@
 # Jav-Nairobi: Deep Learning for Equitable Matatu Routing in Nairobi's Informal Transit Networks
 
 ![Jav Banner](./docs/images/banner.png)
+**Interactive Route Map**[Click here to view the live map](https://atlonglastkibet.github.io/jav-nairobi/route_40701003311_interactive.html)
 >**Jav** (Sheng for *Matatu*) - Advanced spatial machine learning and graph neural networks for evidence-based public transport planning in informal transit systems.
 
 This project demonstrates how modern deep learning can transform transit planning in developing cities by combining multiple data sources, spatial analysis, and machine learning to predict optimal locations for transit infrastructure while ensuring equitable service distribution. Using Nairobi's matatu network as a case study, the analysis provides actionable recommendations for improving public transport accessibility across diverse urban neighborhoods.
