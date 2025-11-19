@@ -343,7 +343,7 @@ If you use this work, please cite:
 ```bibtex
 @software{jav2025,
   author = {Kibet, David},
-  title = {Jav: AI-Powered Transit Equity Analysis for Nairobi},
+  title = {Jav-Nairobi: Deep Learning for Equitable Matatu Routing in Nairobi's Informal Transit Networks},
   year = {2025},
   url = {https://github.com/atlonglastkibet/jav-nairobi}
 }
