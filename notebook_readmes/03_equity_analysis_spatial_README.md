@@ -48,11 +48,24 @@ For each ward, the analysis calculates:
 - **Population Not Served**: Number of residents lacking nearby transit access
 
 **Coverage Formulas**
-```
-Access Percentage = (Population Served ÷ Total Population) × 100
-Coverage Ratio = Served Area ÷ Total Ward Area
-Population Density = Total Population ÷ Ward Area
-```
+
+The spatial analysis employs several key mathematical formulas to quantify transit accessibility:
+
+**Basic Coverage Metrics:**
+$$\text{Access Percentage} = \frac{\text{Population Served}}{\text{Total Population}} \times 100$$
+
+$$\text{Coverage Ratio} = \frac{\text{Served Area}}{\text{Total Ward Area}}$$
+
+$$\text{Population Density} = \frac{\text{Total Population}}{\text{Ward Area}}$$
+
+**Buffer Zone Analysis:**
+Transit stop coverage areas are calculated using spatial buffers representing walking distance:
+$$\text{Buffer Area} = \pi \times r^2$$
+where $r$ = 400-800 meters (typical walking distance to transit)
+
+**Population Access Calculation:**
+For each ward, population served is determined through spatial intersection:
+$$\text{Pop Served} = \sum_{i=1}^{n} \text{Pop}_i \times \text{Intersection Area}_i / \text{Total Area}_i$$
 
 ### Spatial Equity Indicators
 
@@ -62,14 +75,20 @@ The analysis applies the Gini coefficient, traditionally used to measure income 
 - **Application**: Measures how evenly transit access is distributed across population
 - **Interpretation**: Lower values indicate more equitable service distribution
 
-**Gini Formula for Transit Equity**
-```
-G = (2 × Σ(i × xi)) / (n × Σxi) - (n + 1) / n
-```
+**Gini Formula for Transit Equity:**
+$$G = \frac{2 \sum_{i=1}^{n} i \cdot x_i}{n \sum_{i=1}^{n} x_i} - \frac{n+1}{n}$$
+
 Where:
-- xi = access percentage for area i
-- n = number of areas
-- Areas ranked from lowest to highest access
+- $x_i$ = access percentage for area i (sorted in ascending order)
+- $n$ = number of areas
+- $i$ = rank order (1, 2, 3, ..., n)
+
+**Step-by-step Gini Calculation Process:**
+1. Sort wards by access percentage (ascending order)
+2. Assign rank $i$ to each ward (1 = lowest access, n = highest access)
+3. Calculate weighted sum: $\sum_{i=1}^{n} i \cdot x_i$
+4. Calculate total access: $\sum_{i=1}^{n} x_i$
+5. Apply Gini formula above
 
 ## Key Findings
 
@@ -196,20 +215,77 @@ Areas where transit investment could serve large underserved populations:
 
 ## Technical Approach
 
-### Spatial Analysis Tools
-- Geographic Information Systems for overlay analysis
-- Buffer analysis for walking-distance calculations
-- Statistical analysis of coverage patterns
+### Computational Methods
 
-### Data Processing
-- Population data aggregation and spatial joining
-- Transit stop coverage area calculation
-- Ward-level summary statistics generation
+**1. Spatial Buffer Creation**
+For each transit stop, create walking distance buffers:
+```python
+# Buffer generation (400-800m walking distance)
+stop_buffers = stops_gdf.buffer(distance=800)  # meters in UTM projection
+coverage_area = stop_buffers.unary_union  # Merge overlapping buffers
+```
+
+**2. Population-Weighted Spatial Intersection**
+Calculate population served using overlay analysis:
+```python
+# Spatial join: ward polygons with transit buffers
+intersections = gpd.overlay(ward_gdf, buffer_gdf, how='intersection')
+pop_served = intersections['population'] * (intersections.area / ward_gdf.area)
+```
+
+**3. Gini Coefficient Implementation**
+```python
+def gini_coefficient(values):
+    """Calculate Gini coefficient for transit equity"""
+    values = np.array(values)
+    values = values[values >= 0]  # Remove negative values
+    if len(values) == 0:
+        return np.nan
+
+    sorted_values = np.sort(values)
+    n = len(sorted_values)
+    index = np.arange(1, n + 1)
+
+    return (2 * np.sum(index * sorted_values) / (n * np.sum(sorted_values))) - ((n + 1) / n)
+```
+
+**4. Ward-Level Aggregation Process**
+```python
+# Calculate access metrics for each ward
+ward_metrics = []
+for ward in wards:
+    total_pop = ward['population']
+    served_area = ward.intersection(transit_buffers).area
+    pop_in_served_area = calculate_population_in_area(ward, served_area)
+
+    access_pct = (pop_in_served_area / total_pop) * 100
+    ward_metrics.append({
+        'ward': ward['ward_name'],
+        'population': total_pop,
+        'pop_served': pop_in_served_area,
+        'access_percentage': access_pct
+    })
+```
+
+### Spatial Analysis Tools
+- **GeoPandas**: For spatial overlay operations and geometric calculations
+- **Shapely**: For buffer creation and spatial intersection analysis
+- **NumPy**: For efficient Gini coefficient and statistical calculations
+- **CRS Transformations**: EPSG:32737 (UTM Zone 37S) for accurate distance measurements
+
+### Data Processing Pipeline
+1. **GTFS Data Preparation**: Convert stop coordinates to geometric points
+2. **CRS Alignment**: Transform all datasets to UTM Zone 37S for metric calculations
+3. **Buffer Generation**: Create 400-800m walking distance zones around stops
+4. **Spatial Overlay**: Intersect ward boundaries with transit coverage areas
+5. **Population Calculation**: Weight population by intersection area ratios
+6. **Equity Metrics**: Calculate Gini coefficient and accessibility rankings
 
 ### Quality Assurance
-- Validation of coverage calculations
-- Cross-checking with alternative data sources
-- Sensitivity analysis for different walking distance assumptions
+- **Coverage Validation**: Cross-check buffer calculations with manual distance measurements
+- **Population Conservation**: Ensure total population sums remain constant across operations
+- **Sensitivity Analysis**: Test with different walking distance assumptions (400m, 600m, 800m)
+- **Geometric Accuracy**: Verify CRS transformations preserve spatial relationships
 
 ## Applications
 

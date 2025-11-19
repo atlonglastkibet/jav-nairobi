@@ -21,19 +21,55 @@ This notebook extends the previous spatial and temporal GTFS analysis by incorpo
 - **Temporal Structure**: Enables sequential day-by-day analysis and weekday vs. weekend comparisons
 
 ### Weekend Service Adjustments
-The notebook implements realistic weekend service reductions based on literature and local observations:
 
-| Day | Service Multiplier | Rationale |
+**Mathematical Framework for Weekend Scaling**
+The notebook implements realistic weekend service reductions using day-specific multipliers:
+
+$$\text{trips\_per\_hour\_adj} = \text{trips\_per\_hour} \times M_d$$
+
+Where $M_d$ is the multiplier for day $d$:
+
+| Day | Multiplier ($M_d$) | Rationale |
 |-----|-------------------|-----------|
 | **Weekdays** | 1.0 | Baseline service level |
 | **Saturday** | 0.7 | 60-80% of weekday service |
 | **Sunday** | 0.5 | 40-60% of weekday service |
 
+**Weekend Adjustment Function**
+```python
+def apply_weekend_multiplier(row, sat_mult=0.7, sun_mult=0.5):
+    weekday = row['weekday']
+    if weekday == 'Saturday':
+        return row['trips_per_hour'] * sat_mult
+    elif weekday == 'Sunday':
+        return row['trips_per_hour'] * sun_mult
+    else:
+        return row['trips_per_hour']
+```
+
+**Normalized Metrics Recalculation**
+After applying weekend multipliers, population-normalized metrics are updated:
+
+$$\text{service\_per\_1k\_pop\_adj} = \frac{\text{trips\_per\_hour\_adj}}{\text{population}} \times 1000$$
+
+$$\text{trips\_per\_person\_per\_hour\_adj} = \frac{\text{trips\_per\_hour\_adj}}{\text{population}}$$
+
 ### Sensitivity Analysis
 Three scenarios tested to account for uncertainty in weekend service patterns:
-- **Conservative**: Saturday 0.6, Sunday 0.4
-- **Central** (adopted): Saturday 0.7, Sunday 0.5
-- **Optimistic**: Saturday 0.8, Sunday 0.6
+
+| Scenario | Saturday Multiplier | Sunday Multiplier | Rationale |
+|----------|-------------------|-----------------|-----------|
+| **Conservative** | 0.6 | 0.4 | Lower bound estimates |
+| **Central** (adopted) | 0.7 | 0.5 | Mid-range literature values |
+| **Optimistic** | 0.8 | 0.6 | Upper bound estimates |
+
+**Scenario Comparison Results**
+Average weekday service: ~650 trips/hour (consistent across scenarios)
+
+Weekend service variation by scenario:
+- **Conservative**: Saturday 390 trips/hour, Sunday 260 trips/hour
+- **Central**: Saturday 455 trips/hour, Sunday 325 trips/hour
+- **Optimistic**: Saturday 520 trips/hour, Sunday 390 trips/hour
 
 ## Technical Implementation
 
@@ -58,10 +94,54 @@ The final dataset contains **24 hours × 31 days × 170 wards = 126,720 records*
 - `hour`: Hourly service periods
 
 ### Key Transformations
-1. **Cross-join**: Wards × Calendar to create complete temporal grid
-2. **Weekend scaling**: Apply day-specific multipliers to service metrics
-3. **Metric recalculation**: Update population-normalized indicators
-4. **Sorting**: Organize by ward → date → hour for time-series consistency
+
+**1. Cross-Join Methodology**
+Create complete spatio-temporal grid using Cartesian product:
+
+```python
+# Add merge key for cross-join
+ward_data['key'] = 1
+calendar['key'] = 1
+
+# Perform cross-join: every ward × every date
+spatio_temporal_grid = pd.merge(ward_data, calendar, on='key').drop('key', axis=1)
+```
+
+This creates $N_{wards} \times N_{days} \times N_{hours}$ records:
+$$\text{Total Records} = 170 \text{ wards} \times 31 \text{ days} \times 3 \text{ hours} = 126,720 \text{ records}$$
+
+**2. Weekend Scaling Implementation**
+Apply temporal multipliers using vectorized operations:
+
+```python
+def weekend_scaling_vectorized(df, sat_mult=0.7, sun_mult=0.5):
+    # Create multiplier array
+    multipliers = np.where(
+        df['weekday'] == 'Saturday', sat_mult,
+        np.where(df['weekday'] == 'Sunday', sun_mult, 1.0)
+    )
+
+    # Apply scaling
+    df['trips_per_hour_adj'] = df['trips_per_hour'] * multipliers
+    return df
+```
+
+**3. Metric Recalculation**
+Update all population-normalized metrics consistently:
+
+```python
+# Recalculate normalized metrics
+df['service_per_1k_pop_adj'] = df['trips_per_hour_adj'] / df['population'] * 1000
+df['trips_per_person_per_hour_adj'] = df['trips_per_hour_adj'] / df['population']
+```
+
+**4. Time-Series Sorting**
+Organize for sequential analysis and LSTM preparation:
+
+```python
+# Sort for time-series consistency
+df_sorted = df.sort_values(['ward', 'date', 'hour']).reset_index(drop=True)
+```
 
 ## Analysis Applications
 

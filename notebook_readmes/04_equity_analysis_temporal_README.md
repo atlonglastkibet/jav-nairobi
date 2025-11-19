@@ -40,9 +40,17 @@ The analysis focuses on three key time periods representing different travel dem
 
 **Population Normalization**
 Service metrics are calculated per 1,000 population to enable fair comparison between areas of different sizes:
-```
-Service per 1k population = (Total trips per hour / Ward population) × 1000
-```
+
+$$\text{Service per 1k Population} = \frac{\text{Total Trips per Hour}}{\text{Ward Population}} \times 1000$$
+
+**Headway to Frequency Conversion**
+GTFS frequency data uses headway (time between vehicles) which is converted to trips per hour:
+
+$$\text{Trips per Hour} = \frac{3600}{\text{Headway (seconds)}}$$
+
+For example:
+- Morning peak headway: 300 seconds → $\frac{3600}{300} = 12$ trips per hour
+- Off-peak headway: 900 seconds → $\frac{3600}{900} = 4$ trips per hour
 
 ### Service Intensity Calculation
 
@@ -94,15 +102,30 @@ Areas with poor service throughout the day:
 **Gini Coefficient Analysis**
 The analysis applies inequality measurement across different temporal dimensions:
 
-**Hourly Gini (0.610)**
-- Calculated across all ward-hour combinations
-- Captures both spatial differences between wards and temporal differences within wards
-- Indicates moderate to high temporal inequality
+**Hourly Gini Coefficient (0.610)**
+Calculated across all ward-hour combinations using the standard Gini formula:
+
+$$G_{hourly} = \frac{2 \sum_{i=1}^{N} i \cdot s_i}{N \sum_{i=1}^{N} s_i} - \frac{N+1}{N}$$
+
+Where:
+- $N$ = total ward-hour combinations (85 wards × 3 hours = 255)
+- $s_i$ = service per 1k population for ward-hour combination $i$ (sorted ascending)
+- $i$ = rank order (1, 2, 3, ..., 255)
+
+This captures both spatial differences between wards and temporal differences within wards.
 
 **Daily-Average Gini (0.573)**
-- Calculated after averaging each ward's service across the day
-- Focuses on ward-level differences while smoothing temporal variation
-- Slightly lower than hourly Gini, suggesting temporal variation contributes to overall inequality
+First, calculate average service for each ward across all measured hours:
+
+$$\bar{s}_j = \frac{1}{3}\sum_{h \in \{6,9,15\}} s_{j,h}$$
+
+Where $s_{j,h}$ is service per 1k population for ward $j$ at hour $h$.
+
+Then apply Gini formula to the 85 ward averages:
+
+$$G_{daily} = \frac{2 \sum_{j=1}^{85} j \cdot \bar{s}_j}{85 \sum_{j=1}^{85} \bar{s}_j} - \frac{86}{85}$$
+
+The lower daily Gini (0.573 vs 0.610) suggests temporal variation contributes to overall inequality.
 
 ### Inequality Consistency Across Time
 
@@ -193,20 +216,94 @@ Since temporal inequality mirrors spatial inequality:
 
 ### Data Processing Pipeline
 
-**GTFS Integration**
-- Processing of stop_times and frequencies tables
-- Spatial joining of transit stops with ward boundaries
-- Aggregation of trip counts by ward and hour
+**1. GTFS Frequency Processing**
+Convert GTFS frequency data to hourly trip counts:
+```python
+# Convert start_time to hour and compute trips per hour
+frequencies['start_time'] = pd.to_timedelta(frequencies['start_time'])
+frequencies['hour'] = frequencies['start_time'].dt.seconds // 3600
+frequencies['trips_per_hour'] = 3600.0 / frequencies['headway_secs']
 
-**Temporal Aggregation**
-- Conversion of scheduled arrival times to hourly service counts
-- Population normalization for cross-ward comparison
-- Ranking calculation for relative performance assessment
+# Aggregate by hour
+hourly_service = frequencies.groupby('hour')['trips_per_hour'].sum()
+```
 
-**Statistical Analysis**
-- Gini coefficient calculation for inequality measurement
-- Lorenz curve generation for inequality visualization
-- Time series analysis of service patterns
+**2. Spatial-Temporal Aggregation**
+Map transit service to wards and normalize by population:
+```python
+# Spatial join: stops to wards
+stops_gdf = gpd.GeoDataFrame(stops, geometry=gpd.points_from_xy(stops.stop_lon, stops.stop_lat))
+stops_with_ward = gpd.sjoin(stops_gdf, wards_gdf, how='inner', predicate='within')
+
+# Aggregate service by ward and hour
+service_by_ward_hour = stops_with_service.groupby(['ward', 'hour']).agg({
+    'trips_per_hour': 'sum',
+    'population': 'first'
+}).reset_index()
+
+# Normalize by population
+service_by_ward_hour['trips_per_1k_pop_per_hour'] = (
+    service_by_ward_hour['trips_per_hour'] / service_by_ward_hour['population'] * 1000
+)
+```
+
+**3. Temporal Gini Implementation**
+```python
+def calculate_temporal_gini(service_data, groupby_col=None):
+    """Calculate Gini coefficient for temporal equity analysis"""
+    if groupby_col:
+        # Daily-average Gini: first average by ward, then calculate Gini
+        ward_averages = service_data.groupby(groupby_col)['trips_per_1k_pop_per_hour'].mean()
+        return gini_coefficient(ward_averages.values)
+    else:
+        # Hourly Gini: across all ward-hour combinations
+        return gini_coefficient(service_data['trips_per_1k_pop_per_hour'].values)
+
+# Calculate both temporal Gini measures
+hourly_gini = calculate_temporal_gini(service_by_ward_hour)  # 0.610
+daily_gini = calculate_temporal_gini(service_by_ward_hour, 'ward')  # 0.573
+```
+
+**4. Service Ranking System**
+```python
+# Overall ranking across all ward-hour combinations
+service_data['service_rank_overall'] = (
+    service_data['trips_per_1k_pop_per_hour']
+    .rank(ascending=False, method='min')
+    .astype(int)
+)
+
+# Hourly ranking within each time period
+service_data['service_rank_by_hour'] = (
+    service_data.groupby('hour')['trips_per_1k_pop_per_hour']
+    .rank(ascending=False, method='min')
+    .astype(int)
+)
+```
+
+**5. Lorenz Curve Generation**
+```python
+def generate_lorenz_curve(values):
+    """Generate Lorenz curve data for inequality visualization"""
+    sorted_values = np.sort(values)
+    n = len(sorted_values)
+    cum_values = np.cumsum(sorted_values) / sorted_values.sum()
+    cum_values = np.insert(cum_values, 0, 0)
+    equal_line = np.linspace(0, 1, n + 1)
+    return equal_line, cum_values
+```
+
+### Computational Tools
+- **GTFS-Kit**: For processing GTFS feed data and extracting service frequencies
+- **GeoPandas**: For spatial joins between stops and administrative boundaries
+- **NumPy**: For efficient Gini coefficient calculations and array operations
+- **Pandas**: For temporal aggregation and service ranking operations
+
+### Data Validation Methods
+- **Complete Ward-Hour Grid**: Ensure all ward-hour combinations are represented
+- **Zero-filling Missing Service**: Assign zero trips to wards with no mapped service
+- **Population Conservation**: Verify population totals remain consistent across joins
+- **Ranking Consistency**: Validate that ranking methods produce stable, interpretable results
 
 ### Quality Assurance
 
