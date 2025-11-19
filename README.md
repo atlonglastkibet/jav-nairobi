@@ -1,10 +1,10 @@
-# AI-Powered Transit Equity Analysis for Nairobi
+Jav-Nairobi: Deep Learning for Equitable Matatu Routing in Nairobi's Informal Transit Networks
 
 **Jav** (Sheng for *Matatu*) - Advanced spatial machine learning and graph neural networks for evidence-based public transport planning in informal transit systems.
 
 ![Jav Banner](./docs/images/banner.png)
 
-This project demonstrates how modern artificial intelligence can transform transit planning in developing cities by combining multiple data sources, spatial analysis, and machine learning to predict optimal locations for transit infrastructure while ensuring equitable service distribution. Using Nairobi's matatu network as a case study, the analysis provides actionable recommendations for improving public transport accessibility across diverse urban neighborhoods.
+This project demonstrates how modern deep learning can transform transit planning in developing cities by combining multiple data sources, spatial analysis, and machine learning to predict optimal locations for transit infrastructure while ensuring equitable service distribution. Using Nairobi's matatu network as a case study, the analysis provides actionable recommendations for improving public transport accessibility across diverse urban neighborhoods.
 
 **3.5 million Nairobi commuters** use matatus daily, yet a 10km trip can take **78 minutes** in underserved areas. Traditional transit planning relies heavily on expert judgment and limited data analysis. This project addresses three critical challenges: identifying where to place new transit stops, understanding spatial and temporal equity in service distribution, and developing systematic approaches to network optimization that consider both ridership potential and social equity.
 
@@ -203,27 +203,22 @@ Each route extension variant is evaluated across **five weighted dimensions**:
 graph LR
     A[Route Extension Process] --> B[Multi-Criteria Scoring]
 
-    A --> A1[Candidate Filtering]:::filtering
-    A --> A2[Route Matching]:::filtering
+    A --> A1[Candidate Filtering]
+    A --> A2[Route Matching]
 
-    B --> B1[Spatial Coverage 30%]:::scoring
-    B --> B2[Temporal Equity 25%]:::scoring
-    B --> B3[Performance 20%]:::scoring
-    B --> B4[Demand Matching 15%]:::scoring
-    B --> B5[Equity Bonus 10%]:::scoring
+    B --> B1[Spatial Coverage 30%]
+    B --> B2[Temporal Equity 25%]
+    B --> B3[Performance 20%]
+    B --> B4[Demand Matching 15%]
+    B --> B5[Equity Bonus 10%]
 
-    B1 --> C[Priority Ranking]:::ranking
+    B1 --> C[Priority Ranking]
     B2 --> C
     B3 --> C
     B4 --> C
     B5 --> C
 
-    C --> D[Implementation Planning]:::planning
-
-    classDef filtering fill:#f1f8e9
-    classDef scoring fill:#e8f5e8
-    classDef ranking fill:#f3e5f5
-    classDef planning fill:#e0f2f1
+    C --> D[Implementation Planning]
 ```
 
 *For complete scoring methodology and route extension framework, see [notebooks/11_route_extensions.ipynb](notebooks/11_route_extensions.ipynb) and [notebook_readmes/11_route_extensions_README.md](notebook_readmes/11_route_extensions_README.md)*
@@ -328,7 +323,7 @@ The pipeline leverages parallel processing for large-scale spatial computations 
 
 ## Limitations and Considerations
 
-**Data Dependencies**: Quality dependent on WorldMove synthetic mobility data accuracy, GTFS completeness (2014 data), and static population distribution assumptions. Weekend service estimates based on literature rather than observed data.
+**Data Dependencies**: Quality dependent on WorldMove synthetic mobility data accuracy, GTFS completeness (2019 data), and static population distribution assumptions. Weekend service estimates based on literature rather than observed data.
 
 **Model Scope**: Predictions focus on current conditions and may not capture future development impacts. Limited integration with other transport modes and simplified representation of complex social factors.
 
