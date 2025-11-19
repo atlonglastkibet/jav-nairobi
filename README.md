@@ -341,7 +341,7 @@ The pipeline leverages parallel processing for large-scale spatial computations 
 If you use this work, please cite:
 
 ```bibtex
-@software{jav2025,
+@software{jav-Nairobi2025,
   author = {Kibet, David},
   title = {Jav-Nairobi: Deep Learning for Equitable Matatu Routing in Nairobi's Informal Transit Networks},
   year = {2025},
