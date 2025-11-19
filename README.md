@@ -155,22 +155,17 @@ graph LR
     B --> C[Model Training]
     C --> D[Performance Evaluation]
 
-    A --> A1[Feature Standardization]:::preprocessing
-    A --> A2[Missing Value Handling]:::preprocessing
+    A --> A1[Feature Standardization]
+    A --> A2[Missing Value Handling]
 
-    B --> B1[k-NN Spatial Graph]:::graphcls
-    B --> B2[Node Feature Matrix]:::graphcls
+    B --> B1[k-NN Spatial Graph]
+    B --> B2[Node Feature Matrix]
 
-    C --> C1[GCN Forward Pass]:::training
-    C --> C2[Binary Cross-Entropy Loss]:::training
+    C --> C1[GCN Forward Pass]
+    C --> C2[Binary Cross-Entropy Loss]
 
-    D --> D1[94% Accuracy]:::evaluation
-    D --> D2[92.5% F1 Score]:::evaluation
-
-    classDef preprocessing fill:#e1f5fe
-    classDef graphcls fill:#f3e5f5
-    classDef training fill:#e8f5e8
-    classDef evaluation fill:#fce4ec
+    D --> D1[94% Accuracy]
+    D --> D2[92.5% F1 Score]
 ```
 
 **Training Configuration**: Adam optimizer (lr=0.01), 70/15/15 train/val/test split, early stopping based on validation F1 score, class-weighted loss for imbalanced data.
