@@ -15,7 +15,7 @@ STREAMLIT_APP_ROOT = Path(__file__).parent.absolute()
 
 # Page config
 st.set_page_config(
-    page_title="",
+    page_title="Jav-Nairobi",
     page_icon=str(STREAMLIT_APP_ROOT / "assets" / "jav-nairobi white.png"),
     layout="wide",
     initial_sidebar_state="expanded",
@@ -105,81 +105,156 @@ path_deck = pdk.Deck(
 
 st.pydeck_chart(path_deck, use_container_width=True, height=600)
 
-# Metrics panel overlay (using custom HTML)
-st.markdown(f"""
-<div class="metrics-container">
-    <div class="metric-item">
-        <div class="metric-number">{metrics['routes']}</div>
-        <div class="metric-label">Routes</div>
-        <div class="metric-subtext">{metrics['routes_subtext']}</div>
-    </div>
-    <div class="metric-item">
-        <div class="metric-number">{metrics['stops']}</div>
-        <div class="metric-label">Stops</div>
-        <div class="metric-subtext">{metrics['stops_subtext']}</div>
-    </div>
-    <div class="metric-item">
-        <div class="metric-number">{metrics['underserved']}</div>
-        <div class="metric-label">Impact</div>
-        <div class="metric-subtext">{metrics['underserved_subtext']}</div>
-    </div>
-    <div class="metric-item">
-        <div class="metric-number">{metrics['wards']}</div>
-        <div class="metric-label">Wards</div>
-        <div class="metric-subtext">{metrics['wards_subtext']}</div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-# Legend
+# Legend inline below map
 st.markdown("""
-<div class="legend-container">
-    <div class="legend-title">Route Equity Tier</div>
-    <div class="legend-item">
-        <div class="legend-color" style="background: rgb(231, 76, 60);"></div>
+<div class="legend-inline">
+    <div class="legend-inline-item">
+        <div class="legend-inline-color" style="background: rgb(231, 76, 60);"></div>
         <span>Severely Underserved</span>
     </div>
-    <div class="legend-item">
-        <div class="legend-color" style="background: rgb(230, 126, 34);"></div>
+    <div class="legend-inline-item">
+        <div class="legend-inline-color" style="background: rgb(230, 126, 34);"></div>
         <span>Underserved</span>
     </div>
-    <div class="legend-item">
-        <div class="legend-color" style="background: rgb(241, 196, 15);"></div>
+    <div class="legend-inline-item">
+        <div class="legend-inline-color" style="background: rgb(241, 196, 15);"></div>
         <span>Adequate</span>
     </div>
-    <div class="legend-item">
-        <div class="legend-color" style="background: rgb(70, 204, 113);"></div>
+    <div class="legend-inline-item">
+        <div class="legend-inline-color" style="background: rgb(70, 204, 113);"></div>
         <span>Well Served</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Info section below map
-st.markdown("---")
-col1, col2 = st.columns(2)
+# Map caption
+st.markdown("""
+<div class="map-caption">
+This map shows Nairobi's matatu route network. Routes are color-coded by equity tier, with red indicating severely underserved areas and green indicating well-served areas.
+<strong>Routes Source:</strong> <a href="https://digitalmatatus.com/index.html" target="_blank">DIGITAL MATATUS PROJECT</a>
+</div>
+""", unsafe_allow_html=True)
 
-with col1:
-    st.markdown("""
-    ### About the Visualization
+# Metrics inline
+st.markdown(f"""
+<div class="metrics-inline">
+    <div class="metric-inline-item">
+        <div class="metric-inline-number">{metrics['routes']}</div>
+        <div class="metric-inline-label">Routes Analyzed</div>
+    </div>
+    <div class="metric-inline-item">
+        <div class="metric-inline-number">{metrics['stops']}</div>
+        <div class="metric-inline-label">Existing Stops</div>
+    </div>
+    <div class="metric-inline-item">
+        <div class="metric-inline-number">{metrics['candidates']}</div>
+        <div class="metric-inline-label">Candidates Evaluated</div>
+    </div>
+    <div class="metric-inline-item">
+        <div class="metric-inline-number">{metrics['impact']}</div>
+        <div class="metric-inline-label">Residents Impacted</div>
+    </div>
+    <div class="metric-inline-item">
+        <div class="metric-inline-number">{metrics['wards']}</div>
+        <div class="metric-inline-label">Wards Impacted</div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-    This map shows Nairobi's matatu route network radiating from the CBD (blue center point).
-    Routes are color-coded by equity tier, with **red** indicating severely underserved areas
-    and **green** indicating well-served areas.
+# THE PROJECT
+st.markdown("""
+<div class="content-section">
+    <div class="section-title">THE PROJECT</div>
+    <div class="section-content">
+        Jav-Nairobi demonstrates how to leverage Deep Learning techniques, specifically Graph Neural Networks (GNNs), to revolutionize informal transit systems in Sub-Saharan Africa's sprawling urban landscapes.
+        The project identifies underserved regions across Nairobi, generates optimal stop locations, and proposes route recommendations designed to increase equity both spatially and temporally.
+        By analyzing over 135 routes, 4,384 existing stops, and 1,645 candidate locations, our model recommends strategic interventions that could serve an additional 1.8+ million Nairobians
+        while maintaining—and in many cases improving—route performance metrics like speed and congestion reduction.
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-    Our GNN model identified **12 new route recommendations** to improve equity and serve
-    an additional **1.8M residents** in underserved areas.
-    """)
+# DATA SOURCES
+st.markdown("""
+<div class="content-section">
+    <div class="section-title">DATA SOURCES</div>
+    <div class="section-content">
+        Prior to our work, linking traffic and commute data for informal transit was incredibly difficult due to the scarceness, inconsistency, and proprietary nature of traffic data from providers like Google and Uber,
+        making evidence-based planning nearly impossible for urban planners. Furthermore, there hasn't been a publicly available methodology on how to aggregate open data sources to improve equity in informal transit systems
+        across the greater Sub-Saharan region. To address this, we leverage publicly available <a href="https://worldmove.ai" target="_blank">WorldMove</a> mobility data to simulate traffic patterns,
+        combine it with GTFS data from <a href="https://digitalmatatus.com/index.html" target="_blank">Digital Matatus</a>, high-resolution population data from <a href="https://www.worldpop.org" target="_blank">WorldPop</a>,
+        and geopolitical boundaries from the Kenya National Bureau of Statistics (KNBS) to construct a holistic and dynamic view of Nairobi's matatu ecosystem.
+        This enables urban planners to work with robust, accessible data to analyze and build equitable solutions.
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-with col2:
-    st.markdown("""
-    ### Key Insights
+# HOW IT WORKS
+st.markdown(f"""
+<div class="content-section">
+    <div class="section-title">HOW IT WORKS</div>
+    <div class="section-content">
+        We begin with GTFS data encompassing over {metrics['routes']} routes and {metrics['stops']} stops. By layering 500-meter dissolving buffers around each stop and overlaying high-resolution population data,
+        we estimate how many people each stop or route serves by geographic area. Using temporal access patterns from GTFS schedules, we compute trips per hour per capita,
+        giving us precise estimates of regions underserved both spatially and temporally. We then generate high-quality stop candidates across all regions by ensuring stops are accessible,
+        cover more people, and exist atop existing infrastructure. Using a Graph Neural Network (GNN), we predict optimal stop placements across Nairobi.
+        Finally, we connect these stops to existing routes, create route variants, and recommend the variants with the greatest social advantage—balancing fair access in space and time
+        while optimizing for performance metrics such as speed and congestion mitigation.
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-    - **135+ routes** currently serve Nairobi's matatu network
-    - **88 wards** analyzed for transit equity
-    - **3,950 candidate stops** evaluated using Graph Neural Networks
-    - **94% accuracy** in identifying optimal stop locations
-    - **Gini coefficient improvement**: 0.72 → 0.61 (more equitable)
-    """)
+# THE MODEL
+st.markdown("""
+<div class="content-section">
+    <div class="section-title">THE MODEL</div>
+    <div class="section-content">
+        The matatu network is inherently complex, dynamic, and ever-changing. To optimize it, we need a system capable of understanding this intricate structure.
+        Since transit systems naturally form graph structures, with stops as nodes and roads as edges, we employ a Graph Convolutional Network (GCN) to parse and learn from this complexity.
+        Each node (stop) aggregates information from its 8 nearest neighbors in the network. Every node holds a rich feature vector of approximately 40 attributes, including traffic patterns at different periods,
+        coverage density, demand levels, service quality, accessibility scores, infrastructure proximity, and amenity availability. We process over 6,000 candidate stops with these features to predict
+        where optimal stops should be placed to serve the most people. GNNs operate through message passing: each node iteratively exchanges information with its neighbors,
+        learning to recognize patterns—such as underserved pockets near well-connected areas or zones with high demand but poor temporal access.
+        This iterative refinement allows the model to propose stops that balance equity, accessibility, and operational efficiency in a way traditional optimization methods cannot achieve.
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-st.markdown("---")
-st.markdown("*Built for Nairobi*")
+# IMPACT
+st.markdown(f"""
+<div class="content-section">
+    <div class="section-title">IMPACT</div>
+    <div class="section-content">
+        Deep Learning promises to improve and optimize the complex transit challenges facing Nairobi. Our methodology demonstrates a substantial increase in matatu coverage,
+        extending service to over {metrics['impact']} additional Nairobians—all while utilizing existing matatu infrastructure. No new matatus are required.
+        The stops we identify, even in underserved and economically disadvantaged regions, require minimal infrastructure investment and benefit from proximity to areas already equipped with infrastructure but lacking proper matatu access.
+        We show that it is possible to cover more people and increase fairness without sacrificing performance or speed. By providing alternative route variants,
+        we enable planners to improve coverage while responding to demand and maintaining competitive travel times. This approach makes the matatus that Nairobians love and depend upon serve their true purpose: public good for all.
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# THE FUTURE
+st.markdown("""
+<div class="content-section">
+    <div class="section-title">THE FUTURE</div>
+    <div class="section-content">
+        The goal is to formalize matatus and transform Nairobi into a truly intelligent city where matatus operate on predictable schedules centered on social equity.
+        This vision does not project into an idealistic world where "flying matatus" might be a possibility, but rather envisions a city that benefits from well-organized, predictable, and reliable matatu services for all.
+        With data-driven insights and AI-powered optimization, Nairobi can lead the way in demonstrating how informal transit, often dismissed as chaotic, can evolve into
+        a backbone of equitable urban mobility across Africa's rapidly growing cities.
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# Footer
+st.markdown("""
+<div class="app-footer">
+    <div class="footer-text">
+        <strong>JAV-NAIROBI</strong> &copy; 2025<br/>
+        Built by <strong>David Kibet</strong><br/>
+        <a href="mailto:atlonglastkibet@gmail.com">Email</a> |
+        <a href="https://github.com/atlonglastkibet/jav-nairobi" target="_blank">Project Link</a>
+    </div>
+</div>
+""", unsafe_allow_html=True)

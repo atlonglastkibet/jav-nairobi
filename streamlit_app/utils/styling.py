@@ -61,47 +61,51 @@ def get_custom_css():
         background-color: var(--bg-charcoal) !important;
     }
 
-    /* Metrics panel styling */
-    .metrics-container {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(14, 17, 23, 0.85);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 20px;
-        z-index: 999;
-        display: flex;
-        gap: 30px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    }
-
-    .metric-item {
+    /* Map caption styling */
+    .map-caption {
+        font-size: 13px;
+        color: var(--text-secondary);
         text-align: center;
-        min-width: 120px;
+        margin: 15px auto 30px;
+        max-width: 800px;
+        line-height: 1.6;
     }
 
-    .metric-number {
-        font-size: 32px;
+    .map-caption a {
+        color: var(--accent-green);
+        text-decoration: none;
+    }
+
+    .map-caption a:hover {
+        text-decoration: underline;
+    }
+
+    /* Inline metrics styling */
+    .metrics-inline {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        margin: 30px 0 50px;
+        flex-wrap: wrap;
+    }
+
+    .metric-inline-item {
+        text-align: center;
+    }
+
+    .metric-inline-number {
+        font-size: 36px;
         font-weight: 700;
         color: var(--text-primary);
-        line-height: 1.2;
+        line-height: 1;
     }
 
-    .metric-label {
-        font-size: 12px;
+    .metric-inline-label {
+        font-size: 11px;
         color: var(--text-secondary);
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-top: 5px;
-    }
-
-    .metric-subtext {
-        font-size: 10px;
-        color: var(--text-secondary);
-        margin-top: 5px;
-        font-style: italic;
+        letter-spacing: 1px;
+        margin-top: 8px;
     }
 
     /* Variant cards */
@@ -153,38 +157,26 @@ def get_custom_css():
         font-size: 13px;
     }
 
-    /* Legend */
-    .legend-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: rgba(14, 17, 23, 0.85);
-        backdrop-filter: blur(10px);
-        border-radius: 10px;
-        padding: 15px;
-        z-index: 999;
-        min-width: 200px;
+    /* Inline legend */
+    .legend-inline {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin: 15px 0;
+        flex-wrap: wrap;
     }
 
-    .legend-title {
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: var(--text-primary);
-        font-size: 14px;
-    }
-
-    .legend-item {
+    .legend-inline-item {
         display: flex;
         align-items: center;
-        margin: 8px 0;
         font-size: 12px;
-        color: var(--text-primary);
+        color: var(--text-secondary);
     }
 
-    .legend-color {
-        width: 28px;
+    .legend-inline-color {
+        width: 30px;
         height: 3px;
-        margin-right: 10px;
+        margin-right: 8px;
         border-radius: 2px;
     }
 
@@ -226,17 +218,58 @@ def get_custom_css():
         margin-top: -5rem;
     }
 
-    /* About page sections */
-    .about-section {
-        background: var(--bg-secondary);
-        border-radius: 12px;
-        padding: 24px;
-        margin-bottom: 20px;
+    /* Content sections */
+    .content-section {
+        max-width: 900px;
+        margin: 50px auto 40px;
+        padding: 0 20px;
     }
 
-    .about-section h2 {
+    .section-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--accent-red);
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+    }
+
+    .section-content {
+        font-size: 15px;
+        color: var(--text-primary);
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    .section-content a {
         color: var(--accent-green);
-        margin-bottom: 15px;
+        text-decoration: none;
+    }
+
+    .section-content a:hover {
+        text-decoration: underline;
+    }
+
+    /* Footer */
+    .app-footer {
+        text-align: center;
+        margin: 60px 0 30px;
+        padding: 30px 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-text {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    .footer-text a {
+        color: var(--accent-green);
+        text-decoration: none;
+    }
+
+    .footer-text a:hover {
+        text-decoration: underline;
     }
 
     .tech-badge {
