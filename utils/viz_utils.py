@@ -8,6 +8,7 @@ from shapely.geometry import LineString, Point
 import osmnx as ox
 from folium import LayerControl, FeatureGroup
 from folium.plugins import MarkerCluster
+import json
 
 # Color scheme
 COLORS = {
@@ -113,18 +114,23 @@ def plot_route_variants_folium(
         'final_score', ascending=False
     ).reset_index(drop=True)
     
+    import ast
+
     top_variant = route_variants.iloc[0]
     top_ext_coords = extension_coords(G, original_stops, top_variant['new_stop_coords'])
-    new_top_ids = top_variant['new_stops']
+    # Parse new_stops from string to list
+    new_top_ids = ast.literal_eval(top_variant['new_stops']) if isinstance(top_variant['new_stops'], str) else top_variant['new_stops']
     new_top_df = selected_candidates[selected_candidates['stop_id'].isin(new_top_ids)]
-    
+
     variants_to_plot = route_variants.head(max_variants_to_plot)
     variant_extensions = []
     variant_new_dfs = []
     for _, row in variants_to_plot.iterrows():
         ext_coords = extension_coords(G, original_stops, row['new_stop_coords'])
         variant_extensions.append(ext_coords)
-        df_new = selected_candidates[selected_candidates['stop_id'].isin(row['new_stops'])]
+        # Parse new_stops from string to list
+        new_stops_list = ast.literal_eval(row['new_stops']) if isinstance(row['new_stops'], str) else row['new_stops']
+        df_new = selected_candidates[selected_candidates['stop_id'].isin(new_stops_list)]
         variant_new_dfs.append(df_new)
     
     # Calculate map center
@@ -175,30 +181,42 @@ def plot_route_variants_folium(
             weight=2
         ).add_to(stops_cluster)
     
-    orig_pop = sum(df[df['stop_id']==s]['pop_within_500m'].iloc[0] if len(df[df['stop_id']==s])>0 else 0 for s in original_stops['stop_id'])
-    
+    # Calculate original population served by existing stops
+    # Sum pop_within_500m for all existing stops on this route
+    orig_pop = 0
+    for stop_id in original_stops['stop_id']:
+        stop_data = df[df['stop_id'] == stop_id]
+        if len(stop_data) > 0:
+            orig_pop += stop_data.iloc[0]['pop_within_500m']
+
     # Prepare stats for all variants
+    # NOTE: total_pop_served in variants_df is the ADDITIONAL population from new stops
     variants_stats = []
     for idx, row in variants_to_plot.iterrows():
-        new_pop = row['total_pop_served']
+        new_pop = row['total_pop_served']  # Additional population from new stops
+        total_pop = orig_pop + new_pop  # Total = existing + new
         increase = (new_pop/orig_pop*100) if orig_pop > 0 else 0
+
+        # Parse new_stops to get actual count
+        new_stops_parsed = ast.literal_eval(row['new_stops']) if isinstance(row['new_stops'], str) else row['new_stops']
+
         variants_stats.append({
-            'id': row['variant_id'],
-            'score': row['final_score'],
-            'new_stops': len(row['new_stops']),
-            'equity': row['equity_multiplier'],
-            'coverage': row['coverage_score'],
-            'temporal': row['temporal_equity_score'],
-            'orig_pop': orig_pop,
-            'new_pop': new_pop,
-            'total_pop': orig_pop + new_pop,
-            'increase': increase
+            'id': str(row['variant_id']),
+            'score': float(row['final_score']),
+            'new_stops': int(len(new_stops_parsed)),
+            'equity': float(row['equity_multiplier']),
+            'coverage': float(row['coverage_score']),
+            'temporal': float(row['temporal_equity_score']),
+            'orig_pop': int(orig_pop),
+            'new_pop': int(new_pop),
+            'total_pop': int(total_pop),
+            'increase': float(increase)
         })
-    
+
     # JavaScript for interactive stats panel (dark mode only)
     stats_js = f"""
     <script>
-    var variantStats = {variants_stats};
+    var variantStats = {json.dumps(variants_stats)};
     
     function updateStats(index) {{
         var stats = variantStats[index];
@@ -281,57 +299,231 @@ def plot_route_variants_folium(
     # Recommended extension (GREEN) - clickable to update stats
     rec_layer = FeatureGroup(name='Recommended Extension', show=True)
     if top_ext_coords:
+        popup_html = f"""
+        <div style="font-family: 'Segoe UI', Arial; padding: 8px; min-width: 150px;">
+            <div style="font-weight: 700; color: {COLORS['recommended']}; font-size: 13px; margin-bottom: 8px;">
+                Variant A (Recommended)
+            </div>
+            <div style="font-size: 11px; color: #666; margin-bottom: 10px;">
+                Click route to view stats →
+            </div>
+            <div style="font-size: 10px; color: #999;">
+                Score: {top_variant['final_score']:.3f}<br>
+                Stops: {len(top_variant['new_stops'])}<br>
+                Pop: +{variants_stats[0]['new_pop']:,.0f}
+            </div>
+        </div>
+        """
         folium.PolyLine(
             locations=top_ext_coords,
             color=COLORS['recommended'],
             weight=6,
             opacity=0.9,
-            popup=f"<button onclick='updateStats(0)' style='padding:8px 16px;background:{COLORS['recommended']};color:white;border:none;border-radius:4px;cursor:pointer;font-weight:600;'>View Stats</button>",
-            tooltip="Click to view stats"
+            popup=folium.Popup(popup_html, max_width=200),
+            tooltip="<b>Variant A (Recommended)</b><br>Click line to view stats"
         ).add_to(rec_layer)
     
+    # Add new stops markers for recommended variant - USE ACTUAL MARKER PINS (RED)
     for idx, stop in new_top_df.iterrows():
+        # Add 500m buffer circle to show catchment area
+        folium.Circle(
+            location=[stop['lat'], stop['lon']],
+            radius=500,  # 500 meters
+            color='#46CC71',  # Green border
+            weight=1,  # Thin border
+            fill=True,
+            fillColor='#46CC71',  # Green fill
+            fillOpacity=0.1,  # Very transparent so it doesn't overwhelm
+            popup=f"<b>500m Catchment Area</b><br>Population: {int(stop['pop_within_500m']):,}",
+            tooltip="500m service radius"
+        ).add_to(rec_layer)
+
+        # Create detailed popup content matching the format
+        # Format quality - use more precision for very small values
+        quality_pct = stop['gnn_probability'] * 100
+        if quality_pct < 0.1 and quality_pct > 0:
+            quality_str = f"{quality_pct:.3f}%"
+        else:
+            quality_str = f"{quality_pct:.1f}%"
+
+        popup_content = f"""
+        <div style="font-family: Arial, sans-serif; min-width: 220px;">
+            <div style="font-weight: bold; font-size: 14px; margin-bottom: 8px; color: #E74C3C;">
+                New Stop (Recommended)
+            </div>
+            <div style="font-size: 12px; line-height: 1.6;">
+                <b>ID:</b> {stop['stop_id']}<br>
+                <b>GNN Quality:</b> {quality_str}<br>
+                <b>Pop:</b> {int(stop['pop_within_500m']):,}
+            </div>
+            <div style="font-size: 10px; color: #666; margin-top: 6px; font-style: italic;">
+                Selected based on overall equity & coverage
+            </div>
+        </div>
+        """
+
+        # Use Folium Marker with RED icon for pin-like appearance
         folium.Marker(
             location=[stop['lat'], stop['lon']],
-            popup=f"<b>New Stop</b><br>ID: {stop['stop_id']}<br>Quality: {stop['gnn_probability']:.1%}<br>Pop: {int(stop['pop_within_500m']):,}",
-            icon=folium.Icon(color='green', icon='plus', prefix='fa')
+            popup=folium.Popup(popup_content, max_width=250),
+            tooltip=f"<b>New Stop</b><br>ID: {stop['stop_id']}<br>GNN Quality: {quality_str}<br>Pop: {int(stop['pop_within_500m']):,}",
+            icon=folium.Icon(
+                color='red',
+                icon='plus',
+                prefix='fa'
+            )
         ).add_to(rec_layer)
-    
+
     rec_layer.add_to(m)
     
     # Alternative variants - clickable to update stats
     for i, (ext_coords, df_new, (idx, row)) in enumerate(zip(variant_extensions, variant_new_dfs, variants_to_plot.iterrows())):
         if i == 0:
             continue
-            
+
         alt_layer = FeatureGroup(name=f'Alternative {i}: {row["variant_id"]}', show=False)
         color_alt = ALT_COLORS[(i-1) % len(ALT_COLORS)]
-        
+
         if ext_coords:
+            popup_html = f"""
+            <div style="font-family: 'Segoe UI', Arial; padding: 8px; min-width: 150px;">
+                <div style="font-weight: 700; color: {color_alt}; font-size: 13px; margin-bottom: 8px;">
+                    Variant {row['variant_id'].split('_')[-1]}
+                </div>
+                <div style="font-size: 11px; color: #666; margin-bottom: 10px;">
+                    Click route to view stats →
+                </div>
+                <div style="font-size: 10px; color: #999;">
+                    Score: {row['final_score']:.3f}<br>
+                    Stops: {len(row['new_stops'])}<br>
+                    Pop: +{variants_stats[i]['new_pop']:,.0f}
+                </div>
+            </div>
+            """
             folium.PolyLine(
                 locations=ext_coords,
                 color=color_alt,
                 weight=5,
                 opacity=0.7,
                 dashArray='8, 4',
-                popup=f"<button onclick='updateStats({i})' style='padding:8px 16px;background:{color_alt};color:white;border:none;border-radius:4px;cursor:pointer;font-weight:600;'>View Stats</button>",
-                tooltip=f"Click to view {row['variant_id']} stats"
+                popup=folium.Popup(popup_html, max_width=200),
+                tooltip=f"<b>Variant {row['variant_id'].split('_')[-1]}</b><br>Click line to view stats"
             ).add_to(alt_layer)
         
+        # Add marker pins for alternative variant stops
+        icon_color_map = {COLORS['alt_1']: 'orange', COLORS['alt_2']: 'purple'}
+        icon_color = icon_color_map.get(color_alt, 'orange')
+
         for _, stop in df_new.iterrows():
-            folium.CircleMarker(
+            # Add 500m buffer circle to show catchment area
+            folium.Circle(
                 location=[stop['lat'], stop['lon']],
-                radius=7,
-                popup=f"<b>Alt Stop</b><br>ID: {stop['stop_id']}<br>Quality: {stop['gnn_probability']:.1%}",
-                color=color_alt,
+                radius=500,  # 500 meters
+                color='#46CC71',  # Green border
+                weight=1,  # Thin border
                 fill=True,
-                fillOpacity=0.85,
-                weight=2
+                fillColor='#46CC71',  # Green fill
+                fillOpacity=0.1,  # Very transparent
+                popup=f"<b>500m Catchment Area</b><br>Population: {int(stop['pop_within_500m']):,}",
+                tooltip="500m service radius"
+            ).add_to(alt_layer)
+
+            # Create detailed popup content matching the format
+            # Format quality - use more precision for very small values
+            alt_quality_pct = stop['gnn_probability'] * 100
+            if alt_quality_pct < 0.1 and alt_quality_pct > 0:
+                alt_quality_str = f"{alt_quality_pct:.3f}%"
+            else:
+                alt_quality_str = f"{alt_quality_pct:.1f}%"
+
+            alt_popup_content = f"""
+            <div style="font-family: Arial, sans-serif; min-width: 220px;">
+                <div style="font-weight: bold; font-size: 14px; margin-bottom: 8px; color: {color_alt};">
+                    New Stop (Alt {row['variant_id'].split('_')[-1]})
+                </div>
+                <div style="font-size: 12px; line-height: 1.6;">
+                    <b>ID:</b> {stop['stop_id']}<br>
+                    <b>GNN Quality:</b> {alt_quality_str}<br>
+                    <b>Pop:</b> {int(stop['pop_within_500m']):,}
+                </div>
+                <div style="font-size: 10px; color: #666; margin-top: 6px; font-style: italic;">
+                    Selected based on overall equity & coverage
+                </div>
+            </div>
+            """
+
+            # Use Folium Marker with icon
+            folium.Marker(
+                location=[stop['lat'], stop['lon']],
+                popup=folium.Popup(alt_popup_content, max_width=250),
+                tooltip=f"<b>New Stop</b><br>ID: {stop['stop_id']}<br>GNN Quality: {alt_quality_str}<br>Pop: {int(stop['pop_within_500m']):,}",
+                icon=folium.Icon(
+                    color=icon_color,
+                    icon='plus',
+                    prefix='fa'
+                )
             ).add_to(alt_layer)
         
         alt_layer.add_to(m)
     
     folium.LayerControl(position='topright', collapsed=False).add_to(m)
+
+    # Add click handlers to all polylines
+    click_handlers_js = f"""
+    <script>
+    // Wait for map to be ready
+    setTimeout(function() {{
+        // Get all polylines on the map
+        var allLayers = [];
+
+        // Function to find all polylines recursively
+        function findPolylines(layer) {{
+            if (layer instanceof L.Polyline && !(layer instanceof L.Polygon)) {{
+                allLayers.push(layer);
+            }}
+            if (layer.getLayers) {{
+                layer.getLayers().forEach(findPolylines);
+            }}
+        }}
+
+        // Find all polylines
+        if (typeof map_{m._id} !== 'undefined') {{
+            map_{m._id}.eachLayer(findPolylines);
+
+            // Assign click handlers based on color
+            allLayers.forEach(function(polyline, index) {{
+                var color = polyline.options.color;
+
+                // Determine variant index based on color
+                var variantIndex = -1;
+                if (color === '{COLORS['recommended']}') {{
+                    variantIndex = 0;  // Variant A
+                }} else if (color === '{COLORS['alt_1']}') {{
+                    variantIndex = 1;  // Variant B
+                }} else if (color === '{COLORS['alt_2']}') {{
+                    variantIndex = 2;  // Variant C
+                }}
+
+                // Add click event only for variant polylines (not existing route)
+                if (variantIndex >= 0) {{
+                    polyline.on('click', function(e) {{
+                        L.DomEvent.stopPropagation(e);
+                        if (typeof updateStats === 'function') {{
+                            updateStats(variantIndex);
+                        }}
+                    }});
+
+                    // Add cursor pointer style
+                    polyline.on('mouseover', function() {{
+                        this._path.style.cursor = 'pointer';
+                    }});
+                }}
+            }});
+        }}
+    }}, 500);
+    </script>
+    """
+    m.get_root().html.add_child(folium.Element(click_handlers_js))
     
     # ULTRA AGGRESSIVE CSS - Force dark mode on everything
     layer_control_css = """
@@ -390,94 +582,94 @@ def plot_route_variants_folium(
     
     m.get_root().html.add_child(folium.Element(layer_control_css))
     
-    # ROUTE HEADER (dark mode only)
+    # ROUTE HEADER (dark mode only) - INCREASED BY 1/3
     route_header = f'''
-    <div class="panel-dark" style="position: fixed; top: 20px; left: 20px; width: 380px;
-                background: #1e1e1e; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                padding: 16px; font-family: 'Segoe UI', Roboto, Arial; z-index: 9999;">
-        
-        <div style="margin-bottom: 12px;">
-            <div class="sub-text" style="font-size: 10px; color: #999; text-transform: uppercase; 
-                       letter-spacing: 0.8px; margin-bottom: 4px;">
-                ROUTE {route_id} • {route_short_name}
+    <div class="panel-dark" style="position: fixed; top: 20px; left: 20px; width: 253px;
+                background: #1e1e1e; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                padding: 12px; font-family: 'Segoe UI', Roboto, Arial; font-size: 12px; z-index: 9999;">
+
+        <div style="margin-bottom: 8px;">
+            <div class="sub-text" style="font-size: 9px; color: #999; text-transform: uppercase;
+                       letter-spacing: 0.5px; margin-bottom: 3px;">
+                {route_short_name}
             </div>
-            <div style="font-size: 18px; font-weight: 700; color: #e0e0e0; line-height: 1.3;">
-                {route_long_name}
+            <div style="font-size: 14px; font-weight: 700; color: #e0e0e0; line-height: 1.2;">
+                {route_long_name[:35]}{'...' if len(route_long_name) > 35 else ''}
             </div>
         </div>
-        
-        <div class="panel-border" style="border-top: 1px solid #3a3a3a; padding-top: 12px;">
-            <div class="sub-text" style="font-size: 11px; color: #999; margin-bottom: 6px;">Current Extension</div>
-            <div id="variant-name" style="font-size: 15px; font-weight: 600; color: {COLORS['recommended']};">
-                {top_variant['variant_id']}
+
+        <div class="panel-border" style="border-top: 1px solid #3a3a3a; padding-top: 8px;">
+            <div class="sub-text" style="font-size: 9px; color: #999; margin-bottom: 3px;">Current</div>
+            <div id="variant-name" style="font-size: 12px; font-weight: 600; color: {COLORS['recommended']};">
+                Variant {top_variant['variant_id'].split('_')[-1]}
             </div>
         </div>
     </div>
     '''
     
-    # STATS PANEL - Updates when clicking routes
+    # STATS PANEL - Updates when clicking routes - INCREASED BY 1/3
     stats_panel = f'''
-    <div class="panel-dark" style="position: fixed; top: 140px; left: 20px; width: 380px;
-                background: #1e1e1e; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                font-family: 'Segoe UI', Roboto, Arial; font-size: 13px; z-index: 9999;">
-        
-        <div style="padding: 16px;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
-                <div class="stat-card" style="background: #2a2a2a; padding: 12px; border-radius: 6px; text-align: center;">
-                    <div class="sub-text" style="font-size: 10px; color: #999; margin-bottom: 4px;">EXISTING</div>
-                    <div style="font-size: 24px; font-weight: 700; color: {COLORS['existing_route']};">{len(original_stops)}</div>
-                    <div class="sub-text" style="font-size: 10px; color: #999;">stops</div>
+    <div class="panel-dark" style="position: fixed; top: 100px; left: 20px; width: 253px;
+                background: #1e1e1e; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                font-family: 'Segoe UI', Roboto, Arial; font-size: 11px; z-index: 9999;">
+
+        <div style="padding: 10px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+                <div class="stat-card" style="background: #2a2a2a; padding: 8px; border-radius: 4px; text-align: center;">
+                    <div class="sub-text" style="font-size: 8px; color: #999; margin-bottom: 3px;">EXISTING</div>
+                    <div style="font-size: 18px; font-weight: 700; color: {COLORS['existing_route']};">{len(original_stops)}</div>
+                    <div class="sub-text" style="font-size: 8px; color: #999;">stops</div>
                 </div>
-                <div class="stat-card" style="background: #2a2a2a; padding: 12px; border-radius: 6px; text-align: center;">
-                    <div class="sub-text" style="font-size: 10px; color: #999; margin-bottom: 4px;">ADDING</div>
-                    <div id="stat-stops" style="font-size: 24px; font-weight: 700; color: {COLORS['recommended']};">{len(top_variant['new_stops'])}</div>
-                    <div class="sub-text" style="font-size: 10px; color: #999;">stops</div>
+                <div class="stat-card" style="background: #2a2a2a; padding: 8px; border-radius: 4px; text-align: center;">
+                    <div class="sub-text" style="font-size: 8px; color: #999; margin-bottom: 3px;">ADDING</div>
+                    <div id="stat-stops" style="font-size: 18px; font-weight: 700; color: {COLORS['recommended']};">{len(top_variant['new_stops'])}</div>
+                    <div class="sub-text" style="font-size: 8px; color: #999;">stops</div>
                 </div>
             </div>
-            
-            <div class="stat-card" style="background: #2a2a2a; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
-                <div style="display: flex; justify-content: space-between; margin: 6px 0;">
+
+            <div class="stat-card" style="background: #2a2a2a; padding: 8px; border-radius: 4px; margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; margin: 4px 0; font-size: 10px;">
                     <span class="sub-text" style="color: #999;">Score</span>
                     <span id="stat-score" style="font-weight: 700; color: #e0e0e0;">{top_variant['final_score']:.3f}</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; margin: 6px 0;">
+                <div style="display: flex; justify-content: space-between; margin: 4px 0; font-size: 10px;">
                     <span class="sub-text" style="color: #999;">Equity</span>
                     <span id="stat-equity" style="font-weight: 700; color: #e0e0e0;">{top_variant['equity_multiplier']:.2f}x</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; margin: 6px 0;">
+                <div style="display: flex; justify-content: space-between; margin: 4px 0; font-size: 10px;">
                     <span class="sub-text" style="color: #999;">Coverage</span>
                     <span id="stat-coverage" style="font-weight: 600; color: #e0e0e0;">{top_variant['coverage_score']:.3f}</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; margin: 6px 0;">
+                <div style="display: flex; justify-content: space-between; margin: 4px 0; font-size: 10px;">
                     <span class="sub-text" style="color: #999;">Temporal</span>
                     <span id="stat-temporal" style="font-weight: 600; color: #e0e0e0;">{top_variant['temporal_equity_score']:.3f}</span>
                 </div>
             </div>
-            
-            <div class="stat-card" style="background: #2a2a2a; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
-                <div class="sub-text" style="font-size: 11px; color: #999; margin-bottom: 8px; font-weight: 600;">Population Coverage</div>
-                <div style="display: flex; justify-content: space-between; font-size: 12px; margin: 6px 0; color: #e0e0e0;">
+
+            <div class="stat-card" style="background: #2a2a2a; padding: 8px; border-radius: 4px; margin-bottom: 8px;">
+                <div class="sub-text" style="font-size: 10px; color: #999; margin-bottom: 5px; font-weight: 600;">Pop. Coverage</div>
+                <div style="display: flex; justify-content: space-between; font-size: 10px; margin: 4px 0; color: #e0e0e0;">
                     <span>Existing</span>
                     <span id="stat-orig-pop">{orig_pop:,.0f}</span>
                 </div>
-                <div style="display: flex; justify-content: space-between; font-size: 12px; margin: 6px 0;">
+                <div style="display: flex; justify-content: space-between; font-size: 10px; margin: 4px 0;">
                     <span style="color: #e0e0e0;">Adding</span>
                     <span id="stat-new-pop" style="font-weight: 700; color: {COLORS['recommended']};">+{variants_stats[0]['new_pop']:,.0f}</span>
                 </div>
-                <div class="panel-border" style="border-top: 1px solid #3a3a3a; padding-top: 8px; margin-top: 8px;
-                           display: flex; justify-content: space-between; font-weight: 700; color: #e0e0e0;">
+                <div class="panel-border" style="border-top: 1px solid #3a3a3a; padding-top: 5px; margin-top: 5px;
+                           display: flex; justify-content: space-between; font-weight: 700; color: #e0e0e0; font-size: 10px;">
                     <span>Total</span>
                     <span id="stat-total-pop">{orig_pop + variants_stats[0]['new_pop']:,.0f}</span>
                 </div>
             </div>
-            
-            <div id="stat-increase" style="background: {COLORS['recommended']}; color: white; 
-                       padding: 12px; border-radius: 6px; text-align: center; font-weight: 700; font-size: 14px;">
+
+            <div id="stat-increase" style="background: {COLORS['recommended']}; color: white;
+                       padding: 8px; border-radius: 4px; text-align: center; font-weight: 700; font-size: 11px;">
                 +{variants_stats[0]['increase']:.0f}% Coverage
             </div>
-            
-            <div class="sub-text" style="margin-top: 12px; font-size: 10px; color: #666; text-align: center; font-style: italic;">
-                💡 Click route lines to compare variants
+
+            <div class="sub-text" style="margin-top: 8px; font-size: 8px; color: #666; text-align: center; font-style: italic;">
+                💡 Click routes to compare
             </div>
         </div>
     </div>
@@ -487,23 +679,25 @@ def plot_route_variants_folium(
     m.get_root().html.add_child(folium.Element(route_header))
     m.get_root().html.add_child(folium.Element(stats_panel))
     
-    # Legend
+    # Legend - REDUCED BY 1/2
     legend_html = f'''
-    <div class="panel-dark" style="position: fixed; bottom: 20px; right: 20px; width: 220px;
-                background: #1e1e1e; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                padding: 14px; font-family: 'Segoe UI', Roboto, Arial; font-size: 12px; z-index: 9999;">
-        <div style="font-weight: 600; margin-bottom: 10px; color: #e0e0e0;">Legend</div>
-        <div style="display: flex; align-items: center; margin: 8px 0;">
-            <div style="width: 28px; height: 3px; background: {COLORS['existing_route']}; margin-right: 10px;"></div>
-            <span style="color: #e0e0e0;">Existing</span>
-        </div>
-        <div style="display: flex; align-items: center; margin: 8px 0;">
-            <div style="width: 28px; height: 4px; background: {COLORS['recommended']}; margin-right: 10px;"></div>
-            <span style="color: #e0e0e0; font-weight: 600;">Recommended</span>
-        </div>
-        <div style="display: flex; align-items: center; margin: 8px 0;">
-            <div style="width: 28px; height: 3px; background: {COLORS['alt_1']}; margin-right: 10px; opacity: 0.7;"></div>
-            <span style="color: #e0e0e0;">Alternatives</span>
+    <div class="panel-dark" style="position: fixed; bottom: 20px; right: 20px; width: 55px;
+                background: #1e1e1e; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                padding: 4px; font-family: 'Segoe UI', Roboto, Arial; font-size: 7px; z-index: 9999;">
+        <div style="font-weight: 600; margin-bottom: 3px; color: #e0e0e0; font-size: 8px; text-align: center;">Legend</div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+            <div style="display: flex; align-items: center;">
+                <div style="width: 10px; height: 2px; background: {COLORS['existing_route']}; margin-right: 3px;"></div>
+                <span style="color: #e0e0e0; font-size: 6px;">Exist</span>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <div style="width: 10px; height: 2px; background: {COLORS['recommended']}; margin-right: 3px;"></div>
+                <span style="color: #e0e0e0; font-weight: 600; font-size: 6px;">Rec</span>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <div style="width: 10px; height: 2px; background: {COLORS['alt_1']}; margin-right: 3px; opacity: 0.7;"></div>
+                <span style="color: #e0e0e0; font-size: 6px;">Alt</span>
+            </div>
         </div>
     </div>
     '''

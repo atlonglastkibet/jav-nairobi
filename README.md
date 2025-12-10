@@ -85,7 +85,7 @@ We measure transit access across Nairobi using two complementary frameworks that
 
 #### Spatial Equity: Geographic Coverage Analysis
 
-**What We Measure**: Static access by computing the proportion of each ward's area and population within 500m walking distance of matatu stops using spatial overlay analysis.
+**What We Measure**: Static access by computing the proportion of each ward's area and population within 500m walking distance of matatu stops using spatial overlay analysis.mail
 
 **Methodology**: The analysis creates 500-meter circular buffers around each of the 4,284 transit stops, then calculates coverage ratios (Coverage Ratio = Covered Area ÷ Total Ward Area) and population access percentages for each ward. Spatial inequality is quantified using the **Gini coefficient**, where values closer to 0 indicate perfect equality and values closer to 1 show maximum inequality.
 
