@@ -6,13 +6,17 @@ Main Streamlit Application Entry Point
 import streamlit as st
 import pydeck as pdk
 import pandas as pd
+from pathlib import Path
 from utils.styling import get_custom_css
 from utils.data_loader import prepare_routes_with_paths, get_app_metrics, CBD_LAT, CBD_LON
+
+# Get the absolute path to the streamlit_app directory
+STREAMLIT_APP_ROOT = Path(__file__).parent.absolute()
 
 # Page config
 st.set_page_config(
     page_title="",
-    page_icon="assets/jav-nairobi white.png",
+    page_icon=str(STREAMLIT_APP_ROOT / "assets" / "jav-nairobi white.png"),
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
@@ -58,7 +62,8 @@ metrics = get_app_metrics()
 # Logo (centered using columns)
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
-    st.image("assets/jav-nairobi.png")
+    logo_path = STREAMLIT_APP_ROOT / "assets" / "jav-nairobi.png"
+    st.image(str(logo_path))
 
 # Title (spanning full width)
 st.markdown('<h1 class="main-title">AI-Powered Transit Equity Optimization for Nairobi</h1>', unsafe_allow_html=True)

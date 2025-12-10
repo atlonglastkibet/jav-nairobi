@@ -37,7 +37,7 @@ plot_route_variants_folium = viz_utils.plot_route_variants_folium
 # Page config
 st.set_page_config(
     page_title="Route Explorer",
-    page_icon="assets/jav-nairobi white.png",
+    page_icon=str(STREAMLIT_APP_ROOT / "assets" / "jav-nairobi white.png"),
     layout="wide"
 )
 

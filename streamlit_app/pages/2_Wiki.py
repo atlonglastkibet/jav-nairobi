@@ -5,13 +5,17 @@ About page with project information, methodology, and impact.
 import streamlit as st
 import pydeck as pdk
 import pandas as pd
+from pathlib import Path
 from utils.styling import get_custom_css
 from utils.data_loader import prepare_routes_for_animation, CBD_LAT, CBD_LON
+
+# Get the absolute path to the streamlit_app directory
+STREAMLIT_APP_ROOT = Path(__file__).parent.parent.absolute()
 
 # Page config
 st.set_page_config(
     page_title="Wiki",
-    page_icon="assets/jav-nairobi white.png",
+    page_icon=str(STREAMLIT_APP_ROOT / "assets" / "jav-nairobi white.png"),
     layout="wide"
 )
 

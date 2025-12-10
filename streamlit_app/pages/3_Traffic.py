@@ -36,7 +36,7 @@ def get_image_base64(image_path):
 # Page config
 st.set_page_config(
     page_title="Traffic",
-    page_icon="assets/jav-nairobi white.png",
+    page_icon=str(STREAMLIT_APP_ROOT / "assets" / "jav-nairobi white.png"),
     layout="wide"
 )
 
