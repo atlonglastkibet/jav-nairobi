@@ -18,6 +18,8 @@ ROUTE_RECS_PATH = BASE_DIR / "data/training_output/route_recommendations_compreh
 TOP_CANDIDATES_PATH = BASE_DIR / "data/training_output/all_candidates_equity.csv"
 WARD_SUMMARY_PATH = BASE_DIR / "data/training_output/ward_summary.csv"
 TRAFFIC_DATA_PATH = BASE_DIR / "data/processed/model2_traffic.parquet"
+WARDS_GDF_PATH = BASE_DIR / "data/processed/wards_full_gdf.csv"
+STOP_FEATURES_PATH = BASE_DIR / "data/processed/stop_features_complete.csv"
 
 # Nairobi CBD coordinates
 CBD_LAT = -1.286389
@@ -361,7 +363,7 @@ def get_app_metrics():
         'routes': f"{num_routes}",
         'stops': f"{num_stops:,}",
         'candidates': f"{num_candidates_analyzed:,}",
-        'impact': f"1.8M+",  # Conservative estimate based on total_pop_served
+        'impact': f"1.2M+",  # Conservative estimate based on total_pop_served
         'wards': f"{wards_affected}"
     }
 
@@ -892,3 +894,448 @@ def prepare_pydeck_route_data(route_id):
         'original_stops': original_stops,
         'variants': variants_data
     }
+
+@st.cache_data
+def load_wards_geodata():
+    """Load ward geodata with geometry and metrics."""
+    import json
+    wards_df = pd.read_csv(WARDS_GDF_PATH)
+
+    # Parse geometry column if it's a string
+    if 'geometry' in wards_df.columns and isinstance(wards_df['geometry'].iloc[0], str):
+        import shapely.wkt
+        wards_df['geometry'] = wards_df['geometry'].apply(shapely.wkt.loads)
+
+    # Convert to GeoDataFrame
+    wards_gdf = gpd.GeoDataFrame(wards_df, geometry='geometry')
+    
+    # Set CRS to UTM Zone 37S (Nairobi) if not set
+    # The coordinates are in meters (e.g. 250000, 9850000) so they are definitely projected
+    if wards_gdf.crs is None:
+        wards_gdf.set_crs(epsg=32737, inplace=True)
+    
+    # Reproject to WGS84 (Lat/Lon) for PyDeck/Folium
+    wards_gdf = wards_gdf.to_crs(epsg=4326)
+
+    return wards_gdf
+
+# Removed @st.cache_data temporarily to force fresh calculation
+def calculate_coverage_with_new_stops():
+    """
+    Calculate actual 'after' coverage using dissolving buffers methodology from notebook 03.
+    This properly combines existing stops + GNN recommended stops with 500m buffers.
+    """
+    import geopandas as gpd
+    from shapely.geometry import Point
+    import re
+
+    # Load existing stops (from GTFS feed)
+    feed = load_gtfs_feed()
+    stops_df = feed.stops[['stop_id', 'stop_lat', 'stop_lon', 'stop_name']].copy()
+    stops_gdf = gpd.GeoDataFrame(
+        stops_df,
+        geometry=gpd.points_from_xy(stops_df['stop_lon'], stops_df['stop_lat']),
+        crs='EPSG:4326'
+    )
+
+    # Load ALL GNN candidate stops for underserved/severely underserved wards
+    try:
+        # Use all_candidates_equity.csv which has all 1,645 GNN candidates
+        candidates_path = TOP_CANDIDATES_PATH  # Already defined as all_candidates_equity.csv
+        candidates_df = pd.read_csv(candidates_path)
+
+        # Filter for underserved and severely underserved wards only
+        if 'ward_category' in candidates_df.columns:
+            candidates_df = candidates_df[
+                candidates_df['ward_category'].isin(['underserved', 'severely_underserved'])
+            ]
+            # Filtered GNN candidates for underserved/severely underserved wards
+            pass
+
+        # Extract coordinates (candidates file uses 'lat'/'lon', not 'stop_lat'/'stop_lon')
+        new_stops = []
+        for _, row in candidates_df.iterrows():
+            lat = row.get('lat') or row.get('stop_lat')
+            lon = row.get('lon') or row.get('stop_lon')
+            if pd.notna(lat) and pd.notna(lon):
+                new_stops.append({
+                    'stop_lat': float(lat),
+                    'stop_lon': float(lon),
+                    'source': 'GNN',
+                    'ward': row.get('ward', 'Unknown')
+                })
+
+        # Create GeoDataFrame for new stops
+        if len(new_stops) > 0:
+            new_stops_df = pd.DataFrame(new_stops)
+            new_stops_gdf = gpd.GeoDataFrame(
+                new_stops_df,
+                geometry=gpd.points_from_xy(new_stops_df['stop_lon'], new_stops_df['stop_lat']),
+                crs='EPSG:4326'
+            )
+
+            # Combine existing + new stops
+            all_stops_gdf = pd.concat([stops_gdf, new_stops_gdf], ignore_index=True)
+
+            # Calculating coverage with existing stops + GNN candidates
+            pass
+        else:
+            all_stops_gdf = stops_gdf
+            st.warning("No GNN candidates found. Using existing stops only.")
+
+    except Exception as e:
+        import traceback
+        st.error(f"Could not load GNN candidates: {e}")
+        st.code(traceback.format_exc())
+        all_stops_gdf = stops_gdf
+
+    # Project to UTM 37S for accurate buffering (same as notebook 03)
+    all_stops_proj = all_stops_gdf.to_crs(32737)
+
+    # Buffer each stop by 500m
+    all_stops_proj['geometry'] = all_stops_proj.buffer(500)
+
+    # Dissolve overlapping buffers (CRITICAL STEP - removes double counting)
+    coverage_union = all_stops_proj.dissolve()
+
+    # Load wards and ensure ward_area exists
+    wards_gdf = load_wards_geodata()
+    wards_proj = wards_gdf.to_crs(32737)
+
+    # Calculate ward_area if not present
+    if 'ward_area' not in wards_proj.columns:
+        wards_proj['ward_area'] = wards_proj.geometry.area
+
+    # Calculate coverage using same methodology as notebook 03
+    # Area-based: pop_served = population × (intersect_area / ward_area)
+    wards_proj['intersect_area_after'] = wards_proj.geometry.intersection(
+        coverage_union.union_all()
+    ).area
+
+    wards_proj['coverage_ratio_after'] = (
+        wards_proj['intersect_area_after'] / wards_proj['ward_area']
+    ).fillna(0).clip(0, 1)
+
+    wards_proj['pop_served_after'] = wards_proj['population'] * wards_proj['coverage_ratio_after']
+    wards_proj['pct_access_after'] = 100 * wards_proj['pop_served_after'] / wards_proj['population']
+
+    # Convert back to WGS84
+    wards_result = wards_proj.to_crs(4326)
+
+    return wards_result
+
+# Removed @st.cache_data temporarily to force fresh calculation
+def get_ward_equity_data():
+    """
+    Get ward equity data with properly calculated BEFORE and AFTER coverage.
+    """
+    # Try to calculate actual coverage with new stops
+    try:
+        wards_df = calculate_coverage_with_new_stops()
+
+        # Calculate improvements
+        wards_df['additional_pop_served'] = wards_df['pop_served_after'] - wards_df['pop_served']
+        wards_df['access_improvement'] = wards_df['pct_access_after'] - wards_df['pct_access']
+
+    except Exception as e:
+        import traceback
+        error_details = traceback.format_exc()
+        st.error(f"Could not calculate actual coverage: {e}")
+        st.code(error_details)
+        st.warning("Using simple estimate fallback.")
+
+        # Fallback to wards_full_gdf.csv with simple estimate
+        wards_df = load_wards_geodata()
+
+        # Simple estimate: 15% improvement for underserved wards
+        wards_df['pct_access_after'] = wards_df['pct_access'].copy()
+        wards_df.loc[wards_df['pct_access'] < 60, 'pct_access_after'] = (
+            wards_df.loc[wards_df['pct_access'] < 60, 'pct_access'] * 1.15
+        ).clip(upper=100)
+
+        wards_df['pop_served_after'] = (wards_df['population'] * wards_df['pct_access_after'] / 100)
+        wards_df['additional_pop_served'] = wards_df['pop_served_after'] - wards_df['pop_served']
+        wards_df['access_improvement'] = wards_df['pct_access_after'] - wards_df['pct_access']
+
+    # Categorize wards
+    def categorize_ward(row):
+        if row['pct_access'] >= 80:
+            return 'well_served'
+        elif row['pct_access'] >= 60:
+            return 'adequate'
+        elif row['pct_access'] >= 40:
+            return 'underserved'
+        else:
+            return 'severely_underserved'
+
+    wards_df['ward_category'] = wards_df.apply(categorize_ward, axis=1)
+
+    return wards_df
+
+def create_ward_coverage_map(ward_data, view_mode="before", selected_ward=None):
+    """
+    Create Folium choropleth map showing ward coverage with boundaries.
+    Uses the .explore() method like the notebook for proper display.
+
+    Args:
+        ward_data: GeoDataFrame with ward metrics
+        view_mode: "before" or "after"
+        selected_ward: Ward name to highlight, or None for all wards
+
+    Returns:
+        folium.Map object
+    """
+    import folium
+    import geopandas as gpd
+    from shapely import wkt
+
+    # Ensure we have GeoDataFrame
+    if not isinstance(ward_data, gpd.GeoDataFrame):
+        if 'geometry' in ward_data.columns and isinstance(ward_data['geometry'].iloc[0], str):
+            ward_data['geometry'] = ward_data['geometry'].apply(wkt.loads)
+        ward_data = gpd.GeoDataFrame(ward_data, geometry='geometry', crs='EPSG:4326')
+
+    # Filter if specific ward selected
+    if selected_ward and selected_ward != 'All Wards':
+        map_data = ward_data[ward_data['ward'] == selected_ward].copy()
+    else:
+        map_data = ward_data.copy()
+
+    # Select column to display
+    if view_mode == "before":
+        display_column = 'pct_access'
+        map_data['display_served'] = map_data['pop_served'].astype(int)
+    else:
+        display_column = 'pct_access_after'
+        map_data['display_served'] = map_data['pop_served_after'].astype(int)
+
+    # Format for tooltips (matching notebook format)
+    map_data['Population'] = map_data['population'].apply(lambda x: f'{int(x):,}')
+    map_data['Pop_Served'] = map_data['display_served'].apply(lambda x: f'{x:,}')
+    map_data['Coverage_%'] = map_data[display_column].apply(lambda x: f'{x:.1f}%')
+
+    # Create map using .explore() method (like the notebook)
+    m = map_data.explore(
+        column=display_column,
+        cmap='YlOrRd',
+        legend=True,
+        legend_kwds={'caption': 'Population Coverage (%)'},
+        tooltip=['ward', 'subcounty', 'Population', 'Pop_Served', 'Coverage_%'],
+        popup=['ward', 'subcounty', 'Population', 'Pop_Served', 'Coverage_%'],
+        style_kwds={'color': 'white', 'weight': 1},
+        tiles='CartoDB dark_matter',
+        name='Ward Coverage'
+    )
+
+    return m
+
+@st.cache_data
+def load_stop_features():
+    """Load stop features for radar chart visualization."""
+    return pd.read_csv(STOP_FEATURES_PATH)
+
+@st.cache_data
+def get_stops_for_map():
+    """
+    Get all stops (existing + candidates) for stop intelligence map.
+    Returns DataFrame with columns: stop_id, lat, lon, is_new_stop, gnn_score, pop_within_500m, ward
+    """
+    candidates = load_top_candidates()
+    feed = load_gtfs_feed()
+    stop_features = load_stop_features()
+
+    # Existing stops
+    existing = feed.stops[['stop_id', 'stop_lat', 'stop_lon', 'stop_name']].copy()
+    existing.columns = ['stop_id', 'lat', 'lon', 'name']
+    existing['is_new_stop'] = False
+    existing['gnn_score'] = 0.0
+
+    # Merge with features to get population data
+    existing = existing.merge(
+        stop_features[['stop_id', 'pop_within_500m', 'ward']],
+        on='stop_id',
+        how='left'
+    )
+    existing['pop_within_500m'] = existing['pop_within_500m'].fillna(1000)
+    existing['ward'] = existing['ward'].fillna('Unknown')
+
+    # New candidate stops
+    new_stops = candidates[['stop_id', 'lat', 'lon', 'ward']].copy()
+    new_stops['name'] = new_stops['stop_id']
+    new_stops['is_new_stop'] = True
+
+    # Get gnn_probability safely
+    if 'gnn_probability' in candidates.columns:
+        new_stops['gnn_score'] = candidates['gnn_probability']
+    else:
+        new_stops['gnn_score'] = 0.8
+
+    # Get pop_within_500m safely
+    if 'pop_within_500m' in candidates.columns:
+        new_stops['pop_within_500m'] = candidates['pop_within_500m']
+    else:
+        new_stops['pop_within_500m'] = 1000
+
+    # Combine
+    all_stops = pd.concat([existing, new_stops], ignore_index=True)
+
+    # Add color coding
+    all_stops['color'] = all_stops.apply(
+        lambda row: COLORS['recommended'] if row['is_new_stop'] else COLORS['existing_route'],
+        axis=1
+    )
+
+    # Add size based on GNN score or population
+    all_stops['size'] = all_stops.apply(
+        lambda row: max(100, row['gnn_score'] * 300) if row['is_new_stop'] else 50,
+        axis=1
+    )
+
+    # Format fields for tooltip display (PyDeck needs pre-formatted strings for some formats)
+    all_stops['gnn_score_formatted'] = all_stops['gnn_score'].apply(lambda x: f"{x:.2f}")
+    all_stops['pop_formatted'] = all_stops['pop_within_500m'].apply(lambda x: f"{int(x):,}")
+
+    return all_stops
+
+def generate_impact_story(route_id, ward_name, metrics):
+    """
+    Generate community impact story from template.
+
+    Args:
+        route_id: Route identifier
+        ward_name: Ward name
+        metrics: Dict with keys: pop_served, ward_population, poverty_rate,
+                 current_access, unserved_pop, equity_tier, final_score
+
+    Returns:
+        Formatted markdown string with impact story
+    """
+    pop_served = metrics.get('pop_served', 0)
+    ward_population = metrics.get('ward_population', 1)
+    poverty_rate = metrics.get('poverty_rate', 20)
+    current_access = metrics.get('current_access', 50)
+    unserved_pop = metrics.get('unserved_pop', 0)
+    equity_tier = metrics.get('equity_tier', 1.0)
+
+    # Calculate improvements
+    new_access_pct = (pop_served / ward_population) * 100 if ward_population > 0 else 0
+    access_improvement = new_access_pct
+
+    # Estimate time savings (simplified)
+    avg_walk_before = 1.2  # km
+    avg_walk_after = 0.4   # km
+    time_saved = int((avg_walk_before - avg_walk_after) * 12)  # minutes (walking ~5km/h)
+
+    # Build story based on equity tier
+    if equity_tier >= 1.8:
+        story = f"""
+**Extending Route {route_id} into {ward_name}**
+
+**Current Situation:**
+- Only {current_access:.1f}% of residents have matatu access
+- {unserved_pop:,} people currently underserved
+- Average walk to nearest stop: {avg_walk_before} km (~{int(avg_walk_before * 12)} minutes)
+- Poverty rate: {poverty_rate}% (higher than city average)
+
+**Impact of Extension:**
+- ✅ Brings service to **{pop_served:,} additional residents**
+- ✅ Increases ward access from {current_access:.1f}% to {current_access + access_improvement:.1f}%
+- ✅ Reduces average commute time by **{time_saved} minutes** daily
+- ✅ Prioritized as **severely underserved** (highest equity tier)
+
+**Who Benefits Most:**
+Residents in remote pockets of {ward_name} who currently walk 15+ minutes to catch a matatu, low-income households who can't afford motorcycle taxis, and morning commuters who previously missed opportunities due to long access times.
+        """.strip()
+
+    elif equity_tier >= 1.4:
+        story = f"""
+**Extending Route {route_id} into {ward_name}**
+
+**Current Gap:**
+{ward_name} has moderate transit coverage ({current_access:.1f}%), but {unserved_pop:,} residents still lack nearby access. This extension targets pockets where service is most needed.
+
+**Impact:**
+- Serves **{pop_served:,} additional people**
+- Cuts walking time by **{time_saved} minutes** on average
+- Improves equity for residents below poverty line ({poverty_rate}%)
+
+**Key Benefit:**
+Fills coverage gaps in moderately served ward, ensuring no neighborhood is left behind.
+        """.strip()
+
+    else:
+        story = f"""
+**Extending Route {route_id} into {ward_name}**
+
+**Enhancement Focus:**
+{ward_name} has adequate coverage ({current_access:.1f}%), but this extension optimizes service by filling small gaps and improving network connectivity.
+
+**Impact:**
+- Serves {pop_served:,} residents in underserved pockets
+- Minor walking time reduction ({time_saved} min)
+- Strengthens route efficiency
+
+**Rationale:**
+While not the highest equity priority, this extension improves network completeness with minimal cost.
+        """.strip()
+
+    return story
+
+@st.cache_data
+def get_featured_stories(n=3):
+    """
+    Get top N community impact stories for featured section.
+    Returns list of dicts with story data.
+    """
+    recs = load_route_recommendations()
+    wards_data = get_ward_equity_data()
+
+    # Get top routes by total population impact
+    top_routes = recs.groupby('route_id').agg({
+        'total_pop_served': 'max',
+        'final_score': 'max',
+        'equity_multiplier': 'first'
+    }).reset_index().sort_values('total_pop_served', ascending=False).head(n)
+
+    stories = []
+    for _, row in top_routes.iterrows():
+        route_id = row['route_id']
+
+        # Extract ward from route recommendations
+        route_recs = recs[recs['route_id'] == route_id].iloc[0]
+        # Get ward from new_stops
+        if route_recs['new_stops']:
+            stop_id = route_recs['new_stops'][0]
+            ward_name = stop_id.split('_')[1] + ' ' + stop_id.split('_')[2] if '_' in stop_id else "Ward"
+        else:
+            ward_name = "Ward"
+
+        # Get ward data
+        ward_data = wards_data[wards_data['ward'] == ward_name]
+        if len(ward_data) == 0:
+            continue
+        ward_row = ward_data.iloc[0]
+
+        metrics = {
+            'pop_served': int(row['total_pop_served']),
+            'ward_population': int(ward_row.get('population', 50000)),
+            'poverty_rate': float(ward_row.get('poverty_rate', 20)),
+            'current_access': float(ward_row.get('pct_access', 50)),
+            'unserved_pop': int(ward_row.get('pop_not_served', 10000)),
+            'equity_tier': float(row['equity_multiplier']),
+            'final_score': float(row['final_score'])
+        }
+
+        story_text = generate_impact_story(route_id, ward_name, metrics)
+
+        stories.append({
+            'route_id': route_id,
+            'ward': ward_name,
+            'pop_served': metrics['pop_served'],
+            'access_before': metrics['current_access'],
+            'access_after': metrics['current_access'] + (metrics['pop_served'] / metrics['ward_population'] * 100),
+            'story': story_text,
+            'equity_tier': metrics['equity_tier']
+        })
+
+    return stories

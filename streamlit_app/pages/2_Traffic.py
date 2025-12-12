@@ -169,6 +169,28 @@ st.markdown("""
         color: rgba(255, 255, 255, 0.7);
         margin-top: 5px;
     }
+
+    /* Content Section Styling from App.py */
+    .content-section {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem 0;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .section-title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: #E74C3C;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+    }
+    .section-content {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #e0e0e0;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -187,6 +209,24 @@ if logo_path.exists():
 else:
     st.title("Traffic & ETA")
     st.markdown("**Real-time snapshot with speed-based route coloring**")
+
+# HOW IT WORKS
+st.markdown("""
+<div class="content-section">
+    <div class="section-title">HOW IT WORKS</div>
+    <div class="section-content">
+        Data from <a href="https://worldmove.ai" target="_blank">WorldMove</a> provides high-fidelity mobility data that has beaten global benchmarks in traffic simulation accuracy.
+        The dataset contains millions of synthetic agent-based trajectories representing realistic urban movement patterns learned from global mobility data.
+        We analyze a 24-hour snapshot of 104,538 agents moving across Nairobi's road network, aggregating individual movements into grid cells and computing speeds based on congestion-aware models.
+        By processing these trajectories through a 1km x 1km spatial grid and mapping them to the OpenStreetMap road network, we estimate traffic speeds and congestion levels with remarkable precision.
+        The model applies time-of-day congestion profiles calibrated to Nairobi's known traffic patterns—assigning base speeds of 35 km/h during free-flow nighttime hours,
+        dropping to 15 km/h during morning rush (6-9 AM), and bottoming out at 12 km/h during the afternoon rush (3-7 PM).
+        These speeds are further adjusted by trip distance and random variation to reflect real-world traffic dynamics.
+        This methodology allows us to estimate movement patterns within routes across Nairobi with great accuracy, providing critical input for downstream route optimization.
+        Understanding where and when congestion occurs enables the GNN model to recommend stop placements that balance accessibility with realistic travel times.
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # Initialize session state
 if 'selected_route' not in st.session_state:
@@ -570,23 +610,7 @@ with col4:
     st.markdown('<div class="stats-card"><span class="speed-indicator speed-congested">CONGESTED</span> < 15 km/h</div>',
                 unsafe_allow_html=True)
 
-# HOW IT WORKS
-st.markdown("""
-<div class="content-section">
-    <div class="section-title">HOW IT WORKS</div>
-    <div class="section-content">
-        Data from <a href="https://worldmove.ai" target="_blank">WorldMove</a> provides high-fidelity mobility data that has beaten global benchmarks in traffic simulation accuracy.
-        The dataset contains millions of synthetic agent-based trajectories representing realistic urban movement patterns learned from global mobility data.
-        We analyze a 24-hour snapshot of 104,538 agents moving across Nairobi's road network, aggregating individual movements into grid cells and computing speeds based on congestion-aware models.
-        By processing these trajectories through a 1km x 1km spatial grid and mapping them to the OpenStreetMap road network, we estimate traffic speeds and congestion levels with remarkable precision.
-        The model applies time-of-day congestion profiles calibrated to Nairobi's known traffic patterns—assigning base speeds of 35 km/h during free-flow nighttime hours,
-        dropping to 15 km/h during morning rush (6-9 AM), and bottoming out at 12 km/h during the afternoon rush (3-7 PM).
-        These speeds are further adjusted by trip distance and random variation to reflect real-world traffic dynamics.
-        This methodology allows us to estimate movement patterns within routes across Nairobi with great accuracy, providing critical input for downstream route optimization.
-        Understanding where and when congestion occurs enables the GNN model to recommend stop placements that balance accessibility with realistic travel times.
-    </div>
-</div>
-""", unsafe_allow_html=True)
+
 
 # HOW TO USE
 st.markdown("""

@@ -82,6 +82,28 @@ st.markdown("""
         color: #e0e0e0;
         margin: 0;
     }
+
+    /* Content Section Styling from App.py */
+    .content-section {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem 0;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .section-title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: #E74C3C;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+    }
+    .section-content {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #e0e0e0;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -96,6 +118,23 @@ if logo_path.exists():
     """, unsafe_allow_html=True)
 else:
     st.title("Optimised Routes")
+
+# HOW IT WORKS
+st.markdown("""
+<div class="content-section">
+    <div class="section-title">HOW IT WORKS</div>
+    <div class="section-content">
+        We identified 22 routes serving underserved wards across Nairobi—Githurai Ward, Kangemi Ward, Dandora Area III Ward, Gatina Ward, Kahawa West,
+        Zimmerman Ward, Matopeni/Spring Valley Ward, Imara Daima Ward, Mountain View Ward, Airbase Ward, Waithaka Ward, Uthiru/Ruthimitu Ward,
+        Karen Ward, Njiru Ward, South C Ward, Mihango Ward, Roysambu Ward, Upper Savanna Ward, Nairobi West Ward, Pipeline Ward, Karura Ward, and Mutu-ini Ward.
+        For each of these routes, we predicted optimal stop locations using Graph Neural Networks. These new stops aim to increase matatu coverage
+        while still factoring for performance metrics like speed and congestion. The added stops are then connected to existing routes, and multiple route variants are generated.
+        Each variant is evaluated using a composite score that balances equity (serving underserved populations), coverage (maximizing accessibility),
+        temporal equity (ensuring service throughout the day), and performance (minimizing delays and congestion).
+        The variant with the highest combined social impact and operational performance is selected as the recommended route extension.
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # Load OSMnx graph (cached)
 @st.cache_resource
@@ -190,22 +229,7 @@ Optimised routes from existing GTFS routes.
 </div>
 """, unsafe_allow_html=True)
 
-# HOW IT WORKS
-st.markdown("""
-<div class="content-section">
-    <div class="section-title">HOW IT WORKS</div>
-    <div class="section-content">
-        We identified 22 routes serving underserved wards across Nairobi—Githurai Ward, Kangemi Ward, Dandora Area III Ward, Gatina Ward, Kahawa West,
-        Zimmerman Ward, Matopeni/Spring Valley Ward, Imara Daima Ward, Mountain View Ward, Airbase Ward, Waithaka Ward, Uthiru/Ruthimitu Ward,
-        Karen Ward, Njiru Ward, South C Ward, Mihango Ward, Roysambu Ward, Upper Savanna Ward, Nairobi West Ward, Pipeline Ward, Karura Ward, and Mutu-ini Ward.
-        For each of these routes, we predicted optimal stop locations using Graph Neural Networks. These new stops aim to increase matatu coverage
-        while still factoring for performance metrics like speed and congestion. The added stops are then connected to existing routes, and multiple route variants are generated.
-        Each variant is evaluated using a composite score that balances equity (serving underserved populations), coverage (maximizing accessibility),
-        temporal equity (ensuring service throughout the day), and performance (minimizing delays and congestion).
-        The variant with the highest combined social impact and operational performance is selected as the recommended route extension.
-    </div>
-</div>
-""", unsafe_allow_html=True)
+
 
 # HOW TO USE
 st.markdown("""

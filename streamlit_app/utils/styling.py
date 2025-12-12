@@ -220,9 +220,10 @@ def get_custom_css():
 
     /* Content sections */
     .content-section {
-        max-width: 900px;
+        max-width: 100%;
         margin: 50px auto 40px;
         padding: 0 20px;
+        scroll-margin-top: 80px;
     }
 
     .section-title {
