@@ -151,7 +151,7 @@ path_layer = pdk.Layer(
 
 Run the app:
 ```bash
-cd /home/dataopske/Desktop/jav/streamlit_app
+cd streamlit_app
 ./run_app.sh
 ```
 

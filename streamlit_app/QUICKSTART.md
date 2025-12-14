@@ -5,14 +5,14 @@
 ### Option 1: Using the launch script (Recommended)
 
 ```bash
-cd /home/dataopske/Desktop/jav/streamlit_app
+cd streamlit_app
 ./run_app.sh
 ```
 
 ### Option 2: Manual launch
 
 ```bash
-cd /home/dataopske/Desktop/jav/streamlit_app
+cd streamlit_app
 source ../.venv/bin/activate
 streamlit run app.py
 ```
@@ -59,7 +59,7 @@ The app has 3 main pages accessible from the sidebar:
 ### App won't start
 ```bash
 # Reinstall dependencies
-cd /home/dataopske/Desktop/jav/streamlit_app
+cd streamlit_app
 source ../.venv/bin/activate
 pip install -r requirements.txt
 ```

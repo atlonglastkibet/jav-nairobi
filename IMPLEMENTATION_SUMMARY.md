@@ -10,7 +10,7 @@
 - [ ] Replace PyDeck with Folium choropleth (dark mode)
 - [ ] Use CartoDB dark-matter-gl-style
 - [ ] Keep before/after toggle functionality
-- [ ] Match notebook implementation from `/home/dataopske/Desktop/jav/notebooks/03_equity_analysis(spatial).ipynb`
+- [ ] Match notebook implementation from `notebooks/03_equity_analysis(spatial).ipynb`
 
 ### 2. Stop Intelligence Section
 - [ ] Change existing stops from gray to BLUE dots
@@ -37,7 +37,7 @@
 - [ ] Match style of existing "THE PROJECT", "IMPACT", "THE FUTURE" sections
 
 ## Data Loading Notes
-- Ward geometries: `/home/dataopske/Desktop/jav/data/processed/wards_full_gdf.csv`
+- Ward geometries: `data/processed/wards_full_gdf.csv`
 - Contains WKT geometry strings that need parsing with shapely.wkt.loads()
 - Has columns: ward, subcounty, population, pct_access, pop_served, poverty_rate
 

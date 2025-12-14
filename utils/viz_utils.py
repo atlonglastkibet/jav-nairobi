@@ -714,7 +714,7 @@ def plot_route_variants_folium(
 # WRAPPER FUNCTION - USE THIS FOR QUICK VISUALIZATION
 # ============================================================================
 
-def quick_viz(route_id, data_dict, save=True, output_dir='/home/dataopske/Desktop/jav/data/folium'):
+def quick_viz(route_id, data_dict, save=True, output_dir='data/folium'):
     """
     Quick visualization with sensible defaults.
     
@@ -727,7 +727,7 @@ def quick_viz(route_id, data_dict, save=True, output_dir='/home/dataopske/Deskto
         'selected_candidates', 'feed', 'df'
     save : bool, default=True
         Whether to save the HTML file
-    output_dir : str, default='/home/dataopske/Desktop/jav/data/folium'
+    output_dir : str, default='data/folium'
         Directory to save the HTML file
         
     Returns:

@@ -8,7 +8,7 @@ The Route Explorer now uses **Folium** for interactive visualization - the same 
 
 ```bash
 # 1. Navigate to streamlit app
-cd /home/dataopske/Desktop/jav/streamlit_app
+cd streamlit_app
 
 # 2. Create virtual environment (recommended)
 python -m venv venv
@@ -26,7 +26,7 @@ streamlit run app.py
 Just add the new dependencies:
 
 ```bash
-cd /home/dataopske/Desktop/jav/streamlit_app
+cd streamlit_app
 source venv/bin/activate  # if using venv
 pip install streamlit-folium osmnx
 ```

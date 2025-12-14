@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 # Add parent directory to path to import utils
-sys.path.append('/home/dataopske/Desktop/jav/streamlit_app')
+sys.path.append(str(Path(__file__).parent))
 
 try:
     from utils.data_loader import get_ward_equity_data
